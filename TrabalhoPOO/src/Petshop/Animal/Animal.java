@@ -1,4 +1,6 @@
-package Petshop;
+package Petshop.Animal;
+
+import Petshop.Cliente.Cliente;
 
 public class Animal {
 

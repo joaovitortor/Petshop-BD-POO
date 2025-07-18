@@ -1,4 +1,8 @@
-package Petshop;
+package Petshop.Atendimento;
+
+import Petshop.Animal.Animal;
+import Petshop.Cliente.Cliente;
+import Petshop.Funcionario.Funcionario;
 
 public class Atendimento {
 

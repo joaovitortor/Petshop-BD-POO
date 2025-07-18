@@ -1,4 +1,4 @@
-package Petshop;
+package Petshop.Funcionario;
 
 public class Funcionario {
 

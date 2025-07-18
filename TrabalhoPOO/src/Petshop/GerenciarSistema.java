@@ -2,6 +2,11 @@ package Petshop;
 
 import java.util.Scanner;
 
+import Petshop.Animal.SistemaAnimal;
+import Petshop.Atendimento.SistemaAtendimento;
+import Petshop.Cliente.SistemaCliente;
+import Petshop.Funcionario.SistemaFuncionario;
+
 public class GerenciarSistema {
 
     private Scanner input;

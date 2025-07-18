@@ -1,7 +1,10 @@
-package Petshop;
+package Petshop.Funcionario;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import Petshop.Crud;
+import Petshop.Atendimento.SistemaAtendimento;
 
 public class SistemaFuncionario implements Crud {
 

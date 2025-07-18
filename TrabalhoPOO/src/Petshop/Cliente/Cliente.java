@@ -1,4 +1,4 @@
-package Petshop;
+package Petshop.Cliente;
 
 public class Cliente {
 
