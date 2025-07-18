@@ -3,6 +3,7 @@ package Petshop;
 import java.util.Scanner;
 
 public class GerenciarSistema {
+
     private Scanner input;
     protected SistemaCliente sistemaCliente;
     protected SistemaFuncionario sistemaFuncionario;
@@ -10,28 +11,26 @@ public class GerenciarSistema {
     protected SistemaAtendimento sistemaAtendimento;
 
     /**
-     * Construtor da classe GerenciarSistema.
-     * Inicializa a lista de clientes e o input para leitura de dados.
-     * Inicializa o sistemaCliente com o input para leitura de dados.
-     * Inicializa o sistemaFuncionario com o input para leitura de dados.
-     * Inicialia o sistemaAnimal com o input para leitura de dados.
-     * Inicializa o sistemaAtendimento com o input para leitura de dados,
+     * Construtor da classe GerenciarSistema. Inicializa a lista de clientes e o
+     * input para leitura de dados. Inicializa o sistemaCliente com o input para
+     * leitura de dados. Inicializa o sistemaFuncionario com o input para
+     * leitura de dados. Inicialia o sistemaAnimal com o input para leitura de
+     * dados. Inicializa o sistemaAtendimento com o input para leitura de dados,
      * com o sistemaCliente, com o sistemaFuncionario e com o sistemaAnimal.
-     * 
-     * Apos todos os sistemas serem inicializados:
-     * Seta o sistemaAtendimento e o sistemaAnimal no sistemaCliente para
-     * evitar problemas relacinados a dependencia circular.
-     * 
-     * Seta o sistemaAtendimento no sistemaFuncionario para evitar 
+     *
+     * Apos todos os sistemas serem inicializados: Seta o sistemaAtendimento e o
+     * sistemaAnimal no sistemaCliente para evitar problemas relacinados a
+     * dependencia circular.
+     *
+     * Seta o sistemaAtendimento no sistemaFuncionario para evitar problemas
+     * relacionados a dependencia circular.
+     *
+     * Seta o sistemaCliente e o sistemaAtendimento no sistemaAnimal para evitar
      * problemas relacionados a dependencia circular.
-     * 
-     * Seta o sistemaCliente e o sistemaAtendimento no sistemaAnimal para
-     * evitar problemas relacionados a dependencia circular.
-     * 
+     *
      * @param input O objeto Scanner utilizado para ler a entrada do usuario.
      */
-    
-    public GerenciarSistema(Scanner input){
+    public GerenciarSistema(Scanner input) {
         this.input = input;
         this.sistemaCliente = new SistemaCliente(input);
         this.sistemaFuncionario = new SistemaFuncionario(input);
@@ -50,15 +49,15 @@ public class GerenciarSistema {
     /**
      * Exibe o menu de operacoes do Petshop.
      */
-    public static void menuPrincipal(){
+    public static void menuPrincipal() {
         System.out.println("\n+--------------------------+");
-    	System.out.println("|         Petshop          |");
-    	System.out.println("+--------------------------+");
-    	System.out.println("| 1) Cliente               |");
-    	System.out.println("| 2) Funcionario           |");
-    	System.out.println("| 3) Animal                |");
-    	System.out.println("| 4) Atendimento           |");
-    	System.out.println("| 0) Sair                  |");
+        System.out.println("|         Petshop          |");
+        System.out.println("+--------------------------+");
+        System.out.println("| 1) Cliente               |");
+        System.out.println("| 2) Funcionario           |");
+        System.out.println("| 3) Animal                |");
+        System.out.println("| 4) Atendimento           |");
+        System.out.println("| 0) Sair                  |");
         System.out.println("+--------------------------+");
         System.out.print("Digite o comando desejado: ");
     }
@@ -72,13 +71,19 @@ public class GerenciarSistema {
             do {
                 menuPrincipal();
                 opcao = Integer.parseInt(input.nextLine());
-                switch(opcao) {
-                    case 1 -> sistemaCliente.operacoesCliente();
-                    case 2 -> sistemaFuncionario.operacoesFuncionario();
-                    case 3 -> sistemaAnimal.operacoesAnimal();
-                    case 4 -> sistemaAtendimento.operacoesAtendimento();
-                    case 0 -> System.out.println("Saindo...");
-                    default -> System.out.println("Comando errado. tente novamente!\n");
+                switch (opcao) {
+                    case 1 ->
+                        sistemaCliente.operacoesCliente();
+                    case 2 ->
+                        sistemaFuncionario.operacoesFuncionario();
+                    case 3 ->
+                        sistemaAnimal.operacoesAnimal();
+                    case 4 ->
+                        sistemaAtendimento.operacoesAtendimento();
+                    case 0 ->
+                        System.out.println("Saindo...");
+                    default ->
+                        System.out.println("Comando errado. tente novamente!\n");
                 }
             } while (opcao != 0);
         } catch (NumberFormatException e) {

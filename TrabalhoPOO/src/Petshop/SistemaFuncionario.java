@@ -3,27 +3,31 @@ package Petshop;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class SistemaFuncionario implements Crud{
+public class SistemaFuncionario implements Crud {
+
     private ArrayList<Funcionario> funcionarios;
     private SistemaAtendimento sistemaAtendimento;
     private Scanner input;
 
     /**
-     * Construtor da classe SistemaFuncionario
-     * Inicializa a lista de funcionarios e o input para leitura de dados.
-     * O sistemaAtendimento é inicializado posteriormente para evitar problemas
-     * relacionados a dependencia circular.
+     * Construtor da classe SistemaFuncionario Inicializa a lista de
+     * funcionarios e o input para leitura de dados. O sistemaAtendimento é
+     * inicializado posteriormente para evitar problemas relacionados a
+     * dependencia circular.
+     *
      * @param input O objeto Scanner utilizado para ler a entrada do usuário.
      */
-    public SistemaFuncionario(Scanner input){
+    public SistemaFuncionario(Scanner input) {
         this.funcionarios = new ArrayList<>();
         this.input = input;
     }
 
     /**
      * Inicializa o sistemaAtendimento.
+     * 
+     * @param sistemaAtendimento sistemaAtendimento a ser inicializado
      */
-    public void setSistemaAtendimento(SistemaAtendimento sistemaAtendimento){
+    public void setSistemaAtendimento(SistemaAtendimento sistemaAtendimento) {
         this.sistemaAtendimento = sistemaAtendimento;
     }
 
@@ -31,58 +35,66 @@ public class SistemaFuncionario implements Crud{
      * Exibe o menu de opcoes de operacoes com funcionario.
      */
     public static void menuFuncionario() {
-    	System.out.println("\n+--------------------------+");
-    	System.out.println("|        Funcionário       |");
-    	System.out.println("+--------------------------+");
-    	System.out.println("| 1) Cadastrar             |");
-    	System.out.println("| 2) Consultar             |");
-    	System.out.println("| 3) Alterar               |");
-    	System.out.println("| 4) Remover               |");
-        System.out.println("| 5) Relatorio             |");
-    	System.out.println("| 0) Voltar                |");
+        System.out.println("\n+--------------------------+");
+        System.out.println("|        Funcionário       |");
         System.out.println("+--------------------------+");
-    	System.out.print("Digite o comando desejado: ");
+        System.out.println("| 1) Cadastrar             |");
+        System.out.println("| 2) Consultar             |");
+        System.out.println("| 3) Alterar               |");
+        System.out.println("| 4) Remover               |");
+        System.out.println("| 5) Relatorio             |");
+        System.out.println("| 0) Voltar                |");
+        System.out.println("+--------------------------+");
+        System.out.print("Digite o comando desejado: ");
     }
-    
+
     /**
      * Gerencia a escolha de operacao de funcionario realizada pelo usuario.
      */
-    public void operacoesFuncionario(){
-    	int opcao;
-        try{
+    public void operacoesFuncionario() {
+        int opcao;
+        try {
             do {
                 menuFuncionario();
                 opcao = Integer.parseInt(input.nextLine());
-                switch (opcao){
-                    case 1 -> cadastrar();
-                    case 2 -> consultar();
-                    case 3 -> alterar();
-                    case 4 -> remover();
-                    case 5 -> relatorio();
-                    case 0 -> System.out.println("Voltando...");
-                    default -> System.out.println("Opcao invalida. Tente novamente!");
-    		    }
-    	    } while (opcao != 0);
+                switch (opcao) {
+                    case 1 ->
+                        cadastrar();
+                    case 2 ->
+                        consultar();
+                    case 3 ->
+                        alterar();
+                    case 4 ->
+                        remover();
+                    case 5 ->
+                        relatorio();
+                    case 0 ->
+                        System.out.println("Voltando...");
+                    default ->
+                        System.out.println("Opcao invalida. Tente novamente!");
+                }
+            } while (opcao != 0);
 
         } catch (NumberFormatException e) {
             System.out.println("Entrada inválida! Por favor, digite apenas números.");
             operacoesFuncionario();
         }
-    	;
     }
+
     /**
-    * Cadastra um novo funcionario no sistema e insere na lista de funcionarios.
-    */
+     * Cadastra um novo funcionario no sistema e insere na lista de
+     * funcionarios.
+     */
     @Override
-    public void cadastrar(){
+    public void cadastrar() {
         String nome, qualificacao, descricaoFuncao;
-        int cargaHorariaSemanal, numMatricula, i = 0; 
-        try{
+        int cargaHorariaSemanal, numMatricula;
+        try {
             System.out.println("\n---- Cadastro de funcionario ----");
             System.out.print("Digite o numero da matricula do funcionario: ");
             numMatricula = Integer.parseInt(input.nextLine());
 
-            if(buscaPorNumMatricula(numMatricula) == null){
+            if (buscaPorNumMatricula(numMatricula) == null) {
                 System.out.print("Digite o nome do funcionario: ");
                 nome = input.nextLine();
                 System.out.print("Digite a qualificacao do funcionario: ");
@@ -93,7 +105,7 @@ public class SistemaFuncionario implements Crud{
                 cargaHorariaSemanal = Integer.parseInt(input.nextLine());
                 funcionarios.add(new Funcionario(nome, qualificacao, descricaoFuncao, cargaHorariaSemanal, numMatricula));
                 System.out.println("\nCadastro realizado com sucesso!");
-            } else{
+            } else {
                 System.out.println("Já possui um funcionario cadastrado com esse numero de matricula!\n");
             }
         } catch (NumberFormatException e) {
@@ -103,18 +115,19 @@ public class SistemaFuncionario implements Crud{
     }
 
     /**
-     * Verifica se um funcionario está cadastrado pelo numero de matricula e,
-     * se estiver, exibe suas informacoes.
+     * Verifica se um funcionario está cadastrado pelo numero de matricula e, se
+     * estiver, exibe suas informacoes.
      */
-    public void consultar(){
+    @Override
+    public void consultar() {
         int numMatricula;
         Funcionario funcionario;
         System.out.println("\n---- Consulta de funcionarios ----");
-        try{    
+        try {
             System.out.print("Digite o numero de matricula do funcionario: ");
             numMatricula = Integer.parseInt(input.nextLine());
             funcionario = buscaPorNumMatricula(numMatricula);
-            if (funcionario != null){
+            if (funcionario != null) {
                 System.out.println("\nFuncionario encontrado!\n");
                 funcionario.exibirInformacoes();
             } else {
@@ -127,36 +140,37 @@ public class SistemaFuncionario implements Crud{
     }
 
     /**
-     * Exibe um menu de opcoes com as informacoes do funcionario e pede para o usuario digitar
-     * a opcao correspondente ao atributo ele quer alterar.
-     * 
+     * Exibe um menu de opcoes com as informacoes do funcionario e pede para o
+     * usuario digitar a opcao correspondente ao atributo ele quer alterar.
+     *
      * @param funcionario o funcionario selecionado para alteracao.
      */
-    public void menuAlterar(Funcionario funcionario){
-            System.out.println("1) Nome: " + funcionario.getNome());
-            System.out.println("2) Qualificacao: " + funcionario.getQualificacao());
-            System.out.println("3) Descricao da funcao: " + funcionario.getDescricaoFuncao());
-            System.out.println("4) Carga horaria semanal: " + funcionario.getCargaHorariaSemanal());
-            System.out.println("5) Numero de matricula: " + funcionario.getNumMatricula());
-            System.out.println("0) Cancelar");
-            System.out.print("Digite o numero correspondente a alteracao desejada: ");
-        }
+    public void menuAlterar(Funcionario funcionario) {
+        System.out.println("1) Nome: " + funcionario.getNome());
+        System.out.println("2) Qualificacao: " + funcionario.getQualificacao());
+        System.out.println("3) Descricao da funcao: " + funcionario.getDescricaoFuncao());
+        System.out.println("4) Carga horaria semanal: " + funcionario.getCargaHorariaSemanal());
+        System.out.println("5) Numero de matricula: " + funcionario.getNumMatricula());
+        System.out.println("0) Cancelar");
+        System.out.print("Digite o numero correspondente a alteracao desejada: ");
+    }
 
     /**
-     * Realiza a alteracao de algum dado do funcionario, caso o funcionario exista.
+     * Realiza a alteracao de algum dado do funcionario, caso o funcionario
+     * exista.
      */
     @Override
-    public void alterar(){
-        int opcao, i, numMatricula;
+    public void alterar() {
+        int opcao, numMatricula;
         Funcionario funcionario;
         try {
             System.out.println("\n---- Alteracao de funcionario -----");
             System.out.print("Digite o numero de matricula: ");
             numMatricula = Integer.parseInt(input.nextLine());
             funcionario = buscaPorNumMatricula(numMatricula);
-            if (funcionario != null){            
+            if (funcionario != null) {
                 System.out.println("Funcionario encontrado.\n");
-                do { 
+                do {
                     menuAlterar(funcionario);
                     opcao = Integer.parseInt(input.nextLine());
                     switch (opcao) {
@@ -195,10 +209,10 @@ public class SistemaFuncionario implements Crud{
                         }
                         default -> {
                             System.out.println("Comando invalido. Tente novamente");
-                        }       
-                    }      
+                        }
+                    }
                 } while (opcao < 0 || opcao > 5);
-            }else{
+            } else {
                 System.out.println("Funcionario não encontrado.\n");
             }
         } catch (NumberFormatException e) {
@@ -208,11 +222,12 @@ public class SistemaFuncionario implements Crud{
     }
 
     /**
-     * Remove um funcionario do sistema caso ele nao esteja vinculado a pelo menos um atendimento.
+     * Remove um funcionario do sistema caso ele nao esteja vinculado a pelo
+     * menos um atendimento.
      */
     @Override
-    public void remover(){
-        int i, numMatricula;
+    public void remover() {
+        int numMatricula;
         boolean inclusoEmAtendimento;
         Funcionario funcionario;
         try {
@@ -220,9 +235,9 @@ public class SistemaFuncionario implements Crud{
             System.out.print("Digite o numero de matricula do funcionario: ");
             numMatricula = Integer.parseInt(input.nextLine());
             funcionario = buscaPorNumMatricula(numMatricula);
-            if(funcionario != null){
+            if (funcionario != null) {
                 inclusoEmAtendimento = sistemaAtendimento.verificaFuncionario(numMatricula);
-                if(!inclusoEmAtendimento){
+                if (!inclusoEmAtendimento) {
                     funcionarios.remove(funcionario);
                     System.out.println("\nO funcionário foi removido!");
                 } else {
@@ -239,12 +254,12 @@ public class SistemaFuncionario implements Crud{
      * Exibe as informacoes de todos os funcionarios cadastrados.
      */
     @Override
-    public void relatorio(){
+    public void relatorio() {
         System.out.println("\n---- Relatorio de funcionarios ----\n");
-        if(funcionarios.size() > 0){
-            for(Funcionario funcionario: funcionarios){
-            funcionario.exibirInformacoes();
-            System.out.println("");
+        if (!funcionarios.isEmpty()) {
+            for (Funcionario funcionario : funcionarios) {
+                funcionario.exibirInformacoes();
+                System.out.println("");
             }
         } else {
             System.out.println("Nenhum funcionario cadastrado.\n");
@@ -252,17 +267,19 @@ public class SistemaFuncionario implements Crud{
     }
 
     /**
-     * Realiza uma busca sequencial pela lista de funcionarios para encontrar o funcionario
-     * que possui o mesmo numero de matricula que o numero de matricula buscado.
-     * 
+     * Realiza uma busca sequencial pela lista de funcionarios para encontrar o
+     * funcionario que possui o mesmo numero de matricula que o numero de
+     * matricula buscado.
+     *
      * @param numMatricula numero de matricula do funcionario a ser encontrado.
-     * 
-     * @return Funcionario caso encontre o funcionario, caso contrario retorna null.
+     *
+     * @return Funcionario caso encontre o funcionario, caso contrario retorna
+     * null.
      */
-    public Funcionario buscaPorNumMatricula(int numMatricula){
+    public Funcionario buscaPorNumMatricula(int numMatricula) {
         int i = 0;
-        while (i < funcionarios.size()){
-            if(funcionarios.get(i).getNumMatricula() == numMatricula){
+        while (i < funcionarios.size()) {
+            if (funcionarios.get(i).getNumMatricula() == numMatricula) {
                 return funcionarios.get(i);
             }
             i++;
@@ -270,4 +287,3 @@ public class SistemaFuncionario implements Crud{
         return null;
     }
 }
-
