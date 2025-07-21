@@ -1,6 +1,6 @@
-package petshop.bd.Animal;
+package petshop.bd.Classes.Animal;
 
-import petshop.bd.Cliente.Cliente;
+import petshop.bd.Classes.Cliente.Cliente;
 
 public class Animal {
 

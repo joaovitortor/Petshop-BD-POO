@@ -1,8 +1,8 @@
-package petshop.bd.Atendimento;
+package petshop.bd.Classes.Atendimento;
 
-import petshop.bd.Funcionario.Funcionario;
-import petshop.bd.Animal.Animal;
-import petshop.bd.Cliente.Cliente;
+import petshop.bd.Classes.Funcionario.Funcionario;
+import petshop.bd.Classes.Animal.Animal;
+import petshop.bd.Classes.Cliente.Cliente;
 
 public class Atendimento {
 

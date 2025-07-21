@@ -1,5 +1,6 @@
-package petshop.bd;
+package petshop.bd.Main;
 
+import petshop.bd.Main.GerenciarSistema;
 import java.util.Scanner;
 
 public class Main {

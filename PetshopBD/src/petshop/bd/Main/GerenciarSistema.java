@@ -1,9 +1,9 @@
-package petshop.bd;
+package petshop.bd.Main;
 
-import petshop.bd.Atendimento.SistemaAtendimento;
-import petshop.bd.Funcionario.SistemaFuncionario;
-import petshop.bd.Animal.SistemaAnimal;
-import petshop.bd.Cliente.SistemaCliente;
+import petshop.bd.Classes.Atendimento.SistemaAtendimento;
+import petshop.bd.Classes.Funcionario.SistemaFuncionario;
+import petshop.bd.Classes.Animal.SistemaAnimal;
+import petshop.bd.Classes.Cliente.SistemaCliente;
 import java.util.Scanner;
 
 public class GerenciarSistema {

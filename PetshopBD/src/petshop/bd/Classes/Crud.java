@@ -1,4 +1,4 @@
-package petshop.bd;
+package petshop.bd.Classes;
 
 public interface Crud {
 

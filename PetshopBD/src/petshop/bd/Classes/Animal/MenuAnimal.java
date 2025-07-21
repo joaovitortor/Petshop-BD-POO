@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package petshop.bd.Atendimento;
+package petshop.bd.Classes.Animal;
 
 /**
  *
  * @author user
  */
-public class MenuAtendimento extends javax.swing.JFrame {
+public class MenuAnimal extends javax.swing.JFrame {
 
     /**
      * Creates new form MenuAnimal
      */
-    public MenuAtendimento() {
+    public MenuAnimal() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -93,7 +93,7 @@ public class MenuAtendimento extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("GESTÃO DE ATENDIMENTOS");
+        jLabel1.setText("GESTÃO DE ANIMAIS");
         jPanel4.add(jLabel1, new java.awt.GridBagConstraints());
 
         jPanel5.setBackground(new java.awt.Color(0, 80, 80));
@@ -135,7 +135,7 @@ public class MenuAtendimento extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(102, 102, 102));
         jLabel2.setFont(new java.awt.Font("Agency FB", 1, 20)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel2.setText("Lista de Atendimentos Cadastrados");
+        jLabel2.setText("Lista de Animais Cadastrados");
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -353,21 +353,20 @@ public class MenuAtendimento extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuAtendimento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAnimal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuAtendimento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAnimal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuAtendimento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAnimal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuAtendimento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAnimal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuAtendimento().setVisible(true);
+                new MenuAnimal().setVisible(true);
             }
         });
     }

@@ -1,15 +1,15 @@
-package petshop.bd.Atendimento;
+package petshop.bd.Classes.Atendimento;
 
-import petshop.bd.Atendimento.Atendimento;
-import petshop.bd.Funcionario.Funcionario;
-import petshop.bd.Funcionario.SistemaFuncionario;
-import petshop.bd.Animal.SistemaAnimal;
-import petshop.bd.Animal.Animal;
-import petshop.bd.Cliente.SistemaCliente;
-import petshop.bd.Cliente.Cliente;
+import petshop.bd.Classes.Atendimento.Atendimento;
+import petshop.bd.Classes.Funcionario.Funcionario;
+import petshop.bd.Classes.Funcionario.SistemaFuncionario;
+import petshop.bd.Classes.Animal.SistemaAnimal;
+import petshop.bd.Classes.Animal.Animal;
+import petshop.bd.Classes.Cliente.SistemaCliente;
+import petshop.bd.Classes.Cliente.Cliente;
 import java.util.Scanner;
 import java.util.ArrayList;
-import petshop.bd.Crud;
+import petshop.bd.Classes.Crud;
 
 public class SistemaAtendimento implements Crud {
 

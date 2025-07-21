@@ -1,4 +1,4 @@
-package petshop.bd.Cliente;
+package petshop.bd.Classes.Cliente;
 
 public class Cliente {
 

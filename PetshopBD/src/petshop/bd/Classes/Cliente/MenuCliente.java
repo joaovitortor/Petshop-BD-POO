@@ -2,18 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package petshop.bd.Funcionario;
+package petshop.bd.Classes.Cliente;
+
 
 /**
  *
  * @author user
  */
-public class MenuFuncionario extends javax.swing.JFrame {
+public class MenuCliente extends javax.swing.JFrame {
 
     /**
      * Creates new form MenuAnimal
      */
-    public MenuFuncionario() {
+    public MenuCliente() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -93,7 +94,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("GESTÃO DE FUNCIONÁRIOS");
+        jLabel1.setText("GESTÃO DE CLIENTES");
         jPanel4.add(jLabel1, new java.awt.GridBagConstraints());
 
         jPanel5.setBackground(new java.awt.Color(0, 80, 80));
@@ -135,7 +136,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(102, 102, 102));
         jLabel2.setFont(new java.awt.Font("Agency FB", 1, 20)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel2.setText("Lista de Funcionários Cadastrados");
+        jLabel2.setText("Lista de Clientes Cadastrados");
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -353,13 +354,13 @@ public class MenuFuncionario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -367,7 +368,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuFuncionario().setVisible(true);
+                new MenuCliente().setVisible(true);
             }
         });
     }

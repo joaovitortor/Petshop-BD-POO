@@ -1,4 +1,4 @@
-package petshop.bd.Funcionario;
+package petshop.bd.Classes.Funcionario;
 
 public class Funcionario {
 
