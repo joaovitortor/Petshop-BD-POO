@@ -4,6 +4,8 @@
  */
 package petshop.bd.Classes.Cliente;
 
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -388,7 +390,35 @@ public class FormularioCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
-        //OIIIIIIIIIIIIIIIII
+        String nome, email, cpf, rg, telefone;
+        if(campoNome.getText().equals("Digite o Nome") || campoNome.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Digite o nome do Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
+            campoNome.requestFocus(); 
+            return;
+        } else{
+
+            nome = campoNome.getText();
+        }
+        if(campoEmail.getText().equals("Digite o Email") || campoEmail.getText().isEmpty()){
+            
+        } else {
+            email = campoEmail.getText();
+        }
+        if(campoCPF.getText().equals("Digite o CPF") || campoCPF.getText().isEmpty()){
+            
+        } else {
+            cpf = campoCPF.getText();
+        }
+        if(campoRG.getText().equals("Digite o RG") || campoRG.getText().isEmpty()){
+            
+        } else {
+            rg = campoRG.getText();
+        }
+        if(campoTelefone.getText().equals("Digite o Telefone") || campoTelefone.getText().isEmpty()) {
+            
+        } else {
+            telefone = campoTelefone.getText();
+        } 
     }//GEN-LAST:event_botaoCadastrarActionPerformed
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
