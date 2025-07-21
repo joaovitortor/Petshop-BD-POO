@@ -1,13 +1,13 @@
 package petshop.bd.Banco;
 
-import petshop.bd.Classes.Cliente.Cliente;
+import petshop.bd.Classes.Funcionario.Funcionario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class ClienteBD {
+public class FuncionarioBD {
     private final SQLiteDriver sqLiteDriver;
     private final Connection conexao;
     private Statement declaracao;
@@ -16,11 +16,11 @@ public class ClienteBD {
 
     private void criarTabela(){
         String sql = "CREATE TABLE IF NOT EXISTS Cliente (" +
-                "	cpf text PRIMARY KEY NOT NULL," +
+                "	numMatricula int PRIMARY KEY NOT NULL," +
                 "	nome text NOT NULL," +
-                "	rg text NOT NULL," +
-                "	telefone text NOT NULL," +
-                "	email text NOT NULL" +
+                "	qualificacao text NOT NULL," +
+                "	descricaoFuncao text NOT NULL," +
+                "	cargaHorariaSemanal int NOT NULL" +
 
                                                             ");";
         try {
@@ -32,24 +32,24 @@ public class ClienteBD {
         }
     }
     
-    public ClienteBD(){
-        this.sqLiteDriver = new SQLiteDriver("clientes");      
+    public FuncionarioBD(){
+        this.sqLiteDriver = new SQLiteDriver("funcionarios");      
         this.conexao = sqLiteDriver.iniciarConexao();
         this.criarTabela();
     }
     
-    public void cadastrar(Cliente cliente) {                       
-        String sql = "insert into Pessoas (cpf, nome, rg, telefone, email) values (?,?,?,?,?)";
+    public void cadastrar(Funcionario funcionario) {                       
+        String sql = "insert into Pessoas (numMatricula, nome, qualificacao, descricaoFuncao, cargaHorariaSemanal) values (?,?,?,?,?)";
         
         
         try {
           this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
           
-          this.declaracao_parametrizada.setString(1, cliente.getCpf());
-          this.declaracao_parametrizada.setString(2, cliente.getNome());
-          this.declaracao_parametrizada.setString(3, cliente.getRg());
-          this.declaracao_parametrizada.setString(4, cliente.getTelefone());
-          this.declaracao_parametrizada.setString(5, cliente.getEmail());
+          this.declaracao_parametrizada.setInt(1, funcionario.getNumMatricula());
+          this.declaracao_parametrizada.setString(2, funcionario.getNome());
+          this.declaracao_parametrizada.setString(3, funcionario.getQualificacao());
+          this.declaracao_parametrizada.setString(4, funcionario.getDescricaoFuncao());
+          this.declaracao_parametrizada.setInt(5, funcionario.getCargaHorariaSemanal());
           
           this.declaracao_parametrizada.executeUpdate();
         } catch (SQLException erro){
@@ -57,14 +57,14 @@ public class ClienteBD {
         }
     }
 
-    public void alterar(Cliente cliente) {                
+    public void alterar(Funcionario funcionario) {                
         String sql = "update Pessoas set"
                 + " nome = ?";
         
         try {
           this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
           
-          this.declaracao_parametrizada.setString(1, cliente.getNome());
+          this.declaracao_parametrizada.setString(1, funcionario.getNome());
            
           this.declaracao_parametrizada.executeUpdate();
         } catch (SQLException erro){
@@ -72,13 +72,13 @@ public class ClienteBD {
         }        
     }
 
-    public void remover(Cliente cliente) {
+    public void remover(Funcionario funcionario){
         String sql = "delete from Pessoas where cpf = ?";        
         
         try {
           this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
           
-          this.declaracao_parametrizada.setString(1, cliente.getCpf());          
+          this.declaracao_parametrizada.setInt(1, funcionario.getNumMatricula());          
           
           this.declaracao_parametrizada.executeUpdate();
         } catch (SQLException erro){
@@ -86,12 +86,12 @@ public class ClienteBD {
         }        
     }
 
-    public void consultar(Cliente cliente) {      
+    public void consultar(Funcionario funcionario) {      
         String sql = "select * from Pessoas where cpf = ?";
                 
         try {
             this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
-            this.declaracao_parametrizada.setString(1, cliente.getCpf());
+            this.declaracao_parametrizada.setInt(1, funcionario.getNumMatricula());
             
             this.resultados = declaracao_parametrizada.executeQuery();
             
@@ -131,3 +131,4 @@ public class ClienteBD {
     }
 
 }
+
