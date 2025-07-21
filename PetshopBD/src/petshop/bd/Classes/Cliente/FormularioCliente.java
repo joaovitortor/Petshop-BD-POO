@@ -148,10 +148,10 @@ public class FormularioCliente extends javax.swing.JFrame {
             }
         });
 
-        jPanel2.setBackground(new java.awt.Color(106, 183, 183));
-        jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 137, 137), 7, true));
+        jPanel2.setBackground(new java.awt.Color(129, 196, 196));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(45, 153, 153), 7));
 
-        campoNome.setForeground(new java.awt.Color(204, 204, 204));
+        campoNome.setForeground(new java.awt.Color(102, 102, 102));
         campoNome.setText("Digite o Nome");
         campoNome.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
         campoNome.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -168,7 +168,7 @@ public class FormularioCliente extends javax.swing.JFrame {
             }
         });
 
-        campoEmail.setForeground(new java.awt.Color(204, 204, 204));
+        campoEmail.setForeground(new java.awt.Color(102, 102, 102));
         campoEmail.setText("Digite o Email");
         campoEmail.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
         campoEmail.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -185,7 +185,7 @@ public class FormularioCliente extends javax.swing.JFrame {
             }
         });
 
-        campoTelefone.setForeground(new java.awt.Color(204, 204, 204));
+        campoTelefone.setForeground(new java.awt.Color(102, 102, 102));
         campoTelefone.setText("Digite o Telefone");
         campoTelefone.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
         campoTelefone.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -202,7 +202,7 @@ public class FormularioCliente extends javax.swing.JFrame {
             }
         });
 
-        campoRG.setForeground(new java.awt.Color(204, 204, 204));
+        campoRG.setForeground(new java.awt.Color(102, 102, 102));
         campoRG.setText("Digite o RG");
         campoRG.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
         campoRG.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -219,7 +219,7 @@ public class FormularioCliente extends javax.swing.JFrame {
             }
         });
 
-        campoCPF.setForeground(new java.awt.Color(204, 204, 204));
+        campoCPF.setForeground(new java.awt.Color(102, 102, 102));
         campoCPF.setText("Digite o CPF");
         campoCPF.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
         campoCPF.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -409,7 +409,7 @@ public class FormularioCliente extends javax.swing.JFrame {
     private void campoNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNomeFocusLost
         if(campoNome.getText().isEmpty()){
             campoNome.setText("Digite o Nome");
-            campoNome.setForeground(new java.awt.Color(204,204,204));
+            campoNome.setForeground(new java.awt.Color(102,102,102));
         }
     }//GEN-LAST:event_campoNomeFocusLost
 
@@ -427,7 +427,7 @@ public class FormularioCliente extends javax.swing.JFrame {
     private void campoEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoEmailFocusLost
         if(campoEmail.getText().isEmpty()){
             campoEmail.setText("Digite o Email");
-            campoEmail.setForeground(new java.awt.Color(204,204,204));
+            campoEmail.setForeground(new java.awt.Color(102,102,102));
         }
     }//GEN-LAST:event_campoEmailFocusLost
 
@@ -445,7 +445,7 @@ public class FormularioCliente extends javax.swing.JFrame {
     private void campoTelefoneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoTelefoneFocusLost
         if(campoTelefone.getText().isEmpty()){
             campoTelefone.setText("Digite o Telefone");
-            campoTelefone.setForeground(new java.awt.Color(204,204,204));
+            campoTelefone.setForeground(new java.awt.Color(102,102,102));
         }
     }//GEN-LAST:event_campoTelefoneFocusLost
 
@@ -463,7 +463,7 @@ public class FormularioCliente extends javax.swing.JFrame {
     private void campoRGFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoRGFocusLost
         if(campoRG.getText().isEmpty()){
             campoRG.setText("Digite o RG");
-            campoRG.setForeground(new java.awt.Color(204,204,204));
+            campoRG.setForeground(new java.awt.Color(102,102,102));
         }
     }//GEN-LAST:event_campoRGFocusLost
 
@@ -481,7 +481,7 @@ public class FormularioCliente extends javax.swing.JFrame {
     private void campoCPFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoCPFFocusLost
         if(campoCPF.getText().isEmpty()){
             campoCPF.setText("Digite o CPF");
-            campoCPF.setForeground(new java.awt.Color(204,204,204));
+            campoCPF.setForeground(new java.awt.Color(102,102,102));
         }
     }//GEN-LAST:event_campoCPFFocusLost
 
