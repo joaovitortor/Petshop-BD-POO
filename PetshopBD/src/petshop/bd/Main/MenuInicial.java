@@ -4,6 +4,7 @@
  */
 package petshop.bd.Main;
 
+import petshop.bd.Classes.Cliente.SistemaCliente;
 
 /**
  *
@@ -42,11 +43,11 @@ public class MenuInicial extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        botaoAnimal = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        botaoAtendimento = new javax.swing.JButton();
+        botaoCliente = new javax.swing.JButton();
+        botaoFuncionario = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -126,19 +127,19 @@ public class MenuInicial extends javax.swing.JFrame {
         jPanel3.setForeground(new java.awt.Color(0, 51, 51));
         jPanel3.setPreferredSize(new java.awt.Dimension(0, 2));
 
-        jButton2.setBackground(new java.awt.Color(0, 51, 51));
-        jButton2.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(242, 242, 242));
-        jButton2.setText("Animais");
-        jButton2.setIconTextGap(3);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        botaoAnimal.setBackground(new java.awt.Color(0, 51, 51));
+        botaoAnimal.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
+        botaoAnimal.setForeground(new java.awt.Color(242, 242, 242));
+        botaoAnimal.setText("Animais");
+        botaoAnimal.setIconTextGap(3);
+        botaoAnimal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                botaoAnimalActionPerformed(evt);
             }
         });
-        jButton2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+        botaoAnimal.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jButton2PropertyChange(evt);
+                botaoAnimalPropertyChange(evt);
             }
         });
 
@@ -153,51 +154,51 @@ public class MenuInicial extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(0, 51, 51));
-        jButton3.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(242, 242, 242));
-        jButton3.setText("Atendimentos");
-        jButton3.setIconTextGap(3);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        botaoAtendimento.setBackground(new java.awt.Color(0, 51, 51));
+        botaoAtendimento.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
+        botaoAtendimento.setForeground(new java.awt.Color(242, 242, 242));
+        botaoAtendimento.setText("Atendimentos");
+        botaoAtendimento.setIconTextGap(3);
+        botaoAtendimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                botaoAtendimentoActionPerformed(evt);
             }
         });
-        jButton3.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+        botaoAtendimento.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jButton3PropertyChange(evt);
+                botaoAtendimentoPropertyChange(evt);
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(0, 51, 51));
-        jButton5.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(242, 242, 242));
-        jButton5.setText("Clientes");
-        jButton5.setIconTextGap(3);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        botaoCliente.setBackground(new java.awt.Color(0, 51, 51));
+        botaoCliente.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
+        botaoCliente.setForeground(new java.awt.Color(242, 242, 242));
+        botaoCliente.setText("Clientes");
+        botaoCliente.setIconTextGap(3);
+        botaoCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                botaoClienteActionPerformed(evt);
             }
         });
-        jButton5.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+        botaoCliente.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jButton5PropertyChange(evt);
+                botaoClientePropertyChange(evt);
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(0, 51, 51));
-        jButton6.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(242, 242, 242));
-        jButton6.setText("Funcionários");
-        jButton6.setIconTextGap(3);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        botaoFuncionario.setBackground(new java.awt.Color(0, 51, 51));
+        botaoFuncionario.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        botaoFuncionario.setForeground(new java.awt.Color(242, 242, 242));
+        botaoFuncionario.setText("Funcionários");
+        botaoFuncionario.setIconTextGap(3);
+        botaoFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                botaoFuncionarioActionPerformed(evt);
             }
         });
-        jButton6.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+        botaoFuncionario.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jButton6PropertyChange(evt);
+                botaoFuncionarioPropertyChange(evt);
             }
         });
 
@@ -207,13 +208,13 @@ public class MenuInicial extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoAtendimento, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -225,10 +226,10 @@ public class MenuInicial extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botaoAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoAtendimento, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 422, Short.MAX_VALUE)
                 .addComponent(jButton4)
                 .addGap(20, 20, 20))
@@ -252,37 +253,37 @@ public class MenuInicial extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void botaoAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAnimalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_botaoAnimalActionPerformed
 
-    private void jButton2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jButton2PropertyChange
+    private void botaoAnimalPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_botaoAnimalPropertyChange
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2PropertyChange
+    }//GEN-LAST:event_botaoAnimalPropertyChange
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void botaoAtendimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtendimentoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_botaoAtendimentoActionPerformed
 
-    private void jButton3PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jButton3PropertyChange
+    private void botaoAtendimentoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_botaoAtendimentoPropertyChange
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3PropertyChange
+    }//GEN-LAST:event_botaoAtendimentoPropertyChange
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void botaoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoClienteActionPerformed
+        
+    }//GEN-LAST:event_botaoClienteActionPerformed
 
-    private void jButton5PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jButton5PropertyChange
+    private void botaoClientePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_botaoClientePropertyChange
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5PropertyChange
+    }//GEN-LAST:event_botaoClientePropertyChange
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void botaoFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFuncionarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_botaoFuncionarioActionPerformed
 
-    private void jButton6PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jButton6PropertyChange
+    private void botaoFuncionarioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_botaoFuncionarioPropertyChange
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6PropertyChange
+    }//GEN-LAST:event_botaoFuncionarioPropertyChange
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -325,13 +326,13 @@ public class MenuInicial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoAnimal;
+    private javax.swing.JButton botaoAtendimento;
+    private javax.swing.JButton botaoCliente;
+    private javax.swing.JButton botaoFuncionario;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;

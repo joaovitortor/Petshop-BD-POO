@@ -8,6 +8,7 @@ public class Main {
         Scanner input = new Scanner(System.in);
         GerenciarSistema controlador = new GerenciarSistema(input);
         controlador.iniciar();
+        
     }
 }
 

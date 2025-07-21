@@ -7,6 +7,7 @@ import petshop.bd.Classes.Animal.Animal;
 import petshop.bd.Classes.Crud;
 import petshop.bd.Classes.Animal.SistemaAnimal;
 import petshop.bd.Classes.Atendimento.SistemaAtendimento;
+import petshop.bd.Classes.Cliente.FormularioCliente;
 
 public class SistemaCliente implements Crud {
 
@@ -14,7 +15,7 @@ public class SistemaCliente implements Crud {
     private SistemaAtendimento sistemaAtendimento;
     private SistemaAnimal sistemaAnimal;
     private Scanner input;
-
+    
     /**
      * Construtor da classe SistemaCliente Inicializa a lista de clientes e o
      * input para leitura de dados O sistemaAtendimento e sistemaAnimal sao
@@ -45,6 +46,10 @@ public class SistemaCliente implements Crud {
     public void setSistemaAnimal(SistemaAnimal sistemaAnimal) {
         this.sistemaAnimal = sistemaAnimal;
     }
+    
+    public void iniciarInterfaceCliente() {
+        
+    }
 
     /**
      * Exibe o menu de opcoes de operacoes com cliente.
@@ -67,7 +72,9 @@ public class SistemaCliente implements Crud {
      * Gerencia a escolha de operacao de cliente realizada pelo usuario.
      */
     public void operacoesCliente() {
-        int opcao;
+        FormularioCliente telaCliente = new FormularioCliente();
+        telaCliente.setVisible(true);
+        /*int opcao;
         try {
             do {
                 menuCliente();
@@ -92,7 +99,7 @@ public class SistemaCliente implements Crud {
         } catch (NumberFormatException e) {
             System.out.println("Entrada inválida! Por favor, digite apenas números.");
             operacoesCliente();
-        }
+        }*/
 
     }
 

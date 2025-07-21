@@ -1,16 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package petshop.bd.Classes.Cliente;
 
 import javax.swing.JOptionPane;
 
-
-/**
- *
- * @author user
- */
 public class FormularioCliente extends javax.swing.JFrame {
 
     /**
@@ -396,29 +387,38 @@ public class FormularioCliente extends javax.swing.JFrame {
             campoNome.requestFocus(); 
             return;
         } else{
-
             nome = campoNome.getText();
         }
         if(campoEmail.getText().equals("Digite o Email") || campoEmail.getText().isEmpty()){
-            
+            JOptionPane.showMessageDialog(null, "Digite o email do Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
+            campoEmail.requestFocus();
+            return;
         } else {
             email = campoEmail.getText();
         }
         if(campoCPF.getText().equals("Digite o CPF") || campoCPF.getText().isEmpty()){
-            
+            JOptionPane.showMessageDialog(null, "Digite o CPF do Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
+            campoCPF.requestFocus();
+            return;
         } else {
             cpf = campoCPF.getText();
         }
         if(campoRG.getText().equals("Digite o RG") || campoRG.getText().isEmpty()){
-            
+            JOptionPane.showMessageDialog(null, "Digite o RG do Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
+            campoRG.requestFocus();
+            return;
         } else {
             rg = campoRG.getText();
         }
         if(campoTelefone.getText().equals("Digite o Telefone") || campoTelefone.getText().isEmpty()) {
-            
+            JOptionPane.showMessageDialog(null, "Digite o nome do Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
+            campoTelefone.requestFocus();
+            return;
         } else {
             telefone = campoTelefone.getText();
         } 
+        
+        System.out.println(rg + nome + cpf + email + telefone);
     }//GEN-LAST:event_botaoCadastrarActionPerformed
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
