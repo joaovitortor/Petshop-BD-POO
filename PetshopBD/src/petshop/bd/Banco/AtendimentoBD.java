@@ -1,13 +1,133 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package petshop.bd.Banco;
 
-/**
- *
- * @author user
- */
-public class AtendimentoBD {
+import petshop.bd.Classes.Cliente.Cliente;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class ClienteBD {
+    private final SQLiteDriver sqLiteDriver;
+    private final Connection conexao;
+    private Statement declaracao;
+    private PreparedStatement declaracao_parametrizada;
+    private ResultSet resultados;
+
+    private void criarTabela(){
+        String sql = "CREATE TABLE IF NOT EXISTS Cliente (" +
+                "	cpf text PRIMARY KEY NOT NULL," +
+                "	nome text NOT NULL," +
+                "	rg text NOT NULL," +
+                "	telefone text NOT NULL," +
+                "	email text NOT NULL" +
+
+                                                            ");";
+        try {
+            this.declaracao = this.conexao.createStatement();
+            this.declaracao.execute(sql);
+            
+        } catch (SQLException e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+    }
     
+    public ClienteBD(){
+        this.sqLiteDriver = new SQLiteDriver("clientes");      
+        this.conexao = sqLiteDriver.iniciarConexao();
+        this.criarTabela();
+    }
+    
+    public void cadastrar(Cliente cliente) {                       
+        String sql = "insert into Pessoas (cpf, nome, rg, telefone, email) values (?,?,?,?,?)";
+        
+        
+        try {
+          this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
+          
+          this.declaracao_parametrizada.setString(1, cliente.getCpf());
+          this.declaracao_parametrizada.setString(2, cliente.getNome());
+          this.declaracao_parametrizada.setString(3, cliente.getRg());
+          this.declaracao_parametrizada.setString(3, cliente.getTelefone());
+          this.declaracao_parametrizada.setString(3, cliente.getEmail());
+          
+          this.declaracao_parametrizada.executeUpdate();
+        } catch (SQLException erro){
+            System.out.println("Erro na insercao dos dados. Mensagem: " + erro.getMessage());
+        }
+    }
+
+    public void alterar(Cliente cliente) {                
+        String sql = "update Pessoas set"
+                + " nome = ?";
+        
+        try {
+          this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
+          
+          this.declaracao_parametrizada.setString(1, cliente.getNome());
+           
+          this.declaracao_parametrizada.executeUpdate();
+        } catch (SQLException erro){
+            System.out.println("Erro na alteracao dos dados. Mensagem: " + erro.getMessage());
+        }        
+    }
+
+    public void remover(Cliente cliente) {
+        String sql = "delete from Pessoas where cpf = ?";        
+        
+        try {
+          this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
+          
+          this.declaracao_parametrizada.setString(1, cliente.getCpf());          
+          
+          this.declaracao_parametrizada.executeUpdate();
+        } catch (SQLException erro){
+            System.out.println("Erro na exclusao dos dados. Mensagem: " + erro.getMessage());
+        }        
+    }
+
+    public void consultar(Cliente cliente) {      
+        String sql = "select * from Pessoas where cpf = ?";
+                
+        try {
+            this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
+            this.declaracao_parametrizada.setString(1, cliente.getCpf());
+            
+            this.resultados = declaracao_parametrizada.executeQuery();
+            
+            if (this.resultados != null) {
+                System.out.println("\n\n\n ###########################################");                
+                while(this.resultados.next()){
+                    System.out.println("CPF: " + this.resultados.getString("cpf"));
+                    System.out.println("Nome: " + this.resultados.getString("nome"));
+                    System.out.println("RG: " + this.resultados.getString("rg"));
+                    System.out.println("###########################################");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro na consulta de dados. Erro: " + e.getMessage());
+        }    
+    }
+    
+    public void consultarTodas() {
+        String sql = "select * from Pessoas";        
+                
+        try {                   
+            this.declaracao = this.conexao.createStatement();
+            this.resultados = this.declaracao.executeQuery(sql);
+            
+            if (this.resultados != null) {
+                System.out.println("\n\n\n ###########################################");                
+                while(this.resultados.next()){
+                    System.out.println("CPF: " + this.resultados.getString("cpf"));
+                    System.out.println("Nome: " + this.resultados.getString("nome"));
+                    System.out.println("RG: " + this.resultados.getString("rg"));
+                    System.out.println("###########################################");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro na listagem de todos os dados. Erro: " + e.getMessage());
+        }              
+    }
+
 }
