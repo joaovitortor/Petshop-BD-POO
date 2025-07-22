@@ -1,13 +1,13 @@
-package petshop.bd.Classes.Cliente;
+package petshop.bd.Classes.Atendimento;
 
 import javax.swing.JOptionPane;
 
-public class FormularioCliente extends javax.swing.JFrame {
+public class FormularioAtendimento extends javax.swing.JFrame {
 
     /**
      * Creates new form MenuAnimal
      */
-    public FormularioCliente() {
+    public FormularioAtendimento() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -38,10 +38,9 @@ public class FormularioCliente extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         botaoVoltar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        campoNome = new javax.swing.JFormattedTextField();
-        campoEmail = new javax.swing.JFormattedTextField();
-        campoTelefone = new javax.swing.JFormattedTextField();
-        campoRG = new javax.swing.JFormattedTextField();
+        campoData = new javax.swing.JFormattedTextField();
+        campoNum = new javax.swing.JFormattedTextField();
+        campoId = new javax.swing.JFormattedTextField();
         campoCPF = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -92,7 +91,7 @@ public class FormularioCliente extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("GESTÃO DE CLIENTES");
+        jLabel1.setText("GESTÃO DE ATENDIMENTOS");
         jPanel4.add(jLabel1, new java.awt.GridBagConstraints());
 
         jPanel5.setBackground(new java.awt.Color(0, 80, 80));
@@ -145,71 +144,54 @@ public class FormularioCliente extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(129, 196, 196));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(45, 153, 153), 7));
 
-        campoNome.setForeground(new java.awt.Color(102, 102, 102));
-        campoNome.setText("Digite o Nome");
-        campoNome.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
-        campoNome.addFocusListener(new java.awt.event.FocusAdapter() {
+        campoData.setForeground(new java.awt.Color(102, 102, 102));
+        campoData.setText("Digite a Data");
+        campoData.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
+        campoData.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                campoNomeFocusGained(evt);
+                campoDataFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                campoNomeFocusLost(evt);
+                campoDataFocusLost(evt);
             }
         });
-        campoNome.addActionListener(new java.awt.event.ActionListener() {
+        campoData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoNomeActionPerformed(evt);
+                campoDataActionPerformed(evt);
             }
         });
 
-        campoEmail.setForeground(new java.awt.Color(102, 102, 102));
-        campoEmail.setText("Digite o Email");
-        campoEmail.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
-        campoEmail.addFocusListener(new java.awt.event.FocusAdapter() {
+        campoNum.setForeground(new java.awt.Color(102, 102, 102));
+        campoNum.setText("Digite o Número de Matrícula");
+        campoNum.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
+        campoNum.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                campoEmailFocusGained(evt);
+                campoNumFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                campoEmailFocusLost(evt);
+                campoNumFocusLost(evt);
             }
         });
-        campoEmail.addActionListener(new java.awt.event.ActionListener() {
+        campoNum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoEmailActionPerformed(evt);
+                campoNumActionPerformed(evt);
             }
         });
 
-        campoTelefone.setForeground(new java.awt.Color(102, 102, 102));
-        campoTelefone.setText("Digite o Telefone");
-        campoTelefone.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
-        campoTelefone.addFocusListener(new java.awt.event.FocusAdapter() {
+        campoId.setForeground(new java.awt.Color(102, 102, 102));
+        campoId.setText("Digite o ID");
+        campoId.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
+        campoId.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                campoTelefoneFocusGained(evt);
+                campoIdFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                campoTelefoneFocusLost(evt);
+                campoIdFocusLost(evt);
             }
         });
-        campoTelefone.addActionListener(new java.awt.event.ActionListener() {
+        campoId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTelefoneActionPerformed(evt);
-            }
-        });
-
-        campoRG.setForeground(new java.awt.Color(102, 102, 102));
-        campoRG.setText("Digite o RG");
-        campoRG.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
-        campoRG.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                campoRGFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                campoRGFocusLost(evt);
-            }
-        });
-        campoRG.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoRGActionPerformed(evt);
+                campoIdActionPerformed(evt);
             }
         });
 
@@ -233,32 +215,31 @@ public class FormularioCliente extends javax.swing.JFrame {
         jLabel4.setBackground(new java.awt.Color(102, 102, 102));
         jLabel4.setFont(new java.awt.Font("Agency FB", 1, 20)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel4.setText("Nome:");
+        jLabel4.setText("Data");
 
         jLabel5.setBackground(new java.awt.Color(102, 102, 102));
         jLabel5.setFont(new java.awt.Font("Agency FB", 1, 20)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setText("E-mail:");
+        jLabel5.setText("Num de Matrícula do Funcionário");
 
         jLabel8.setBackground(new java.awt.Color(102, 102, 102));
         jLabel8.setFont(new java.awt.Font("Agency FB", 1, 20)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel8.setText("Telefone:");
 
         jLabel6.setBackground(new java.awt.Color(102, 102, 102));
         jLabel6.setFont(new java.awt.Font("Agency FB", 1, 20)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel6.setText("CPF: ");
+        jLabel6.setText("CPF do Cliente: ");
 
         jLabel7.setBackground(new java.awt.Color(102, 102, 102));
         jLabel7.setFont(new java.awt.Font("Agency FB", 1, 20)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel7.setText("RG:");
+        jLabel7.setText("ID do Animal");
 
         jLabel2.setBackground(new java.awt.Color(102, 102, 102));
         jLabel2.setFont(new java.awt.Font("Agency FB", 1, 26)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel2.setText("Cadastro Cliente");
+        jLabel2.setText("Cadastro Atendimento");
 
         botaoCadastrar.setBackground(new java.awt.Color(0, 51, 51));
         botaoCadastrar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
@@ -280,35 +261,33 @@ public class FormularioCliente extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(91, 91, 91)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(campoNome)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(campoNum)
+                    .addComponent(campoCPF)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(campoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(22, 22, 22)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoRG, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)))
+                            .addComponent(jLabel5))
+                        .addGap(0, 72, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addGap(40, 40, 40)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel7)
+                    .addComponent(campoId)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(campoEmail))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(campoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(124, 124, 124))
+                    .addComponent(campoData, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
+                .addGap(84, 84, 84))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(266, 266, 266)
+                .addGap(239, 239, 239)
                 .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botaoCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(115, 115, 115))
+                .addGap(243, 243, 243))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,48 +296,45 @@ public class FormularioCliente extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel8))
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoRG, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoId, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(41, 41, 41)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoNum, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoData, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(botaoCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 681, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botaoVoltar)
                 .addGap(22, 22, 22))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addComponent(botaoVoltar)
                 .addGap(20, 20, 20))
         );
@@ -382,20 +358,20 @@ public class FormularioCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
-        String nome, email, cpf, rg, telefone;
-        if(campoNome.getText().equals("Digite o Nome") || campoNome.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Digite o nome do Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
-            campoNome.requestFocus(); 
+        String data, cpf, id, numMatricula;
+        if(campoData.getText().equals("Digite a Data") || campoData.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Digite a Data", "Erro", JOptionPane.ERROR_MESSAGE);
+            campoData.requestFocus(); 
             return;
         } else{
-            nome = campoNome.getText();
+            data = campoData.getText();
         }
-        if(campoEmail.getText().equals("Digite o Email") || campoEmail.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Digite o email do Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
-            campoEmail.requestFocus();
+        if(campoNum.getText().equals("Digite o Número de Matrícula") || campoNum.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Digite o Número de Matrícula do Funcionário", "Erro", JOptionPane.ERROR_MESSAGE);
+            campoNum.requestFocus();
             return;
         } else {
-            email = campoEmail.getText();
+            numMatricula = campoNum.getText();
         }
         if(campoCPF.getText().equals("Digite o CPF") || campoCPF.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Digite o CPF do Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -404,22 +380,15 @@ public class FormularioCliente extends javax.swing.JFrame {
         } else {
             cpf = campoCPF.getText();
         }
-        if(campoRG.getText().equals("Digite o RG") || campoRG.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Digite o RG do Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
-            campoRG.requestFocus();
+        if(campoId.getText().equals("Digite o ID") || campoId.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Digite o iD do Animal", "Erro", JOptionPane.ERROR_MESSAGE);
+            campoId.requestFocus();
             return;
         } else {
-            rg = campoRG.getText();
+            id = campoId.getText();
         }
-        if(campoTelefone.getText().equals("Digite o Telefone") || campoTelefone.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Digite o nome do Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
-            campoTelefone.requestFocus();
-            return;
-        } else {
-            telefone = campoTelefone.getText();
-        } 
-        
-        System.out.println(rg + nome + cpf + email + telefone);
+
+        System.out.println(data + cpf + numMatricula + id);
     }//GEN-LAST:event_botaoCadastrarActionPerformed
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
@@ -430,77 +399,59 @@ public class FormularioCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoCadastrarPropertyChange
 
-    private void campoNomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNomeFocusGained
-        if(campoNome.getText().equals("Digite o Nome")){
-            campoNome.setText("");
-            campoNome.setForeground(java.awt.Color.BLACK);
+    private void campoDataFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoDataFocusGained
+        if(campoData.getText().equals("Digite a Data")){
+            campoData.setText("");
+            campoData.setForeground(java.awt.Color.BLACK);
         }
-    }//GEN-LAST:event_campoNomeFocusGained
+    }//GEN-LAST:event_campoDataFocusGained
 
-    private void campoNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNomeFocusLost
-        if(campoNome.getText().isEmpty()){
-            campoNome.setText("Digite o Nome");
-            campoNome.setForeground(new java.awt.Color(102,102,102));
+    private void campoDataFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoDataFocusLost
+        if(campoData.getText().isEmpty()){
+            campoData.setText("Digite a Data");
+            campoData.setForeground(new java.awt.Color(102,102,102));
         }
-    }//GEN-LAST:event_campoNomeFocusLost
+    }//GEN-LAST:event_campoDataFocusLost
 
-    private void campoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeActionPerformed
+    private void campoDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDataActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoNomeActionPerformed
+    }//GEN-LAST:event_campoDataActionPerformed
 
-    private void campoEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoEmailFocusGained
-        if(campoEmail.getText().equals("Digite o Email")){
-            campoEmail.setText("");
-            campoEmail.setForeground(java.awt.Color.BLACK);
+    private void campoNumFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNumFocusGained
+        if(campoNum.getText().equals("Digite o Número de Matrícula")){
+            campoNum.setText("");
+            campoNum.setForeground(java.awt.Color.BLACK);
         }
-    }//GEN-LAST:event_campoEmailFocusGained
+    }//GEN-LAST:event_campoNumFocusGained
 
-    private void campoEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoEmailFocusLost
-        if(campoEmail.getText().isEmpty()){
-            campoEmail.setText("Digite o Email");
-            campoEmail.setForeground(new java.awt.Color(102,102,102));
+    private void campoNumFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNumFocusLost
+        if(campoNum.getText().isEmpty()){
+            campoNum.setText("Digite o Número de Matrícula");
+            campoNum.setForeground(new java.awt.Color(102,102,102));
         }
-    }//GEN-LAST:event_campoEmailFocusLost
+    }//GEN-LAST:event_campoNumFocusLost
 
-    private void campoEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEmailActionPerformed
+    private void campoNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNumActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoEmailActionPerformed
+    }//GEN-LAST:event_campoNumActionPerformed
 
-    private void campoTelefoneFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoTelefoneFocusGained
-        if(campoTelefone.getText().equals("Digite o Telefone")){
-            campoTelefone.setText("");
-            campoTelefone.setForeground(java.awt.Color.BLACK);
+    private void campoIdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoIdFocusGained
+        if(campoId.getText().equals("Digite o ID")){
+            campoId.setText("");
+            campoId.setForeground(java.awt.Color.BLACK);
         }
-    }//GEN-LAST:event_campoTelefoneFocusGained
+    }//GEN-LAST:event_campoIdFocusGained
 
-    private void campoTelefoneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoTelefoneFocusLost
-        if(campoTelefone.getText().isEmpty()){
-            campoTelefone.setText("Digite o Telefone");
-            campoTelefone.setForeground(new java.awt.Color(102,102,102));
+    private void campoIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoIdFocusLost
+        if(campoId.getText().isEmpty()){
+            campoId.setText("Digite o ID");
+            campoId.setForeground(new java.awt.Color(102,102,102));
         }
-    }//GEN-LAST:event_campoTelefoneFocusLost
+    }//GEN-LAST:event_campoIdFocusLost
 
-    private void campoTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTelefoneActionPerformed
+    private void campoIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoIdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoTelefoneActionPerformed
-
-    private void campoRGFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoRGFocusGained
-        if(campoRG.getText().equals("Digite o RG")){
-            campoRG.setText("");
-            campoRG.setForeground(java.awt.Color.BLACK);
-        }
-    }//GEN-LAST:event_campoRGFocusGained
-
-    private void campoRGFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoRGFocusLost
-        if(campoRG.getText().isEmpty()){
-            campoRG.setText("Digite o RG");
-            campoRG.setForeground(new java.awt.Color(102,102,102));
-        }
-    }//GEN-LAST:event_campoRGFocusLost
-
-    private void campoRGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoRGActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoRGActionPerformed
+    }//GEN-LAST:event_campoIdActionPerformed
 
     private void campoCPFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoCPFFocusGained
         if(campoCPF.getText().equals("Digite o CPF")){
@@ -537,14 +488,18 @@ public class FormularioCliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormularioCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormularioAtendimento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormularioCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormularioAtendimento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormularioCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormularioAtendimento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormularioCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormularioAtendimento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -553,7 +508,7 @@ public class FormularioCliente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormularioCliente().setVisible(true);
+                new FormularioAtendimento().setVisible(true);
             }
         });
     }
@@ -563,10 +518,9 @@ public class FormularioCliente extends javax.swing.JFrame {
     private javax.swing.JButton botaoVoltar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JFormattedTextField campoCPF;
-    private javax.swing.JFormattedTextField campoEmail;
-    private javax.swing.JFormattedTextField campoNome;
-    private javax.swing.JFormattedTextField campoRG;
-    private javax.swing.JFormattedTextField campoTelefone;
+    private javax.swing.JFormattedTextField campoData;
+    private javax.swing.JFormattedTextField campoId;
+    private javax.swing.JFormattedTextField campoNum;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

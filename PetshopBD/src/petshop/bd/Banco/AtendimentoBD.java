@@ -1,13 +1,13 @@
 package petshop.bd.Banco;
 
-import petshop.bd.Classes.Cliente.Cliente;
+import petshop.bd.Classes.Atendimento.Atendimento;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class ClienteBD {
+public class AtendimentoBD {
     private final SQLiteDriver sqLiteDriver;
     private final Connection conexao;
     private Statement declaracao;
@@ -15,13 +15,24 @@ public class ClienteBD {
     private ResultSet resultados;
 
     private void criarTabela(){
-        String sql = "CREATE TABLE IF NOT EXISTS Cliente (" +
-                "	cpf text PRIMARY KEY NOT NULL," +
-                "	nome text NOT NULL," +
-                "	rg text NOT NULL," +
-                "	telefone text NOT NULL," +
-                "	email text NOT NULL" +
-
+        String sql = "CREATE TABLE IF NOT EXISTS Animal (" +
+                "	codigo integer PRIMARY KEY AUTOINCREMENT," +
+                "	data text NOT NULL," +
+                "       clienteCpf text NOT NULL" +
+                "       FOREIGN KEY (clienteCpf) " +
+                "           REFERENCES clientes (cpf)" +
+                "               ON UPDATE RESTRICT" +
+                "               ON DELETE RESTRICT" +
+                "       animalId integer NOT NULL" +
+                "       FOREIGN KEY (animalId) " +
+                "           REFERENCES animais (id)" +
+                "               ON UPDATE RESTRICT" +
+                "               ON DELETE RESTRICT" +
+                "       funcionarioNum integer NOT NULL" +
+                "       FOREIGN KEY (funcionarioNum) " +
+                "           REFERENCES funcionarios (numMatricula)" +
+                "               ON UPDATE RESTRICT" +
+                "               ON DELETE RESTRICT" +
                                                             ");";
         try {
             this.declaracao = this.conexao.createStatement();
@@ -32,24 +43,23 @@ public class ClienteBD {
         }
     }
     
-    public ClienteBD(){
-        this.sqLiteDriver = new SQLiteDriver("clientes");      
+    public AtendimentoBD(){
+        this.sqLiteDriver = new SQLiteDriver("atendimentos");      
         this.conexao = sqLiteDriver.iniciarConexao();
         this.criarTabela();
     }
     
-    public void cadastrar(Cliente cliente) {                       
-        String sql = "insert into Pessoas (cpf, nome, rg, telefone, email) values (?,?,?,?,?)";
+    public void cadastrar(Atendimento atendimento) {                       
+        String sql = "insert into Pessoas (data, clienteCpf, animalId, funcionarioNum) values (?,?,?,?)";
         
         
         try {
           this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
           
-          this.declaracao_parametrizada.setString(1, cliente.getCpf());
-          this.declaracao_parametrizada.setString(2, cliente.getNome());
-          this.declaracao_parametrizada.setString(3, cliente.getRg());
-          this.declaracao_parametrizada.setString(3, cliente.getTelefone());
-          this.declaracao_parametrizada.setString(3, cliente.getEmail());
+          this.declaracao_parametrizada.setString(1, atendimento.getData());
+          this.declaracao_parametrizada.setString(2, atendimento.getCliente().getCpf());
+          this.declaracao_parametrizada.setInt(3, atendimento.getAnimal().getId());
+          this.declaracao_parametrizada.setInt(4, atendimento.getFuncionario().getNumMatricula());
           
           this.declaracao_parametrizada.executeUpdate();
         } catch (SQLException erro){
@@ -57,14 +67,14 @@ public class ClienteBD {
         }
     }
 
-    public void alterar(Cliente cliente) {                
-        String sql = "update Pessoas set"
-                + " nome = ?";
+    public void alterar(Atendimento atendimento) {                
+        String sql = "update atendimentos set"
+                + " data = ?";
         
         try {
           this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
           
-          this.declaracao_parametrizada.setString(1, cliente.getNome());
+          this.declaracao_parametrizada.setString(1, atendimento.getData());
            
           this.declaracao_parametrizada.executeUpdate();
         } catch (SQLException erro){
@@ -72,13 +82,13 @@ public class ClienteBD {
         }        
     }
 
-    public void remover(Cliente cliente) {
-        String sql = "delete from Pessoas where cpf = ?";        
+    public void remover(Atendimento atendimento) {
+        String sql = "delete from atendimentos where codigo = ?";        
         
         try {
           this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
           
-          this.declaracao_parametrizada.setString(1, cliente.getCpf());          
+          this.declaracao_parametrizada.setInt(1, atendimento.getCodigo());          
           
           this.declaracao_parametrizada.executeUpdate();
         } catch (SQLException erro){
@@ -86,21 +96,24 @@ public class ClienteBD {
         }        
     }
 
-    public void consultar(Cliente cliente) {      
-        String sql = "select * from Pessoas where cpf = ?";
+    public void consultar(Atendimento atendimento) {      
+        String sql = "select * from atendimentos where codigo = ?";
                 
         try {
             this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
-            this.declaracao_parametrizada.setString(1, cliente.getCpf());
+            this.declaracao_parametrizada.setInt(1, atendimento.getCodigo());
             
             this.resultados = declaracao_parametrizada.executeQuery();
             
             if (this.resultados != null) {
                 System.out.println("\n\n\n ###########################################");                
                 while(this.resultados.next()){
-                    System.out.println("CPF: " + this.resultados.getString("cpf"));
-                    System.out.println("Nome: " + this.resultados.getString("nome"));
-                    System.out.println("RG: " + this.resultados.getString("rg"));
+                    System.out.println("Codigo: " + this.resultados.getInt("codigo"));
+                    System.out.println("Data: " + this.resultados.getString("data"));
+                    System.out.println("Cliente: " + this.resultados.getString("clienteCpf"));
+                    System.out.println("Animal: " + this.resultados.getInt("animalId"));
+                    System.out.println("Funcionario: " + this.resultados.getInt("funcionarioNum"));
+
                     System.out.println("###########################################");
                 }
             }
@@ -110,7 +123,7 @@ public class ClienteBD {
     }
     
     public void consultarTodas() {
-        String sql = "select * from Pessoas";        
+        String sql = "select * from atendimentos";        
                 
         try {                   
             this.declaracao = this.conexao.createStatement();
@@ -119,10 +132,11 @@ public class ClienteBD {
             if (this.resultados != null) {
                 System.out.println("\n\n\n ###########################################");                
                 while(this.resultados.next()){
-                    System.out.println("CPF: " + this.resultados.getString("cpf"));
-                    System.out.println("Nome: " + this.resultados.getString("nome"));
-                    System.out.println("RG: " + this.resultados.getString("rg"));
-                    System.out.println("###########################################");
+                    System.out.println("Codigo: " + this.resultados.getInt("codigo"));
+                    System.out.println("Data: " + this.resultados.getString("data"));
+                    System.out.println("Cliente: " + this.resultados.getString("clienteCpf"));
+                    System.out.println("Animal: " + this.resultados.getInt("animalId"));
+                    System.out.println("Funcionario: " + this.resultados.getInt("funcionarioNum"));
                 }
             }
         } catch (SQLException e) {

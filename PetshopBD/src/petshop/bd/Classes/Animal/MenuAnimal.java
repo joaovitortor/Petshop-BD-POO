@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package petshop.bd.Classes.Animal;
-
 /**
  *
  * @author user
@@ -45,13 +44,13 @@ public class MenuAnimal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        botaoCadastar = new javax.swing.JButton();
+        botaoAjuda = new javax.swing.JButton();
+        botaoBusca = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        botaoVoltar = new javax.swing.JButton();
+        botaoEditar = new javax.swing.JButton();
+        botaoExcluir = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -82,6 +81,7 @@ public class MenuAnimal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 51, 51));
+        setUndecorated(true);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
@@ -156,77 +156,77 @@ public class MenuAnimal extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable2);
 
-        jButton2.setBackground(new java.awt.Color(0, 51, 51));
-        jButton2.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(242, 242, 242));
-        jButton2.setText("Cadastrar");
-        jButton2.setIconTextGap(3);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        botaoCadastar.setBackground(new java.awt.Color(0, 51, 51));
+        botaoCadastar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        botaoCadastar.setForeground(new java.awt.Color(242, 242, 242));
+        botaoCadastar.setText("Cadastrar");
+        botaoCadastar.setIconTextGap(3);
+        botaoCadastar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                botaoCadastarActionPerformed(evt);
             }
         });
-        jButton2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+        botaoCadastar.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jButton2PropertyChange(evt);
+                botaoCadastarPropertyChange(evt);
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(229, 169, 97));
-        jButton4.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(51, 51, 0));
-        jButton4.setText("?");
-        jButton4.setIconTextGap(3);
+        botaoAjuda.setBackground(new java.awt.Color(229, 169, 97));
+        botaoAjuda.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        botaoAjuda.setForeground(new java.awt.Color(51, 51, 0));
+        botaoAjuda.setText("?");
+        botaoAjuda.setIconTextGap(3);
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 102));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Busca");
+        botaoBusca.setBackground(new java.awt.Color(0, 102, 102));
+        botaoBusca.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botaoBusca.setForeground(new java.awt.Color(255, 255, 255));
+        botaoBusca.setText("Busca");
 
         jTextField1.setFont(new java.awt.Font("Agency FB", 0, 12)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(204, 204, 204));
         jTextField1.setText("Digite o ID");
 
-        jButton3.setBackground(new java.awt.Color(102, 102, 102));
-        jButton3.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Voltar");
-        jButton3.setIconTextGap(3);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        botaoVoltar.setBackground(new java.awt.Color(102, 102, 102));
+        botaoVoltar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        botaoVoltar.setForeground(new java.awt.Color(255, 255, 255));
+        botaoVoltar.setText("Voltar");
+        botaoVoltar.setIconTextGap(3);
+        botaoVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                botaoVoltarActionPerformed(evt);
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(128, 80, 25));
-        jButton5.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(242, 242, 242));
-        jButton5.setText("Editar");
-        jButton5.setIconTextGap(3);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        botaoEditar.setBackground(new java.awt.Color(128, 80, 25));
+        botaoEditar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        botaoEditar.setForeground(new java.awt.Color(242, 242, 242));
+        botaoEditar.setText("Editar");
+        botaoEditar.setIconTextGap(3);
+        botaoEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                botaoEditarActionPerformed(evt);
             }
         });
-        jButton5.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+        botaoEditar.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jButton5PropertyChange(evt);
+                botaoEditarPropertyChange(evt);
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(153, 0, 0));
-        jButton6.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(242, 242, 242));
-        jButton6.setText("Excluir");
-        jButton6.setIconTextGap(3);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        botaoExcluir.setBackground(new java.awt.Color(153, 0, 0));
+        botaoExcluir.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        botaoExcluir.setForeground(new java.awt.Color(242, 242, 242));
+        botaoExcluir.setText("Excluir");
+        botaoExcluir.setIconTextGap(3);
+        botaoExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                botaoExcluirActionPerformed(evt);
             }
         });
-        jButton6.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+        botaoExcluir.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jButton6PropertyChange(evt);
+                botaoExcluirPropertyChange(evt);
             }
         });
 
@@ -236,9 +236,9 @@ public class MenuAnimal extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jButton4)
+                .addComponent(botaoAjuda)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(botaoVoltar)
                 .addGap(22, 22, 22))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(52, 52, 52)
@@ -246,7 +246,7 @@ public class MenuAnimal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(botaoBusca)
                 .addGap(52, 52, 52))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(43, Short.MAX_VALUE)
@@ -255,11 +255,11 @@ public class MenuAnimal extends javax.swing.JFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(43, 43, 43))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botaoCadastar, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(52, 52, 52)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botaoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(153, 153, 153))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -271,18 +271,18 @@ public class MenuAnimal extends javax.swing.JFrame {
                         .addComponent(jLabel2))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(botaoBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botaoCadastar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(botaoVoltar)
+                    .addComponent(botaoAjuda))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -304,37 +304,38 @@ public class MenuAnimal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void botaoCadastarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastarActionPerformed
+        FormularioAnimal formularioAnimal = new FormularioAnimal();
+        formularioAnimal.setVisible(true);
+    }//GEN-LAST:event_botaoCadastarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botaoVoltarActionPerformed
 
-    private void jButton2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jButton2PropertyChange
+    private void botaoCadastarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_botaoCadastarPropertyChange
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2PropertyChange
+    }//GEN-LAST:event_botaoCadastarPropertyChange
 
     private void jTable2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseReleased
 
     }//GEN-LAST:event_jTable2MouseReleased
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void botaoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_botaoEditarActionPerformed
 
-    private void jButton5PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jButton5PropertyChange
+    private void botaoEditarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_botaoEditarPropertyChange
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5PropertyChange
+    }//GEN-LAST:event_botaoEditarPropertyChange
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void botaoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_botaoExcluirActionPerformed
 
-    private void jButton6PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jButton6PropertyChange
+    private void botaoExcluirPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_botaoExcluirPropertyChange
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6PropertyChange
+    }//GEN-LAST:event_botaoExcluirPropertyChange
 
     /**
      * @param args the command line arguments
@@ -372,13 +373,13 @@ public class MenuAnimal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoAjuda;
+    private javax.swing.JButton botaoBusca;
+    private javax.swing.JButton botaoCadastar;
+    private javax.swing.JButton botaoEditar;
+    private javax.swing.JButton botaoExcluir;
+    private javax.swing.JButton botaoVoltar;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

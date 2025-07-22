@@ -1,13 +1,13 @@
 package petshop.bd.Banco;
 
-import petshop.bd.Classes.Cliente.Cliente;
+import petshop.bd.Classes.Animal.Animal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class ClienteBD {
+public class AnimalBD {
     private final SQLiteDriver sqLiteDriver;
     private final Connection conexao;
     private Statement declaracao;
@@ -15,12 +15,18 @@ public class ClienteBD {
     private ResultSet resultados;
 
     private void criarTabela(){
-        String sql = "CREATE TABLE IF NOT EXISTS Cliente (" +
-                "	cpf text PRIMARY KEY NOT NULL," +
+        //Foreign key é permitida a partir da v 3.6.1.9
+        String sql = "CREATE TABLE IF NOT EXISTS Animal (" +
+                "	id integer PRIMARY KEY AUTOINCREMENT," +
                 "	nome text NOT NULL," +
-                "	rg text NOT NULL," +
-                "	telefone text NOT NULL," +
-                "	email text NOT NULL" +
+                "	especie text NOT NULL," +
+                "	peso real NOT NULL," +
+                "	altura real NOT NULL" +
+                "       donoCpf text NOT NULL" +
+                "       FOREIGN KEY (donoCpf) " +
+                "           REFERENCES clientes (cpf)" +
+                "               ON UPDATE RESTRICT" +
+                "               ON DELETE RESTRICT" +
 
                                                             ");";
         try {
@@ -31,25 +37,26 @@ public class ClienteBD {
             System.out.println("Erro: " + e.getMessage());
         }
     }
-    
-    public ClienteBD(){
-        this.sqLiteDriver = new SQLiteDriver("clientes");      
+
+    public AnimalBD(){
+        this.sqLiteDriver = new SQLiteDriver("animais");      
         this.conexao = sqLiteDriver.iniciarConexao();
         this.criarTabela();
     }
     
-    public void cadastrar(Cliente cliente) {                       
-        String sql = "insert into Pessoas (cpf, nome, rg, telefone, email) values (?,?,?,?,?)";
+    public void cadastrar(Animal animal) {                       
+        String sql = "insert into animais (nome, especie, peso, altura, donoCpf) values (?,?,?,?,?)";
         
         
         try {
           this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
           
-          this.declaracao_parametrizada.setString(1, cliente.getCpf());
-          this.declaracao_parametrizada.setString(2, cliente.getNome());
-          this.declaracao_parametrizada.setString(3, cliente.getRg());
-          this.declaracao_parametrizada.setString(3, cliente.getTelefone());
-          this.declaracao_parametrizada.setString(3, cliente.getEmail());
+          this.declaracao_parametrizada.setString(1, animal.getNome());
+          this.declaracao_parametrizada.setString(2, animal.getEspecie());
+          this.declaracao_parametrizada.setFloat(3, animal.getPeso());
+          this.declaracao_parametrizada.setFloat(4, animal.getAltura());
+          this.declaracao_parametrizada.setString(5, animal.getDono().getCpf());
+
           
           this.declaracao_parametrizada.executeUpdate();
         } catch (SQLException erro){
@@ -57,14 +64,14 @@ public class ClienteBD {
         }
     }
 
-    public void alterar(Cliente cliente) {                
-        String sql = "update Pessoas set"
+    public void alterar(Animal animal) {                
+        String sql = "update animais set"
                 + " nome = ?";
         
         try {
           this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
           
-          this.declaracao_parametrizada.setString(1, cliente.getNome());
+          this.declaracao_parametrizada.setString(1, animal.getNome());
            
           this.declaracao_parametrizada.executeUpdate();
         } catch (SQLException erro){
@@ -72,13 +79,13 @@ public class ClienteBD {
         }        
     }
 
-    public void remover(Cliente cliente) {
-        String sql = "delete from Pessoas where cpf = ?";        
+    public void remover(Animal animal) {
+        String sql = "delete from animais where id = ?";        
         
         try {
           this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
           
-          this.declaracao_parametrizada.setString(1, cliente.getCpf());          
+          this.declaracao_parametrizada.setInt(1, animal.getId());          
           
           this.declaracao_parametrizada.executeUpdate();
         } catch (SQLException erro){
@@ -86,21 +93,24 @@ public class ClienteBD {
         }        
     }
 
-    public void consultar(Cliente cliente) {      
-        String sql = "select * from Pessoas where cpf = ?";
+    public void consultar(Animal animal) {      
+        String sql = "select * from animais where id = ?";
                 
         try {
             this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
-            this.declaracao_parametrizada.setString(1, cliente.getCpf());
+            this.declaracao_parametrizada.setInt(1, animal.getId());
             
             this.resultados = declaracao_parametrizada.executeQuery();
             
             if (this.resultados != null) {
                 System.out.println("\n\n\n ###########################################");                
                 while(this.resultados.next()){
-                    System.out.println("CPF: " + this.resultados.getString("cpf"));
+                    System.out.println("ID: " + this.resultados.getString("id"));
                     System.out.println("Nome: " + this.resultados.getString("nome"));
-                    System.out.println("RG: " + this.resultados.getString("rg"));
+                    System.out.println("Especie: " + this.resultados.getString("especie"));
+                    System.out.println("Peso: " + this.resultados.getString("peso"));
+                    System.out.println("Altura: " + this.resultados.getString("altura"));
+                    System.out.println("DonoCPF: " + this.resultados.getString("donoCpf"));
                     System.out.println("###########################################");
                 }
             }
@@ -110,7 +120,7 @@ public class ClienteBD {
     }
     
     public void consultarTodas() {
-        String sql = "select * from Pessoas";        
+        String sql = "select * from animais";        
                 
         try {                   
             this.declaracao = this.conexao.createStatement();
@@ -119,9 +129,12 @@ public class ClienteBD {
             if (this.resultados != null) {
                 System.out.println("\n\n\n ###########################################");                
                 while(this.resultados.next()){
-                    System.out.println("CPF: " + this.resultados.getString("cpf"));
+                    System.out.println("ID: " + this.resultados.getString("id"));
                     System.out.println("Nome: " + this.resultados.getString("nome"));
-                    System.out.println("RG: " + this.resultados.getString("rg"));
+                    System.out.println("Especie: " + this.resultados.getString("especie"));
+                    System.out.println("Peso: " + this.resultados.getString("peso"));
+                    System.out.println("Altura: " + this.resultados.getString("altura"));
+                    System.out.println("DonoCPF: " + this.resultados.getString("donoCpf"));
                     System.out.println("###########################################");
                 }
             }

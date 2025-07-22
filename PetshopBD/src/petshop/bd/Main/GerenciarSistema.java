@@ -5,7 +5,6 @@ import petshop.bd.Classes.Funcionario.SistemaFuncionario;
 import petshop.bd.Classes.Animal.SistemaAnimal;
 import petshop.bd.Classes.Cliente.SistemaCliente;
 import java.util.Scanner;
-import petshop.bd.Main.MenuInicial;
 
 public class GerenciarSistema {
 
@@ -21,6 +20,6 @@ public class GerenciarSistema {
     public void iniciar() {
         MenuInicial telaInicial = new MenuInicial();
         telaInicial.setVisible(true);
-
     }
+    
 }

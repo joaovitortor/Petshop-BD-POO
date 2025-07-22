@@ -1,10 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package petshop.bd.Main;
 
-import petshop.bd.Classes.Cliente.SistemaCliente;
+import petshop.bd.Classes.Animal.MenuAnimal;
+import petshop.bd.Classes.Atendimento.MenuAtendimento;
+import petshop.bd.Classes.Cliente.MenuCliente;
+import petshop.bd.Classes.Funcionario.MenuFuncionario;
+
+
+
 
 /**
  *
@@ -44,7 +46,7 @@ public class MenuInicial extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         botaoAnimal = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        botaoSair = new javax.swing.JButton();
         botaoAtendimento = new javax.swing.JButton();
         botaoCliente = new javax.swing.JButton();
         botaoFuncionario = new javax.swing.JButton();
@@ -77,6 +79,7 @@ public class MenuInicial extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 51, 51));
+        setUndecorated(true);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
@@ -143,14 +146,14 @@ public class MenuInicial extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(51, 51, 51));
-        jButton4.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Sair");
-        jButton4.setIconTextGap(3);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        botaoSair.setBackground(new java.awt.Color(51, 51, 51));
+        botaoSair.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        botaoSair.setForeground(new java.awt.Color(255, 255, 255));
+        botaoSair.setText("Sair");
+        botaoSair.setIconTextGap(3);
+        botaoSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                botaoSairActionPerformed(evt);
             }
         });
 
@@ -218,7 +221,7 @@ public class MenuInicial extends javax.swing.JFrame {
                 .addGap(43, 43, 43))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4)
+                .addComponent(botaoSair)
                 .addGap(23, 23, 23))
         );
         jPanel3Layout.setVerticalGroup(
@@ -231,7 +234,7 @@ public class MenuInicial extends javax.swing.JFrame {
                     .addComponent(botaoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 422, Short.MAX_VALUE)
-                .addComponent(jButton4)
+                .addComponent(botaoSair)
                 .addGap(20, 20, 20))
         );
 
@@ -254,15 +257,17 @@ public class MenuInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAnimalActionPerformed
-        // TODO add your handling code here:
+        MenuAnimal menuAnimal = new MenuAnimal();
+        menuAnimal.setVisible(true);
     }//GEN-LAST:event_botaoAnimalActionPerformed
 
     private void botaoAnimalPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_botaoAnimalPropertyChange
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_botaoAnimalPropertyChange
 
     private void botaoAtendimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtendimentoActionPerformed
-        // TODO add your handling code here:
+        MenuAtendimento menuAtendimento = new MenuAtendimento();
+        menuAtendimento.setVisible(true);
     }//GEN-LAST:event_botaoAtendimentoActionPerformed
 
     private void botaoAtendimentoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_botaoAtendimentoPropertyChange
@@ -270,7 +275,8 @@ public class MenuInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoAtendimentoPropertyChange
 
     private void botaoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoClienteActionPerformed
-        
+        MenuCliente menuCliente = new MenuCliente();
+        menuCliente.setVisible(true);
     }//GEN-LAST:event_botaoClienteActionPerformed
 
     private void botaoClientePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_botaoClientePropertyChange
@@ -278,16 +284,18 @@ public class MenuInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoClientePropertyChange
 
     private void botaoFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFuncionarioActionPerformed
-        // TODO add your handling code here:
+        MenuFuncionario menuFuncionario = new MenuFuncionario();
+        menuFuncionario.setVisible(true);
     }//GEN-LAST:event_botaoFuncionarioActionPerformed
 
     private void botaoFuncionarioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_botaoFuncionarioPropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoFuncionarioPropertyChange
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void botaoSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSairActionPerformed
+        this.dispose();
+        
+    }//GEN-LAST:event_botaoSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -330,9 +338,9 @@ public class MenuInicial extends javax.swing.JFrame {
     private javax.swing.JButton botaoAtendimento;
     private javax.swing.JButton botaoCliente;
     private javax.swing.JButton botaoFuncionario;
+    private javax.swing.JButton botaoSair;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
