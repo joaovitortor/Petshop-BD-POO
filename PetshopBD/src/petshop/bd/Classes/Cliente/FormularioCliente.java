@@ -1,6 +1,7 @@
 package petshop.bd.Classes.Cliente;
 
 import javax.swing.JOptionPane;
+import petshop.bd.Banco.ClienteBD;
 
 public class FormularioCliente extends javax.swing.JFrame {
 
@@ -419,7 +420,8 @@ public class FormularioCliente extends javax.swing.JFrame {
             telefone = campoTelefone.getText();
         } 
         
-        System.out.println(rg + nome + cpf + email + telefone);
+        Cliente cliente = new Cliente(nome, cpf, rg, telefone, email);
+        System.out.println("teste");
     }//GEN-LAST:event_botaoCadastrarActionPerformed
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
