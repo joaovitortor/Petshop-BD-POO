@@ -38,8 +38,8 @@ public class ClienteBD {
         this.criarTabela();
     }
     
-    public void cadastrar(Cliente cliente) {                       
-        String sql = "insert into Pessoas (cpf, nome, rg, telefone, email) values (?,?,?,?,?)";
+    public boolean cadastrar(Cliente cliente) {                       
+        String sql = "insert into Cliente (cpf, nome, rg, telefone, email) values (?,?,?,?,?)";
         
         
         try {
@@ -52,8 +52,10 @@ public class ClienteBD {
           this.declaracao_parametrizada.setString(5, cliente.getEmail());
           
           this.declaracao_parametrizada.executeUpdate();
+          return true;
         } catch (SQLException erro){
             System.out.println("Erro na insercao dos dados. Mensagem: " + erro.getMessage());
+            return false;
         }
     }
 

@@ -1,6 +1,7 @@
 package petshop.bd.Classes.Funcionario;
 
 import javax.swing.JOptionPane;
+import petshop.bd.Banco.FuncionarioBD;
 
 public class FormularioFuncionario extends javax.swing.JFrame {
 
@@ -393,7 +394,8 @@ public class FormularioFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
-        String nome, descricao, numMatricula, cargaHoraria, qualificacao;
+        String nome, descricao, qualificacao, numMatricula, cargaHoraria;
+        
         if(campoNome.getText().equals("Digite o Nome do Funcionário") || campoNome.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Digite o nome do Funcionário", "Erro", JOptionPane.ERROR_MESSAGE);
             campoNome.requestFocus(); 
@@ -430,7 +432,22 @@ public class FormularioFuncionario extends javax.swing.JFrame {
             qualificacao = campoQualificacao.getText();
         } 
         
-        System.out.println(nome + descricao + numMatricula + cargaHoraria + qualificacao);
+        
+        Funcionario funcionario = new Funcionario(nome, qualificacao, descricao, Integer.parseInt(cargaHoraria), Integer.parseInt(numMatricula));
+        FuncionarioBD funcionarioBd = new FuncionarioBD();
+        if(funcionarioBd.cadastrar(funcionario)){
+            JOptionPane.showMessageDialog(null, "Funcionário Cadastrado com Sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
+            campoNome.setText("Digite o Nome do Funcionário");
+            campoDescricao.setText("Digite a Descrição da Função");
+            campoNum.setText("Digite o Número de Matrícula");
+            campoCarga.setText("Digite a Carga Horária");
+            campoQualificacao.setText("Digite a Qualificação");
+
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Falha ao cadastrar o Funcionário", "Cadastro", JOptionPane.ERROR_MESSAGE);
+
+        }
     }//GEN-LAST:event_botaoCadastrarActionPerformed
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed

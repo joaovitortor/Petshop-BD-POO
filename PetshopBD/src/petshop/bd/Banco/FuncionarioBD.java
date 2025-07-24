@@ -15,7 +15,7 @@ public class FuncionarioBD {
     private ResultSet resultados;
 
     private void criarTabela(){
-        String sql = "CREATE TABLE IF NOT EXISTS Cliente (" +
+        String sql = "CREATE TABLE IF NOT EXISTS Funcionario (" +
                 "	numMatricula int PRIMARY KEY NOT NULL," +
                 "	nome text NOT NULL," +
                 "	qualificacao text NOT NULL," +
@@ -38,8 +38,8 @@ public class FuncionarioBD {
         this.criarTabela();
     }
     
-    public void cadastrar(Funcionario funcionario) {                       
-        String sql = "insert into Pessoas (numMatricula, nome, qualificacao, descricaoFuncao, cargaHorariaSemanal) values (?,?,?,?,?)";
+    public boolean cadastrar(Funcionario funcionario) {                       
+        String sql = "insert into Funcionario (numMatricula, nome, qualificacao, descricaoFuncao, cargaHorariaSemanal) values (?,?,?,?,?)";
         
         
         try {
@@ -52,13 +52,15 @@ public class FuncionarioBD {
           this.declaracao_parametrizada.setInt(5, funcionario.getCargaHorariaSemanal());
           
           this.declaracao_parametrizada.executeUpdate();
+          return true;
         } catch (SQLException erro){
             System.out.println("Erro na insercao dos dados. Mensagem: " + erro.getMessage());
+            return false;
         }
     }
 
     public void alterar(Funcionario funcionario) {                
-        String sql = "update Pessoas set"
+        String sql = "update Funcionario set"
                 + " nome = ?";
         
         try {
@@ -73,7 +75,7 @@ public class FuncionarioBD {
     }
 
     public void remover(Funcionario funcionario){
-        String sql = "delete from Pessoas where cpf = ?";        
+        String sql = "delete from Funcionario where numMatricula = ?";        
         
         try {
           this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
@@ -87,7 +89,7 @@ public class FuncionarioBD {
     }
 
     public void consultar(Funcionario funcionario) {      
-        String sql = "select * from Pessoas where cpf = ?";
+        String sql = "select * from Funcionario where cpf = ?";
                 
         try {
             this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
@@ -98,9 +100,11 @@ public class FuncionarioBD {
             if (this.resultados != null) {
                 System.out.println("\n\n\n ###########################################");                
                 while(this.resultados.next()){
-                    System.out.println("CPF: " + this.resultados.getString("cpf"));
+                    System.out.println("CargaHorariaSemanal: " + this.resultados.getString("cargaHorariaSemanal"));
                     System.out.println("Nome: " + this.resultados.getString("nome"));
-                    System.out.println("RG: " + this.resultados.getString("rg"));
+                    System.out.println("NumMatricula: " + this.resultados.getString("numMatricula"));
+                    System.out.println("Qualificacao: " + this.resultados.getString("qualificacao"));
+                    System.out.println("DescricaoFuncao: " + this.resultados.getString("descricaoFuncao"));
                     System.out.println("###########################################");
                 }
             }
@@ -110,7 +114,7 @@ public class FuncionarioBD {
     }
     
     public void consultarTodas() {
-        String sql = "select * from Pessoas";        
+        String sql = "select * from Funcionario";        
                 
         try {                   
             this.declaracao = this.conexao.createStatement();
@@ -119,9 +123,11 @@ public class FuncionarioBD {
             if (this.resultados != null) {
                 System.out.println("\n\n\n ###########################################");                
                 while(this.resultados.next()){
-                    System.out.println("CPF: " + this.resultados.getString("cpf"));
+                    System.out.println("CargaHorariaSemanal: " + this.resultados.getString("cargaHorariaSemanal"));
                     System.out.println("Nome: " + this.resultados.getString("nome"));
-                    System.out.println("RG: " + this.resultados.getString("rg"));
+                    System.out.println("NumMatricula: " + this.resultados.getString("numMatricula"));
+                    System.out.println("Qualificacao: " + this.resultados.getString("qualificacao"));
+                    System.out.println("DescricaoFuncao: " + this.resultados.getString("descricaoFuncao"));
                     System.out.println("###########################################");
                 }
             }

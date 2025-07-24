@@ -421,7 +421,20 @@ public class FormularioCliente extends javax.swing.JFrame {
         } 
         
         Cliente cliente = new Cliente(nome, cpf, rg, telefone, email);
-        System.out.println("teste");
+        ClienteBD clienteBd = new ClienteBD();
+        if(clienteBd.cadastrar(cliente)){
+            JOptionPane.showMessageDialog(null, "Cliente Cadastrado com Sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
+            campoTelefone.setText("Digite o Telefone");
+            campoRG.setText("Digite o RG");
+            campoCPF.setText("Digite o CPF");
+            campoEmail.setText("Digite o Email");
+            campoNome.setText("Digite o Nome");
+            
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Falha ao cadastrar o Cliente", "Cadastro", JOptionPane.ERROR_MESSAGE);
+
+        }
     }//GEN-LAST:event_botaoCadastrarActionPerformed
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
