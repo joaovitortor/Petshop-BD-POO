@@ -388,7 +388,19 @@ public class FormularioAtendimento extends javax.swing.JFrame {
             id = campoId.getText();
         }
 
-        System.out.println(data + cpf + numMatricula + id);
+        if(atendimentoBD.cadastrar(atendimento)){
+            JOptionPane.showMessageDialog(null, "Cliente Cadastrado com Sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
+            campoData.setText("Digite a Data");
+            campoRG.setText("Digite o RG");
+            campoCPF.setText("Digite o CPF");
+            campoEmail.setText("Digite o Email");
+            campoNome.setText("Digite o Nome");
+            
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Falha ao cadastrar o Cliente", "Cadastro", JOptionPane.ERROR_MESSAGE);
+
+        }
     }//GEN-LAST:event_botaoCadastrarActionPerformed
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed

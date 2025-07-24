@@ -49,10 +49,9 @@ public class AnimalBD {
           this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
           this.declaracao_parametrizada.setString(1, cpfDono);
           
-          this.declaracao_parametrizada.executeUpdate();
           this.resultados = declaracao_parametrizada.executeQuery();
           
-          return this.resultados == null;
+          return this.resultados.next();
           
         }
         catch (SQLException erro){
