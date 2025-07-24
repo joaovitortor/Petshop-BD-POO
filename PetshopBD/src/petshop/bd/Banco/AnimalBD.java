@@ -15,7 +15,6 @@ public class AnimalBD {
     private ResultSet resultados;
 
     private void criarTabela(){
-        //Foreign key é permitida a partir da v 3.6.1.9
         String sql = "CREATE TABLE IF NOT EXISTS Animal (" +
                 "	id integer PRIMARY KEY AUTOINCREMENT," +
                 "	nome text NOT NULL," +
@@ -45,7 +44,7 @@ public class AnimalBD {
     }
     
     public void cadastrar(Animal animal) {                       
-        String sql = "insert into animais (nome, especie, peso, altura, donoCpf) values (?,?,?,?,?)";
+        String sql = "insert into Animal (nome, especie, peso, altura, donoCpf) values (?,?,?,?,?)";
         
         
         try {
@@ -65,7 +64,7 @@ public class AnimalBD {
     }
 
     public void alterar(Animal animal) {                
-        String sql = "update animais set"
+        String sql = "update Animal set"
                 + " nome = ?";
         
         try {
@@ -80,7 +79,7 @@ public class AnimalBD {
     }
 
     public void remover(Animal animal) {
-        String sql = "delete from animais where id = ?";        
+        String sql = "delete from Animal where id = ?";        
         
         try {
           this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
@@ -94,7 +93,7 @@ public class AnimalBD {
     }
 
     public void consultar(Animal animal) {      
-        String sql = "select * from animais where id = ?";
+        String sql = "select * from Animal where id = ?";
                 
         try {
             this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
@@ -120,7 +119,7 @@ public class AnimalBD {
     }
     
     public void consultarTodas() {
-        String sql = "select * from animais";        
+        String sql = "select * from Animal";        
                 
         try {                   
             this.declaracao = this.conexao.createStatement();

@@ -15,7 +15,7 @@ public class AtendimentoBD {
     private ResultSet resultados;
 
     private void criarTabela(){
-        String sql = "CREATE TABLE IF NOT EXISTS Animal (" +
+        String sql = "CREATE TABLE IF NOT EXISTS Atendimento (" +
                 "	codigo integer PRIMARY KEY AUTOINCREMENT," +
                 "	data text NOT NULL," +
                 "       clienteCpf text NOT NULL" +
@@ -50,7 +50,7 @@ public class AtendimentoBD {
     }
     
     public void cadastrar(Atendimento atendimento) {                       
-        String sql = "insert into Pessoas (data, clienteCpf, animalId, funcionarioNum) values (?,?,?,?)";
+        String sql = "insert into Atendimento (data, clienteCpf, animalId, funcionarioNum) values (?,?,?,?)";
         
         
         try {
@@ -68,7 +68,7 @@ public class AtendimentoBD {
     }
 
     public void alterar(Atendimento atendimento) {                
-        String sql = "update atendimentos set"
+        String sql = "update Atendimento set"
                 + " data = ?";
         
         try {
@@ -83,7 +83,7 @@ public class AtendimentoBD {
     }
 
     public void remover(Atendimento atendimento) {
-        String sql = "delete from atendimentos where codigo = ?";        
+        String sql = "delete from Atendimento where codigo = ?";        
         
         try {
           this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
@@ -97,7 +97,7 @@ public class AtendimentoBD {
     }
 
     public void consultar(Atendimento atendimento) {      
-        String sql = "select * from atendimentos where codigo = ?";
+        String sql = "select * from Atendimento where codigo = ?";
                 
         try {
             this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
@@ -123,7 +123,7 @@ public class AtendimentoBD {
     }
     
     public void consultarTodas() {
-        String sql = "select * from atendimentos";        
+        String sql = "select * from Atendimento";        
                 
         try {                   
             this.declaracao = this.conexao.createStatement();
