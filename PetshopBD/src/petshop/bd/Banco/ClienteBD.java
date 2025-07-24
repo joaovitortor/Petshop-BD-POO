@@ -60,7 +60,7 @@ public class ClienteBD {
     }
 
     public void alterar(Cliente cliente) {                
-        String sql = "update Pessoas set"
+        String sql = "update Cliente set"
                 + " nome = ?";
         
         try {
@@ -75,7 +75,7 @@ public class ClienteBD {
     }
 
     public void remover(Cliente cliente) {
-        String sql = "delete from Pessoas where cpf = ?";        
+        String sql = "delete from Cliente where cpf = ?";        
         
         try {
           this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
@@ -89,7 +89,7 @@ public class ClienteBD {
     }
 
     public void consultar(Cliente cliente) {      
-        String sql = "select * from Pessoas where cpf = ?";
+        String sql = "select * from Cliente where cpf = ?";
                 
         try {
             this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
@@ -112,7 +112,7 @@ public class ClienteBD {
     }
     
     public void consultarTodas() {
-        String sql = "select * from Pessoas";        
+        String sql = "select * from Cliente";        
                 
         try {                   
             this.declaracao = this.conexao.createStatement();
