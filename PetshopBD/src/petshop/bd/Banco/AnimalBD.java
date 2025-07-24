@@ -43,23 +43,48 @@ public class AnimalBD {
         this.criarTabela();
     }
     
-    public void cadastrar(Animal animal) {                       
+    public boolean verificaDono(String cpfDono){
+        String sql = "select * from Cliente where cpf = ?";
+        try {
+          this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
+          this.declaracao_parametrizada.setString(1, cpfDono);
+          
+          this.declaracao_parametrizada.executeUpdate();
+          this.resultados = declaracao_parametrizada.executeQuery();
+          
+          return this.resultados == null;
+          
+        }
+        catch (SQLException erro){
+            System.out.println("Erro na busca dos dados. Mensagem: " + erro.getMessage());
+            return false;
+        }  
+    }
+    
+    public boolean cadastrar(Animal animal) {                       
         String sql = "insert into Animal (nome, especie, peso, altura, donoCpf) values (?,?,?,?,?)";
         
         
         try {
-          this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
+          if(verificaDono(animal.getCpfDono())){
+            this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
           
-          this.declaracao_parametrizada.setString(1, animal.getNome());
-          this.declaracao_parametrizada.setString(2, animal.getEspecie());
-          this.declaracao_parametrizada.setFloat(3, animal.getPeso());
-          this.declaracao_parametrizada.setFloat(4, animal.getAltura());
-          this.declaracao_parametrizada.setString(5, animal.getDono().getCpf());
+            this.declaracao_parametrizada.setString(1, animal.getNome());
+            this.declaracao_parametrizada.setString(2, animal.getEspecie());
+            this.declaracao_parametrizada.setFloat(3, animal.getPeso());
+            this.declaracao_parametrizada.setFloat(4, animal.getAltura());
+            this.declaracao_parametrizada.setString(5, animal.getCpfDono());
 
-          
-          this.declaracao_parametrizada.executeUpdate();
+            this.declaracao_parametrizada.executeUpdate();
+            return true;
+          }
+          else{
+              System.out.println("Não existe funcionario com esse cpf");
+              return false;
+          }
         } catch (SQLException erro){
             System.out.println("Erro na insercao dos dados. Mensagem: " + erro.getMessage());
+            return false;
         }
     }
 
