@@ -1,6 +1,8 @@
 package petshop.bd.Classes.Animal;
 
 import javax.swing.JOptionPane;
+import petshop.bd.Banco.AnimalBD;
+import petshop.bd.Classes.Animal.Animal;
 
 public class FormularioAnimal extends javax.swing.JFrame {
 
@@ -425,7 +427,20 @@ public class FormularioAnimal extends javax.swing.JFrame {
             peso = campoPeso.getText();
         } 
         
-        System.out.println(nome + especie + cpf + altura + peso);
+        Animal animal = new Animal(nome, especie, Float.parseFloat(peso), Float.parseFloat(altura), cpf);
+        AnimalBD animalBd = new AnimalBD();
+        if(animalBd.cadastrar(animal)){
+            JOptionPane.showMessageDialog(null, "Animal Cadastrado com Sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
+            campoNome.setText("Digite o Nome do Animal");
+            campoEspecie.setText("Digite a Espécie");
+            campoCPF.setText("Digite o CPF");
+            campoAltura.setText("Digite a Altura (m)");
+            campoPeso.setText("Digite o Peso (Kg)");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Falha ao cadastrar o Animal", "Cadastro", JOptionPane.ERROR_MESSAGE);
+
+        }
     }//GEN-LAST:event_botaoCadastrarActionPerformed
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
