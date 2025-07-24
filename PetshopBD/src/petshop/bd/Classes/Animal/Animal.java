@@ -4,18 +4,17 @@ import petshop.bd.Classes.Cliente.Cliente;
 
 public class Animal {
 
-    private String nome, especie;
+    private String nome, especie, cpfDono;
     private float peso, altura;
-    private Cliente dono;
     private int id;
 
-    public Animal(String nome, String especie, float peso, float altura, Cliente dono, int id) {
+    public Animal(String nome, String especie, float peso, float altura, String cpfDono, int id) {
         super();
         this.nome = nome;
         this.especie = especie;
         this.peso = peso;
         this.altura = altura;
-        this.dono = dono;
+        this.cpfDono = cpfDono;
         this.id = id;
     }
 
@@ -59,12 +58,12 @@ public class Animal {
         this.id = id;
     }
 
-    public Cliente getDono() {
-        return dono;
+    public String getCpfDono() {
+        return cpfDono;
     }
 
-    public void setDono(Cliente dono) {
-        this.dono = dono;
+    public void setCpfDono(String cpfDono) {
+        this.cpfDono = cpfDono;
     }
 
     public void exibirInformacoes() {
@@ -73,6 +72,6 @@ public class Animal {
         System.out.println("Peso: " + getPeso());
         System.out.println("Altura: " + getAltura());
         System.out.println("ID: " + getId());
-        System.out.println("Dono: " + getDono().getNome());
+        System.out.println("Dono: " + getCpfDono());
     }
 }
