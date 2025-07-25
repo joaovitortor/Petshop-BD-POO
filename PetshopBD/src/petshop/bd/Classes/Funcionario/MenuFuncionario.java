@@ -66,6 +66,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
         botaoVoltar = new javax.swing.JButton();
         botaoEditar = new javax.swing.JButton();
         botarExcluir = new javax.swing.JButton();
+        botaoBusca1 = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -148,7 +149,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
         jPanel3.setPreferredSize(new java.awt.Dimension(0, 2));
 
         jLabel2.setBackground(new java.awt.Color(102, 102, 102));
-        jLabel2.setFont(new java.awt.Font("Agency FB", 1, 20)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Agency FB", 1, 22)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Lista de Funcionários Cadastrados");
 
@@ -242,6 +243,16 @@ public class MenuFuncionario extends javax.swing.JFrame {
             }
         });
 
+        botaoBusca1.setBackground(new java.awt.Color(39, 147, 147));
+        botaoBusca1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botaoBusca1.setForeground(new java.awt.Color(255, 255, 255));
+        botaoBusca1.setText("Atualizar");
+        botaoBusca1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoBusca1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -253,40 +264,45 @@ public class MenuFuncionario extends javax.swing.JFrame {
                 .addComponent(botaoVoltar)
                 .addGap(22, 22, 22))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(137, Short.MAX_VALUE)
+                .addComponent(botaoCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(botaoBusca)
-                .addGap(52, 52, 52))
+                .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(botarExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(153, 153, 153))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(botaoCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(52, 52, 52)
-                        .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47)
-                        .addComponent(botarExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(153, 153, 153))))
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botaoBusca1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botaoBusca)
+                        .addGap(6, 6, 6)))
+                .addGap(46, 46, 46))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jLabel2))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGap(16, 16, 16)
+                            .addComponent(jLabel2))
+                        .addComponent(botaoBusca1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(botaoBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -295,7 +311,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(botaoVoltar)
                     .addComponent(botaoAjuda))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -348,6 +364,10 @@ public class MenuFuncionario extends javax.swing.JFrame {
     private void jTable2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseReleased
 
     }//GEN-LAST:event_jTable2MouseReleased
+
+    private void botaoBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBusca1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoBusca1ActionPerformed
     
     private void carregarDadosNaTabela() {
         modeloTabelaFuncionarios.setRowCount(0); // Define o número de linhas para 0
@@ -373,6 +393,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAjuda;
     private javax.swing.JButton botaoBusca;
+    private javax.swing.JButton botaoBusca1;
     private javax.swing.JButton botaoCadastro;
     private javax.swing.JButton botaoEditar;
     private javax.swing.JButton botaoVoltar;
