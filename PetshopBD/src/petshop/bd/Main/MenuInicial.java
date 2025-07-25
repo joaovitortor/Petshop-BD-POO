@@ -4,7 +4,10 @@ import petshop.bd.Classes.Animal.MenuAnimal;
 import petshop.bd.Classes.Atendimento.MenuAtendimento;
 import petshop.bd.Classes.Cliente.MenuCliente;
 import petshop.bd.Classes.Funcionario.MenuFuncionario;
-
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
@@ -13,11 +16,13 @@ import petshop.bd.Classes.Funcionario.MenuFuncionario;
  * @author user
  */
 public class MenuInicial extends javax.swing.JFrame {
-
+    private final Connection conexao;
     /**
      * Creates new form MenuAnimal
+     * @param conexao
      */
-    public MenuInicial() {
+    public MenuInicial(Connection conexao) {
+        this.conexao = conexao;
         initComponents();
         setLocationRelativeTo(null); // Centraliza a tela na tela
         setTitle("Menu"); // Define o título da tela
@@ -257,7 +262,7 @@ public class MenuInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAnimalActionPerformed
-        MenuAnimal menuAnimal = new MenuAnimal();
+        MenuAnimal menuAnimal = new MenuAnimal(conexao);
         menuAnimal.setVisible(true);
     }//GEN-LAST:event_botaoAnimalActionPerformed
 
@@ -266,7 +271,7 @@ public class MenuInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoAnimalPropertyChange
 
     private void botaoAtendimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtendimentoActionPerformed
-        MenuAtendimento menuAtendimento = new MenuAtendimento();
+        MenuAtendimento menuAtendimento = new MenuAtendimento(conexao);
         menuAtendimento.setVisible(true);
     }//GEN-LAST:event_botaoAtendimentoActionPerformed
 
@@ -275,7 +280,7 @@ public class MenuInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoAtendimentoPropertyChange
 
     private void botaoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoClienteActionPerformed
-        MenuCliente menuCliente = new MenuCliente();
+        MenuCliente menuCliente = new MenuCliente(conexao);
         menuCliente.setVisible(true);
     }//GEN-LAST:event_botaoClienteActionPerformed
 
@@ -284,7 +289,7 @@ public class MenuInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoClientePropertyChange
 
     private void botaoFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFuncionarioActionPerformed
-        MenuFuncionario menuFuncionario = new MenuFuncionario();
+        MenuFuncionario menuFuncionario = new MenuFuncionario(conexao);
         menuFuncionario.setVisible(true);
     }//GEN-LAST:event_botaoFuncionarioActionPerformed
 
@@ -294,44 +299,15 @@ public class MenuInicial extends javax.swing.JFrame {
 
     private void botaoSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSairActionPerformed
         this.dispose();
+        try {
+            if(!conexao.isClosed()){
+                conexao.close();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuInicial.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_botaoSairActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuInicial().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAnimal;

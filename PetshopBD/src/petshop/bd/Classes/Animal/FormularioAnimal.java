@@ -2,14 +2,16 @@ package petshop.bd.Classes.Animal;
 
 import javax.swing.JOptionPane;
 import petshop.bd.Banco.AnimalBD;
-import petshop.bd.Classes.Animal.Animal;
+import java.sql.Connection;
 
 public class FormularioAnimal extends javax.swing.JFrame {
-
+    private final Connection conexao;
     /**
      * Creates new form MenuAnimal
+     * @param conexao
      */
-    public FormularioAnimal() {
+    public FormularioAnimal(Connection conexao) {
+        this.conexao = conexao;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -391,56 +393,59 @@ public class FormularioAnimal extends javax.swing.JFrame {
 
     private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
         String nome, especie, cpf, altura, peso;
-        if(campoNome.getText().equals("Digite o Nome do Animal") || campoNome.getText().isEmpty()){
+        if (campoNome.getText().equals("Digite o Nome do Animal") || campoNome.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite o Nome do Animal", "Erro", JOptionPane.ERROR_MESSAGE);
-            campoNome.requestFocus(); 
+            campoNome.requestFocus();
             return;
-        } else{
+        } else {
             nome = campoNome.getText();
         }
-        if(campoEspecie.getText().equals("Digite a Espécie") || campoEspecie.getText().isEmpty()){
+        if (campoEspecie.getText().equals("Digite a Espécie") || campoEspecie.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite a Espécie", "Erro", JOptionPane.ERROR_MESSAGE);
             campoEspecie.requestFocus();
             return;
         } else {
             especie = campoEspecie.getText();
         }
-        if(campoCPF.getText().equals("Digite o CPF") || campoCPF.getText().isEmpty()){
+        if (campoCPF.getText().equals("Digite o CPF") || campoCPF.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite o CPF do Dono", "Erro", JOptionPane.ERROR_MESSAGE);
             campoCPF.requestFocus();
             return;
         } else {
             cpf = campoCPF.getText();
         }
-        if(campoAltura.getText().equals("Digite a Altura (m)") || campoAltura.getText().isEmpty()){
+        if (campoAltura.getText().equals("Digite a Altura (m)") || campoAltura.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite a Altura do Animal", "Erro", JOptionPane.ERROR_MESSAGE);
             campoAltura.requestFocus();
             return;
         } else {
             altura = campoAltura.getText();
         }
-        if(campoPeso.getText().equals("Digite o Peso (Kg)") || campoPeso.getText().isEmpty()) {
+        if (campoPeso.getText().equals("Digite o Peso (Kg)") || campoPeso.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite o Peso do Animal", "Erro", JOptionPane.ERROR_MESSAGE);
             campoPeso.requestFocus();
             return;
         } else {
             peso = campoPeso.getText();
-        } 
-        
-        Animal animal = new Animal(nome, especie, Float.parseFloat(peso), Float.parseFloat(altura), cpf);
-        AnimalBD animalBd = new AnimalBD();
-        if(animalBd.cadastrar(animal)){
-            JOptionPane.showMessageDialog(null, "Animal Cadastrado com Sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
-            campoNome.setText("Digite o Nome do Animal");
-            campoEspecie.setText("Digite a Espécie");
-            campoCPF.setText("Digite o CPF");
-            campoAltura.setText("Digite a Altura (m)");
-            campoPeso.setText("Digite o Peso (Kg)");
         }
-        else{
-            JOptionPane.showMessageDialog(null, "Falha ao cadastrar o Animal", "Cadastro", JOptionPane.ERROR_MESSAGE);
 
+        Animal animal = new Animal(nome, especie, Float.parseFloat(peso), Float.parseFloat(altura), cpf);
+        AnimalBD animalBd = new AnimalBD(conexao);
+        if (animalBd.verificaDono(cpf)) {
+            if (animalBd.cadastrar(animal)) {
+                JOptionPane.showMessageDialog(null, "Animal Cadastrado com Sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
+                campoNome.setText("Digite o Nome do Animal");
+                campoEspecie.setText("Digite a Espécie");
+                campoCPF.setText("Digite o CPF");
+                campoAltura.setText("Digite a Altura (m)");
+                campoPeso.setText("Digite o Peso (Kg)");
+            } else {
+                JOptionPane.showMessageDialog(null, "Falha ao cadastrar o Animal", "Cadastro", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Não existe cliente com esse CPF. Tente novamente", "Erro", JOptionPane.ERROR_MESSAGE);
         }
+
     }//GEN-LAST:event_botaoCadastrarActionPerformed
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
@@ -452,16 +457,16 @@ public class FormularioAnimal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoCadastrarPropertyChange
 
     private void campoNomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNomeFocusGained
-        if(campoNome.getText().equals("Digite o Nome do Animal")){
+        if (campoNome.getText().equals("Digite o Nome do Animal")) {
             campoNome.setText("");
             campoNome.setForeground(java.awt.Color.BLACK);
         }
     }//GEN-LAST:event_campoNomeFocusGained
 
     private void campoNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNomeFocusLost
-        if(campoNome.getText().isEmpty()){
+        if (campoNome.getText().isEmpty()) {
             campoNome.setText("Digite o Nome do Animal");
-            campoNome.setForeground(new java.awt.Color(102,102,102));
+            campoNome.setForeground(new java.awt.Color(102, 102, 102));
         }
     }//GEN-LAST:event_campoNomeFocusLost
 
@@ -470,16 +475,16 @@ public class FormularioAnimal extends javax.swing.JFrame {
     }//GEN-LAST:event_campoNomeActionPerformed
 
     private void campoEspecieFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoEspecieFocusGained
-        if(campoEspecie.getText().equals("Digite a Espécie")){
+        if (campoEspecie.getText().equals("Digite a Espécie")) {
             campoEspecie.setText("");
             campoEspecie.setForeground(java.awt.Color.BLACK);
         }
     }//GEN-LAST:event_campoEspecieFocusGained
 
     private void campoEspecieFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoEspecieFocusLost
-        if(campoEspecie.getText().isEmpty()){
+        if (campoEspecie.getText().isEmpty()) {
             campoEspecie.setText("Digite a Espécie");
-            campoEspecie.setForeground(new java.awt.Color(102,102,102));
+            campoEspecie.setForeground(new java.awt.Color(102, 102, 102));
         }
     }//GEN-LAST:event_campoEspecieFocusLost
 
@@ -488,16 +493,16 @@ public class FormularioAnimal extends javax.swing.JFrame {
     }//GEN-LAST:event_campoEspecieActionPerformed
 
     private void campoPesoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoPesoFocusGained
-        if(campoPeso.getText().equals("Digite o Peso (Kg)")){
+        if (campoPeso.getText().equals("Digite o Peso (Kg)")) {
             campoPeso.setText("");
             campoPeso.setForeground(java.awt.Color.BLACK);
         }
     }//GEN-LAST:event_campoPesoFocusGained
 
     private void campoPesoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoPesoFocusLost
-        if(campoPeso.getText().isEmpty()){
+        if (campoPeso.getText().isEmpty()) {
             campoPeso.setText("Digite o Peso (Kg)");
-            campoPeso.setForeground(new java.awt.Color(102,102,102));
+            campoPeso.setForeground(new java.awt.Color(102, 102, 102));
         }
     }//GEN-LAST:event_campoPesoFocusLost
 
@@ -506,16 +511,16 @@ public class FormularioAnimal extends javax.swing.JFrame {
     }//GEN-LAST:event_campoPesoActionPerformed
 
     private void campoAlturaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoAlturaFocusGained
-        if(campoAltura.getText().equals("Digite a Altura (m)")){
+        if (campoAltura.getText().equals("Digite a Altura (m)")) {
             campoAltura.setText("");
             campoAltura.setForeground(java.awt.Color.BLACK);
         }
     }//GEN-LAST:event_campoAlturaFocusGained
 
     private void campoAlturaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoAlturaFocusLost
-        if(campoAltura.getText().isEmpty()){
+        if (campoAltura.getText().isEmpty()) {
             campoAltura.setText("Digite a Altura (m)");
-            campoAltura.setForeground(new java.awt.Color(102,102,102));
+            campoAltura.setForeground(new java.awt.Color(102, 102, 102));
         }
     }//GEN-LAST:event_campoAlturaFocusLost
 
@@ -524,16 +529,16 @@ public class FormularioAnimal extends javax.swing.JFrame {
     }//GEN-LAST:event_campoAlturaActionPerformed
 
     private void campoCPFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoCPFFocusGained
-        if(campoCPF.getText().equals("Digite o CPF")){
+        if (campoCPF.getText().equals("Digite o CPF")) {
             campoCPF.setText("");
             campoCPF.setForeground(java.awt.Color.BLACK);
         }
     }//GEN-LAST:event_campoCPFFocusGained
 
     private void campoCPFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoCPFFocusLost
-        if(campoCPF.getText().isEmpty()){
+        if (campoCPF.getText().isEmpty()) {
             campoCPF.setText("Digite o CPF");
-            campoCPF.setForeground(new java.awt.Color(102,102,102));
+            campoCPF.setForeground(new java.awt.Color(102, 102, 102));
         }
     }//GEN-LAST:event_campoCPFFocusLost
 
@@ -541,47 +546,6 @@ public class FormularioAnimal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoCPFActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormularioAnimal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormularioAnimal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormularioAnimal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormularioAnimal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FormularioAnimal().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCadastrar;

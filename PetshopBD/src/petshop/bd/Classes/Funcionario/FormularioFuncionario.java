@@ -2,13 +2,16 @@ package petshop.bd.Classes.Funcionario;
 
 import javax.swing.JOptionPane;
 import petshop.bd.Banco.FuncionarioBD;
+import java.sql.Connection;
 
 public class FormularioFuncionario extends javax.swing.JFrame {
-
+    private final Connection conexao;
     /**
      * Creates new form MenuAnimal
+     * @param conexao
      */
-    public FormularioFuncionario() {
+    public FormularioFuncionario(Connection conexao) {
+        this.conexao = conexao;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -395,47 +398,46 @@ public class FormularioFuncionario extends javax.swing.JFrame {
 
     private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
         String nome, descricao, qualificacao, numMatricula, cargaHoraria;
-        
-        if(campoNome.getText().equals("Digite o Nome do Funcionário") || campoNome.getText().isEmpty()){
+
+        if (campoNome.getText().equals("Digite o Nome do Funcionário") || campoNome.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite o nome do Funcionário", "Erro", JOptionPane.ERROR_MESSAGE);
-            campoNome.requestFocus(); 
+            campoNome.requestFocus();
             return;
-        } else{
+        } else {
             nome = campoNome.getText();
         }
-        if(campoDescricao.getText().equals("Digite a Descrição da Função") || campoDescricao.getText().isEmpty()){
+        if (campoDescricao.getText().equals("Digite a Descrição da Função") || campoDescricao.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite a Descrição do Funcionário", "Erro", JOptionPane.ERROR_MESSAGE);
             campoDescricao.requestFocus();
             return;
         } else {
             descricao = campoDescricao.getText();
         }
-        if(campoNum.getText().equals("Digite o Número de Matrícula") || campoNum.getText().isEmpty()){
+        if (campoNum.getText().equals("Digite o Número de Matrícula") || campoNum.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite o Número de Matrícula do Funcionário", "Erro", JOptionPane.ERROR_MESSAGE);
             campoNum.requestFocus();
             return;
         } else {
             numMatricula = campoNum.getText();
         }
-        if(campoCarga.getText().equals("Digite a Carga Horária") || campoCarga.getText().isEmpty()){
+        if (campoCarga.getText().equals("Digite a Carga Horária") || campoCarga.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite a Carga Horária Semanal", "Erro", JOptionPane.ERROR_MESSAGE);
             campoCarga.requestFocus();
             return;
         } else {
             cargaHoraria = campoCarga.getText();
         }
-        if(campoQualificacao.getText().equals("Digite a Qualificação") || campoQualificacao.getText().isEmpty()) {
+        if (campoQualificacao.getText().equals("Digite a Qualificação") || campoQualificacao.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite o nome do Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
             campoQualificacao.requestFocus();
             return;
         } else {
             qualificacao = campoQualificacao.getText();
-        } 
-        
-        
+        }
+
         Funcionario funcionario = new Funcionario(nome, qualificacao, descricao, Integer.parseInt(cargaHoraria), Integer.parseInt(numMatricula));
-        FuncionarioBD funcionarioBd = new FuncionarioBD();
-        if(funcionarioBd.cadastrar(funcionario)){
+        FuncionarioBD funcionarioBd = new FuncionarioBD(conexao);
+        if (funcionarioBd.cadastrar(funcionario)) {
             JOptionPane.showMessageDialog(null, "Funcionário Cadastrado com Sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
             campoNome.setText("Digite o Nome do Funcionário");
             campoDescricao.setText("Digite a Descrição da Função");
@@ -443,8 +445,7 @@ public class FormularioFuncionario extends javax.swing.JFrame {
             campoCarga.setText("Digite a Carga Horária");
             campoQualificacao.setText("Digite a Qualificação");
 
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(null, "Falha ao cadastrar o Funcionário", "Cadastro", JOptionPane.ERROR_MESSAGE);
 
         }
@@ -459,16 +460,16 @@ public class FormularioFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoCadastrarPropertyChange
 
     private void campoNomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNomeFocusGained
-        if(campoNome.getText().equals("Digite o Nome do Funcionário")){
+        if (campoNome.getText().equals("Digite o Nome do Funcionário")) {
             campoNome.setText("");
             campoNome.setForeground(java.awt.Color.BLACK);
         }
     }//GEN-LAST:event_campoNomeFocusGained
 
     private void campoNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNomeFocusLost
-        if(campoNome.getText().isEmpty()){
+        if (campoNome.getText().isEmpty()) {
             campoNome.setText("Digite o Nome do Funcionário");
-            campoNome.setForeground(new java.awt.Color(102,102,102));
+            campoNome.setForeground(new java.awt.Color(102, 102, 102));
         }
     }//GEN-LAST:event_campoNomeFocusLost
 
@@ -477,16 +478,16 @@ public class FormularioFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_campoNomeActionPerformed
 
     private void campoDescricaoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoDescricaoFocusGained
-        if(campoDescricao.getText().equals("Digite a Descrição da Função")){
+        if (campoDescricao.getText().equals("Digite a Descrição da Função")) {
             campoDescricao.setText("");
             campoDescricao.setForeground(java.awt.Color.BLACK);
         }
     }//GEN-LAST:event_campoDescricaoFocusGained
 
     private void campoDescricaoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoDescricaoFocusLost
-        if(campoDescricao.getText().isEmpty()){
+        if (campoDescricao.getText().isEmpty()) {
             campoDescricao.setText("Digite a Descrição da Função");
-            campoDescricao.setForeground(new java.awt.Color(102,102,102));
+            campoDescricao.setForeground(new java.awt.Color(102, 102, 102));
         }
     }//GEN-LAST:event_campoDescricaoFocusLost
 
@@ -495,16 +496,16 @@ public class FormularioFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_campoDescricaoActionPerformed
 
     private void campoQualificacaoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoQualificacaoFocusGained
-        if(campoQualificacao.getText().equals("Digite a Qualificação")){
+        if (campoQualificacao.getText().equals("Digite a Qualificação")) {
             campoQualificacao.setText("");
             campoQualificacao.setForeground(java.awt.Color.BLACK);
         }
     }//GEN-LAST:event_campoQualificacaoFocusGained
 
     private void campoQualificacaoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoQualificacaoFocusLost
-        if(campoQualificacao.getText().isEmpty()){
+        if (campoQualificacao.getText().isEmpty()) {
             campoQualificacao.setText("Digite a Qualificação");
-            campoQualificacao.setForeground(new java.awt.Color(102,102,102));
+            campoQualificacao.setForeground(new java.awt.Color(102, 102, 102));
         }
     }//GEN-LAST:event_campoQualificacaoFocusLost
 
@@ -513,16 +514,16 @@ public class FormularioFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_campoQualificacaoActionPerformed
 
     private void campoCargaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoCargaFocusGained
-        if(campoCarga.getText().equals("Digite a Carga Horária")){
+        if (campoCarga.getText().equals("Digite a Carga Horária")) {
             campoCarga.setText("");
             campoCarga.setForeground(java.awt.Color.BLACK);
         }
     }//GEN-LAST:event_campoCargaFocusGained
 
     private void campoCargaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoCargaFocusLost
-        if(campoCarga.getText().isEmpty()){
+        if (campoCarga.getText().isEmpty()) {
             campoCarga.setText("Digite a Carga Horária");
-            campoCarga.setForeground(new java.awt.Color(102,102,102));
+            campoCarga.setForeground(new java.awt.Color(102, 102, 102));
         }
     }//GEN-LAST:event_campoCargaFocusLost
 
@@ -531,16 +532,16 @@ public class FormularioFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_campoCargaActionPerformed
 
     private void campoNumFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNumFocusGained
-        if(campoNum.getText().equals("Digite o Número de Matrícula")){
+        if (campoNum.getText().equals("Digite o Número de Matrícula")) {
             campoNum.setText("");
             campoNum.setForeground(java.awt.Color.BLACK);
         }
     }//GEN-LAST:event_campoNumFocusGained
 
     private void campoNumFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNumFocusLost
-        if(campoNum.getText().isEmpty()){
+        if (campoNum.getText().isEmpty()) {
             campoNum.setText("Digite o Número de Matrícula");
-            campoNum.setForeground(new java.awt.Color(102,102,102));
+            campoNum.setForeground(new java.awt.Color(102, 102, 102));
         }
     }//GEN-LAST:event_campoNumFocusLost
 
@@ -548,47 +549,7 @@ public class FormularioFuncionario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoNumActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormularioFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormularioFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormularioFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormularioFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FormularioFuncionario().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCadastrar;

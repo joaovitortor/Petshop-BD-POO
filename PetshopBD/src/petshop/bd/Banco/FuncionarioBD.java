@@ -8,8 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class FuncionarioBD {
-    private final SQLiteDriver sqLiteDriver;
-    private final Connection conexao;
+    private Connection conexao;
     private Statement declaracao;
     private PreparedStatement declaracao_parametrizada;
     private ResultSet resultados;
@@ -32,9 +31,8 @@ public class FuncionarioBD {
         }
     }
     
-    public FuncionarioBD(){
-        this.sqLiteDriver = new SQLiteDriver("funcionarios");      
-        this.conexao = sqLiteDriver.iniciarConexao();
+    public FuncionarioBD(Connection conexao){
+        this.conexao = conexao;
         this.criarTabela();
     }
     
@@ -89,7 +87,7 @@ public class FuncionarioBD {
     }
 
     public void consultar(Funcionario funcionario) {      
-        String sql = "select * from Funcionario where cpf = ?";
+        String sql = "select * from Funcionario where numMaricula = ?";
                 
         try {
             this.declaracao_parametrizada = this.conexao.prepareStatement(sql);

@@ -8,34 +8,25 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class AtendimentoBD {
-    private final SQLiteDriver sqLiteDriver;
-    private final Connection conexao;
+    private Connection conexao;
     private Statement declaracao;
     private PreparedStatement declaracao_parametrizada;
     private ResultSet resultados;
 
     private void criarTabela(){
-        String sql = "CREATE TABLE IF NOT EXISTS Atendimento (" +
-                "	codigo integer PRIMARY KEY AUTOINCREMENT," +
-                "	data text NOT NULL," +
-                "       clienteCpf text NOT NULL" +
-                "       FOREIGN KEY (clienteCpf) " +
-                "           REFERENCES clientes (cpf)" +
-                "               ON UPDATE RESTRICT" +
-                "               ON DELETE RESTRICT" +
-                "       animalId integer NOT NULL" +
-                "       FOREIGN KEY (animalId) " +
-                "           REFERENCES animais (id)" +
-                "               ON UPDATE RESTRICT" +
-                "               ON DELETE RESTRICT" +
-                "       funcionarioNum integer NOT NULL" +
-                "       FOREIGN KEY (funcionarioNum) " +
-                "           REFERENCES funcionarios (numMatricula)" +
-                "               ON UPDATE RESTRICT" +
-                "               ON DELETE RESTRICT" +
-                                                            ");";
+        String sql ="CREATE TABLE IF NOT EXISTS Atendimento (" +
+                     "codigo integer PRIMARY KEY AUTOINCREMENT," +
+                     "data text NOT NULL," +
+                     "clienteCpf text NOT NULL," +
+                     "FOREIGN KEY (clienteCpf) REFERENCES Cliente (cpf)," +
+                     "animalId integer NOT NULL," +                        
+                     "FOREIGN KEY (animalId) REFERENCES Animal (id)," +
+                     "funcionarioNum integer NOT NULL," +
+                     "FOREIGN KEY (funcionarioNum) REFERENCES Funcionario (numMatricula)" +
+                     ");";
         try {
             this.declaracao = this.conexao.createStatement();
+            System.out.println("SQL a ser executado: " + sql);
             this.declaracao.execute(sql);
             
         } catch (SQLException e) {
@@ -43,13 +34,12 @@ public class AtendimentoBD {
         }
     }
     
-    public AtendimentoBD(){
-        this.sqLiteDriver = new SQLiteDriver("atendimentos");      
-        this.conexao = sqLiteDriver.iniciarConexao();
+    public AtendimentoBD(Connection conexao){
+        this.conexao = conexao;
         this.criarTabela();
     }
     
-    public void cadastrar(Atendimento atendimento) {                       
+    public boolean cadastrar(Atendimento atendimento) {                       
         String sql = "insert into Atendimento (data, clienteCpf, animalId, funcionarioNum) values (?,?,?,?)";
         
         
@@ -57,16 +47,67 @@ public class AtendimentoBD {
           this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
           
           this.declaracao_parametrizada.setString(1, atendimento.getData());
-          this.declaracao_parametrizada.setString(2, atendimento.getCliente().getCpf());
-          this.declaracao_parametrizada.setInt(3, atendimento.getAnimal().getId());
-          this.declaracao_parametrizada.setInt(4, atendimento.getFuncionario().getNumMatricula());
+          this.declaracao_parametrizada.setString(2, atendimento.getCpfCliente());
+          this.declaracao_parametrizada.setInt(3, atendimento.getIdAnimal());
+          this.declaracao_parametrizada.setInt(4, atendimento.getNumMatricula());
           
           this.declaracao_parametrizada.executeUpdate();
+          return true;
         } catch (SQLException erro){
             System.out.println("Erro na insercao dos dados. Mensagem: " + erro.getMessage());
+                return false;
         }
     }
 
+    public boolean verificaCliente(String clienteCpf){
+        String sql = "select * from Cliente where cpf = ?";
+        try {
+          this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
+          this.declaracao_parametrizada.setString(1, clienteCpf);
+          
+          this.resultados = declaracao_parametrizada.executeQuery();
+          
+          return this.resultados.next();
+        }
+        catch (SQLException erro){
+            System.out.println("Erro na busca dos dados. Mensagem: " + erro.getMessage());
+            return false;
+        }  
+    }
+
+    public boolean verificaAnimal(int animalId){
+        String sql = "select * from Animal where id = ?";
+        try {
+          this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
+          this.declaracao_parametrizada.setInt(1, animalId);
+          
+          this.resultados = declaracao_parametrizada.executeQuery();
+          
+          return this.resultados.next();
+        }
+        catch (SQLException erro){
+            System.out.println("Erro na busca dos dados. Mensagem: " + erro.getMessage());
+            return false;
+        }  
+    }
+    
+    public boolean verificaFuncionario(int numMatricula){
+        String sql = "select * from Funcionario where numMatricula = ?";
+        try {
+          this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
+          this.declaracao_parametrizada.setInt(1, numMatricula);
+          
+          this.resultados = declaracao_parametrizada.executeQuery();
+          
+          return this.resultados.next();
+        }
+        catch (SQLException erro){
+            System.out.println("Erro na busca dos dados. Mensagem: " + erro.getMessage());
+            return false;
+        }  
+    }
+    
+    
     public void alterar(Atendimento atendimento) {                
         String sql = "update Atendimento set"
                 + " data = ?";
@@ -143,5 +184,29 @@ public class AtendimentoBD {
             System.out.println("Erro na listagem de todos os dados. Erro: " + e.getMessage());
         }              
     }
-
+    
+        public void consultarTodasAnimal() {
+        String sql = "select * from Animal";        
+                
+        try {                   
+            this.declaracao = this.conexao.createStatement();
+            this.resultados = this.declaracao.executeQuery(sql);
+            
+            if (this.resultados != null) {
+                System.out.println("\n\n\n ###########################################");                
+                while(this.resultados.next()){
+                    System.out.println("ID: " + this.resultados.getString("id"));
+                    System.out.println("Nome: " + this.resultados.getString("nome"));
+                    System.out.println("Especie: " + this.resultados.getString("especie"));
+                    System.out.println("Peso: " + this.resultados.getString("peso"));
+                    System.out.println("Altura: " + this.resultados.getString("altura"));
+                    System.out.println("DonoCPF: " + this.resultados.getString("donoCpf"));
+                    System.out.println("###########################################");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro na listagem de todos os dados. Erro: " + e.getMessage());
+        }              
+    }
+    
 }

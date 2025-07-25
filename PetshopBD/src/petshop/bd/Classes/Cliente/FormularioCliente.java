@@ -2,13 +2,16 @@ package petshop.bd.Classes.Cliente;
 
 import javax.swing.JOptionPane;
 import petshop.bd.Banco.ClienteBD;
+import java.sql.Connection;
 
 public class FormularioCliente extends javax.swing.JFrame {
-
+    private final Connection conexao;
     /**
      * Creates new form MenuAnimal
+     * @param conexao
      */
-    public FormularioCliente() {
+    public FormularioCliente(Connection conexao) {
+        this.conexao = conexao;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -384,54 +387,53 @@ public class FormularioCliente extends javax.swing.JFrame {
 
     private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
         String nome, email, cpf, rg, telefone;
-        if(campoNome.getText().equals("Digite o Nome") || campoNome.getText().isEmpty()){
+        if (campoNome.getText().equals("Digite o Nome") || campoNome.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite o nome do Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
-            campoNome.requestFocus(); 
+            campoNome.requestFocus();
             return;
-        } else{
+        } else {
             nome = campoNome.getText();
         }
-        if(campoEmail.getText().equals("Digite o Email") || campoEmail.getText().isEmpty()){
+        if (campoEmail.getText().equals("Digite o Email") || campoEmail.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite o email do Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
             campoEmail.requestFocus();
             return;
         } else {
             email = campoEmail.getText();
         }
-        if(campoCPF.getText().equals("Digite o CPF") || campoCPF.getText().isEmpty()){
+        if (campoCPF.getText().equals("Digite o CPF") || campoCPF.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite o CPF do Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
             campoCPF.requestFocus();
             return;
         } else {
             cpf = campoCPF.getText();
         }
-        if(campoRG.getText().equals("Digite o RG") || campoRG.getText().isEmpty()){
+        if (campoRG.getText().equals("Digite o RG") || campoRG.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite o RG do Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
             campoRG.requestFocus();
             return;
         } else {
             rg = campoRG.getText();
         }
-        if(campoTelefone.getText().equals("Digite o Telefone") || campoTelefone.getText().isEmpty()) {
+        if (campoTelefone.getText().equals("Digite o Telefone") || campoTelefone.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite o nome do Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
             campoTelefone.requestFocus();
             return;
         } else {
             telefone = campoTelefone.getText();
-        } 
-        
-        Cliente cliente = new Cliente(nome, cpf, rg, telefone, email);
-        ClienteBD clienteBd = new ClienteBD();
-        if(clienteBd.cadastrar(cliente)){
+        }
+
+        Cliente cliente = new Cliente(nome, telefone, email, rg, cpf);
+        ClienteBD clienteBd = new ClienteBD(conexao);
+        if (clienteBd.cadastrar(cliente)) {
             JOptionPane.showMessageDialog(null, "Cliente Cadastrado com Sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
             campoTelefone.setText("Digite o Telefone");
             campoRG.setText("Digite o RG");
             campoCPF.setText("Digite o CPF");
             campoEmail.setText("Digite o Email");
             campoNome.setText("Digite o Nome");
-            
-        }
-        else{
+
+        } else {
             JOptionPane.showMessageDialog(null, "Falha ao cadastrar o Cliente", "Cadastro", JOptionPane.ERROR_MESSAGE);
 
         }
@@ -446,16 +448,16 @@ public class FormularioCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoCadastrarPropertyChange
 
     private void campoNomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNomeFocusGained
-        if(campoNome.getText().equals("Digite o Nome")){
+        if (campoNome.getText().equals("Digite o Nome")) {
             campoNome.setText("");
             campoNome.setForeground(java.awt.Color.BLACK);
         }
     }//GEN-LAST:event_campoNomeFocusGained
 
     private void campoNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNomeFocusLost
-        if(campoNome.getText().isEmpty()){
+        if (campoNome.getText().isEmpty()) {
             campoNome.setText("Digite o Nome");
-            campoNome.setForeground(new java.awt.Color(102,102,102));
+            campoNome.setForeground(new java.awt.Color(102, 102, 102));
         }
     }//GEN-LAST:event_campoNomeFocusLost
 
@@ -464,16 +466,16 @@ public class FormularioCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_campoNomeActionPerformed
 
     private void campoEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoEmailFocusGained
-        if(campoEmail.getText().equals("Digite o Email")){
+        if (campoEmail.getText().equals("Digite o Email")) {
             campoEmail.setText("");
             campoEmail.setForeground(java.awt.Color.BLACK);
         }
     }//GEN-LAST:event_campoEmailFocusGained
 
     private void campoEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoEmailFocusLost
-        if(campoEmail.getText().isEmpty()){
+        if (campoEmail.getText().isEmpty()) {
             campoEmail.setText("Digite o Email");
-            campoEmail.setForeground(new java.awt.Color(102,102,102));
+            campoEmail.setForeground(new java.awt.Color(102, 102, 102));
         }
     }//GEN-LAST:event_campoEmailFocusLost
 
@@ -482,16 +484,16 @@ public class FormularioCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_campoEmailActionPerformed
 
     private void campoTelefoneFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoTelefoneFocusGained
-        if(campoTelefone.getText().equals("Digite o Telefone")){
+        if (campoTelefone.getText().equals("Digite o Telefone")) {
             campoTelefone.setText("");
             campoTelefone.setForeground(java.awt.Color.BLACK);
         }
     }//GEN-LAST:event_campoTelefoneFocusGained
 
     private void campoTelefoneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoTelefoneFocusLost
-        if(campoTelefone.getText().isEmpty()){
+        if (campoTelefone.getText().isEmpty()) {
             campoTelefone.setText("Digite o Telefone");
-            campoTelefone.setForeground(new java.awt.Color(102,102,102));
+            campoTelefone.setForeground(new java.awt.Color(102, 102, 102));
         }
     }//GEN-LAST:event_campoTelefoneFocusLost
 
@@ -500,16 +502,16 @@ public class FormularioCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_campoTelefoneActionPerformed
 
     private void campoRGFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoRGFocusGained
-        if(campoRG.getText().equals("Digite o RG")){
+        if (campoRG.getText().equals("Digite o RG")) {
             campoRG.setText("");
             campoRG.setForeground(java.awt.Color.BLACK);
         }
     }//GEN-LAST:event_campoRGFocusGained
 
     private void campoRGFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoRGFocusLost
-        if(campoRG.getText().isEmpty()){
+        if (campoRG.getText().isEmpty()) {
             campoRG.setText("Digite o RG");
-            campoRG.setForeground(new java.awt.Color(102,102,102));
+            campoRG.setForeground(new java.awt.Color(102, 102, 102));
         }
     }//GEN-LAST:event_campoRGFocusLost
 
@@ -518,16 +520,16 @@ public class FormularioCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_campoRGActionPerformed
 
     private void campoCPFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoCPFFocusGained
-        if(campoCPF.getText().equals("Digite o CPF")){
+        if (campoCPF.getText().equals("Digite o CPF")) {
             campoCPF.setText("");
             campoCPF.setForeground(java.awt.Color.BLACK);
         }
     }//GEN-LAST:event_campoCPFFocusGained
 
     private void campoCPFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoCPFFocusLost
-        if(campoCPF.getText().isEmpty()){
+        if (campoCPF.getText().isEmpty()) {
             campoCPF.setText("Digite o CPF");
-            campoCPF.setForeground(new java.awt.Color(102,102,102));
+            campoCPF.setForeground(new java.awt.Color(102, 102, 102));
         }
     }//GEN-LAST:event_campoCPFFocusLost
 
@@ -535,43 +537,6 @@ public class FormularioCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoCPFActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormularioCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormularioCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormularioCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormularioCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FormularioCliente().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCadastrar;

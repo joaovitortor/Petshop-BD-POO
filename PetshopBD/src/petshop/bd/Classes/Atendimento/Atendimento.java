@@ -1,24 +1,17 @@
 package petshop.bd.Classes.Atendimento;
 
-import petshop.bd.Classes.Funcionario.Funcionario;
-import petshop.bd.Classes.Animal.Animal;
-import petshop.bd.Classes.Cliente.Cliente;
-
 public class Atendimento {
 
-    private int codigo;
-    private String data;
-    private Cliente cliente;
-    private Animal animal;
-    private Funcionario funcionario;
+    private int codigo, idAnimal, numMatricula;
+    private String data, cpfCliente;
+    
 
-    public Atendimento(int codigo, String data, Cliente cliente, Animal animal, Funcionario funcionario) {
+    public Atendimento(String data, String cpfCliente, int idAnimal, int numMatricula) {
         super();
-        this.codigo = codigo;
         this.data = data;
-        this.cliente = cliente;
-        this.animal = animal;
-        this.funcionario = funcionario;
+        this.cpfCliente = cpfCliente;
+        this.idAnimal = idAnimal;
+        this.numMatricula = numMatricula;
     }
 
     public int getCodigo() {
@@ -37,35 +30,37 @@ public class Atendimento {
         this.data = data;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public int getIdAnimal() {
+        return idAnimal;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setIdAnimal(int idAnimal) {
+        this.idAnimal = idAnimal;
     }
 
-    public Animal getAnimal() {
-        return animal;
+    public int getNumMatricula() {
+        return numMatricula;
     }
 
-    public void setAnimal(Animal animal) {
-        this.animal = animal;
+    public void setNumMatricula(int numMatricula) {
+        this.numMatricula = numMatricula;
     }
 
-    public Funcionario getFuncionario() {
-        return funcionario;
+    public String getCpfCliente() {
+        return cpfCliente;
     }
 
-    public void setFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
+    public void setCpfCliente(String cpfCliente) {
+        this.cpfCliente = cpfCliente;
     }
+
+    
 
     public void exibirInformacoes() {
         System.out.println("Codigo: " + getCodigo());
         System.out.println("Data: " + getData());
-        System.out.println("Cliente: " + getCliente().getNome());
-        System.out.println("Animal: " + getAnimal().getNome());
-        System.out.println("Funcionario: " + getFuncionario().getNome());
+        System.out.println("Cliente: " + getCpfCliente());
+        System.out.println("Animal: " + getIdAnimal());
+        System.out.println("Funcionario: " + getNumMatricula());
     }
 }

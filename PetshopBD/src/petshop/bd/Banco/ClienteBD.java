@@ -8,8 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ClienteBD {
-    private final SQLiteDriver sqLiteDriver;
-    private final Connection conexao;
+    private Connection conexao;
     private Statement declaracao;
     private PreparedStatement declaracao_parametrizada;
     private ResultSet resultados;
@@ -32,9 +31,8 @@ public class ClienteBD {
         }
     }
     
-    public ClienteBD(){
-        this.sqLiteDriver = new SQLiteDriver("clientes");      
-        this.conexao = sqLiteDriver.iniciarConexao();
+    public ClienteBD(Connection conexao){   
+        this.conexao = conexao;
         this.criarTabela();
     }
     

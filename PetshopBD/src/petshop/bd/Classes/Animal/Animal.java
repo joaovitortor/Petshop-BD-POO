@@ -5,6 +5,7 @@ public class Animal {
 
     private String nome, especie, cpfDono;
     private float peso, altura;
+    private int id;
 
 
     public Animal(String nome, String especie, float peso, float altura, String cpfDono) {
@@ -56,6 +57,15 @@ public class Animal {
         this.cpfDono = cpfDono;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
     public void exibirInformacoes() {
         System.out.println("Nome: " + getNome());
         System.out.println("Especie: " + getEspecie());
