@@ -5,6 +5,7 @@
 package petshop.bd.Classes.Atendimento;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import petshop.bd.Banco.AtendimentoBD;
@@ -24,7 +25,9 @@ public class MenuAtendimento extends javax.swing.JFrame {
         this.conexao = conexao;
         initComponents();
         setLocationRelativeTo(null);
-        modeloTabela
+        modeloTabelaAtendimento = (DefaultTableModel) jTable2.getModel();
+        atendimentoBD = new AtendimentoBD(this.conexao);
+        carregarDadosNaTabela();
     }
 
     /**
@@ -390,10 +393,28 @@ public class MenuAtendimento extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoExcluirPropertyChange
 
     private void botaoBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBusca1ActionPerformed
-        // TODO add your handling code here:
+       carregarDadosNaTabela();
     }//GEN-LAST:event_botaoBusca1ActionPerformed
 
-
+    private void carregarDadosNaTabela(){
+        modeloTabelaAtendimento.setRowCount(0);
+        
+        try{
+            ArrayList<Atendimento> atendimentos = atendimentoBD.consultarTodas();
+            for (Atendimento atendimento : atendimentos){
+                Object[] novaLinha = {
+                    atendimento.getCodigo(),
+                    atendimento.getIdAnimal(),
+                    atendimento.getCpfCliente(),
+                    atendimento.getNumMatricula(),
+                    atendimento.getData()
+                };
+            }
+        } catch (Exception  e) {
+            JOptionPane.showMessageDialog(this, "Erro ao carregar dados dos atendimentos: " + e.getMessage(), "Erro de Banco de Dados", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace(); 
+        } 
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoEditar;
     private javax.swing.JButton botaoAjuda;

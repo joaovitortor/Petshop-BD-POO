@@ -6,14 +6,19 @@ package petshop.bd.Classes.Cliente;
 
 import java.sql.Connection;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import petshop.bd.Banco.ClienteBD;
 
 /**
  *
  * @author user
  */
 public class MenuCliente extends javax.swing.JFrame {
-    private Connection conexao;
+    private final Connection conexao;
+    private final ClienteBD clienteBD;
+    private final DefaultTableModel modeloTabelaCliente;
     /**
      * Creates new form MenuAnimal
      * @param conexao
@@ -22,6 +27,10 @@ public class MenuCliente extends javax.swing.JFrame {
         this.conexao = conexao;
         initComponents();
         setLocationRelativeTo(null);
+        modeloTabelaCliente = (DefaultTableModel) jTable2.getModel();
+        clienteBD = new ClienteBD(this.conexao);
+        
+        carregarDadosNaTabela();
     }
 
     /**
@@ -392,7 +401,27 @@ public class MenuCliente extends javax.swing.JFrame {
     private void botaoBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBusca1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoBusca1ActionPerformed
-
+    
+    private void carregarDadosNaTabela(){
+        modeloTabelaCliente.setRowCount(0);
+        
+        try{
+            ArrayList<Cliente> clientes = clienteBD.consultarTodas();
+            for (Cliente cliente : clientes){
+                Object[] novaLinha = {
+                    cliente.getCpf(),
+                    cliente.getNome(),
+                    cliente.getTelefone(),
+                    cliente.getEmail(),
+                    cliente.getRg()
+            };
+            modeloTabelaCliente.addRow(novaLinha);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao carregar dados dos clientes: " + e.getMessage(), "Erro de Banco de Dados", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace(); 
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAjuda;
     private javax.swing.JButton botaoBusca;

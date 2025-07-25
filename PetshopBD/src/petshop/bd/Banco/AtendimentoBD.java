@@ -162,7 +162,7 @@ public class AtendimentoBD {
 
     public ArrayList<Atendimento> consultarTodas() {
         ArrayList<Atendimento> atendimentos = new ArrayList<>();
-        String sql = "select * from Animal";
+        String sql = "select * from Atendimento";
 
         try {
             this.declaracao = this.conexao.createStatement();
