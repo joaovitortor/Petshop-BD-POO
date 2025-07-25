@@ -400,7 +400,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoBusca1ActionPerformed
     
     private void carregarDadosNaTabela() {
-        modeloTabelaFuncionarios.setRowCount(0); // Define o número de linhas para 0
+        modeloTabelaFuncionarios.setRowCount(0); 
 
         try {
             ArrayList<Funcionario> listaFuncionarios = funcionarioBD.consultarTodas();
@@ -410,14 +410,13 @@ public class MenuFuncionario extends javax.swing.JFrame {
                     funcionario.getNome(),
                     funcionario.getQualificacao(),
                     funcionario.getCargaHorariaSemanal(),
-                    funcionario.getDescricaoFuncao() // Certifique-se de que o método getSalario() existe na sua classe Funcionario
+                    funcionario.getDescricaoFuncao() 
                 };
                 modeloTabelaFuncionarios.addRow(novaLinha);
             }
         } catch (Exception  e) {
-            // Trata erros de SQL que podem ocorrer durante a busca no banco
             JOptionPane.showMessageDialog(this, "Erro ao carregar dados dos funcionários: " + e.getMessage(), "Erro de Banco de Dados", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace(); // Imprime o stack trace para depuração
+            e.printStackTrace(); 
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

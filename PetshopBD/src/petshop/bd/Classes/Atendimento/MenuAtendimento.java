@@ -7,12 +7,15 @@ package petshop.bd.Classes.Atendimento;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import petshop.bd.Banco.AtendimentoBD;
 /**
  *
  * @author user
  */
 public class MenuAtendimento extends javax.swing.JFrame {
-    private Connection conexao;
+    private final Connection conexao;
+    private final AtendimentoBD atendimentoBD;
+    private final DefaultTableModel modeloTabelaAtendimento;
     /**
      * Creates new form MenuAnimal
      * @param conexao
@@ -21,6 +24,7 @@ public class MenuAtendimento extends javax.swing.JFrame {
         this.conexao = conexao;
         initComponents();
         setLocationRelativeTo(null);
+        modeloTabela
     }
 
     /**

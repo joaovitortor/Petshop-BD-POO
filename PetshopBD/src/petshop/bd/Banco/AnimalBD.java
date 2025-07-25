@@ -138,7 +138,7 @@ public class AnimalBD {
              
     public ArrayList<Animal> consultarTodas() {
         ArrayList<Animal> animais = new ArrayList<>();
-        String sql = "select * from Cliente";        
+        String sql = "select * from Animal";        
         
         try {                   
             this.declaracao = this.conexao.createStatement();

@@ -5,14 +5,19 @@
 package petshop.bd.Classes.Animal;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import petshop.bd.Banco.AnimalBD;
+import petshop.bd.Classes.Animal.Animal;
 /**
  *
  * @author user
  */
 public class MenuAnimal extends javax.swing.JFrame {
-    private Connection conexao;
+    private final Connection conexao;
+    private final AnimalBD animalBD;
+    private final DefaultTableModel modeloTabelaAnimal;
     /**
      * Creates new form MenuAnimal
      * @param conexao
@@ -21,6 +26,10 @@ public class MenuAnimal extends javax.swing.JFrame {
         this.conexao = conexao;
         initComponents();
         setLocationRelativeTo(null);
+        modeloTabelaAnimal = (DefaultTableModel) jTable2.getModel();
+        animalBD = new AnimalBD(this.conexao);
+        
+        carregarDadosNaTabela();
     }
 
     /**
@@ -387,10 +396,30 @@ public class MenuAnimal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoExcluirPropertyChange
 
     private void botaoBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBusca1ActionPerformed
-        // TODO add your handling code here:
+        carregarDadosNaTabela();
     }//GEN-LAST:event_botaoBusca1ActionPerformed
 
-
+    private void carregarDadosNaTabela(){
+        modeloTabelaAnimal.setRowCount(0);
+        try {
+            ArrayList<Animal> animais = animalBD.consultarTodas();
+            for (Animal animal : animais) {
+                Object[] novaLinha = {
+                   animal.getId(),
+                   animal.getNome(),
+                   animal.getEspecie(),
+                   animal.getAltura(),
+                   animal.getPeso(),
+                   animal.getCpfDono()
+                };
+                modeloTabelaAnimal.addRow(novaLinha);
+            }
+        } catch (Exception  e) {
+            JOptionPane.showMessageDialog(this, "Erro ao carregar dados dos animais: " + e.getMessage(), "Erro de Banco de Dados", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace(); 
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAjuda;
     private javax.swing.JButton botaoBusca;
