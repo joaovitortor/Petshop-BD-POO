@@ -15,11 +15,11 @@ public class FuncionarioBD {
 
     private void criarTabela(){
         String sql = "CREATE TABLE IF NOT EXISTS Funcionario (" +
-                "	numMatricula int PRIMARY KEY NOT NULL," +
+                "	num_matricula int PRIMARY KEY NOT NULL," +
                 "	nome text NOT NULL," +
                 "	qualificacao text NOT NULL," +
-                "	descricaoFuncao text NOT NULL," +
-                "	cargaHorariaSemanal int NOT NULL" +
+                "	descricao_funcao text NOT NULL," +
+                "	carga_horaria_semanal int NOT NULL" +
 
                                                             ");";
         try {
@@ -37,7 +37,7 @@ public class FuncionarioBD {
     }
     
     public boolean cadastrar(Funcionario funcionario) {                       
-        String sql = "insert into Funcionario (numMatricula, nome, qualificacao, descricaoFuncao, cargaHorariaSemanal) values (?,?,?,?,?)";
+        String sql = "insert into Funcionario (num_matricula, nome, qualificacao, descricao_funcao, carga_horaria_semanal) values (?,?,?,?,?)";
         
         
         try {
@@ -73,7 +73,7 @@ public class FuncionarioBD {
     }
 
     public void remover(Funcionario funcionario){
-        String sql = "delete from Funcionario where numMatricula = ?";        
+        String sql = "delete from Funcionario where num_matricula = ?";        
         
         try {
           this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
@@ -87,7 +87,7 @@ public class FuncionarioBD {
     }
 
     public void consultar(Funcionario funcionario) {      
-        String sql = "select * from Funcionario where numMaricula = ?";
+        String sql = "select * from Funcionario where num_maricula = ?";
                 
         try {
             this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
@@ -98,11 +98,11 @@ public class FuncionarioBD {
             if (this.resultados != null) {
                 System.out.println("\n\n\n ###########################################");                
                 while(this.resultados.next()){
-                    System.out.println("CargaHorariaSemanal: " + this.resultados.getString("cargaHorariaSemanal"));
+                    System.out.println("CargaHorariaSemanal: " + this.resultados.getString("carga_horaria_semanal"));
                     System.out.println("Nome: " + this.resultados.getString("nome"));
-                    System.out.println("NumMatricula: " + this.resultados.getString("numMatricula"));
+                    System.out.println("NumMatricula: " + this.resultados.getString("num_matricula"));
                     System.out.println("Qualificacao: " + this.resultados.getString("qualificacao"));
-                    System.out.println("DescricaoFuncao: " + this.resultados.getString("descricaoFuncao"));
+                    System.out.println("DescricaoFuncao: " + this.resultados.getString("descricao_funcao"));
                     System.out.println("###########################################");
                 }
             }
@@ -121,11 +121,11 @@ public class FuncionarioBD {
             if (this.resultados != null) {
                 System.out.println("\n\n\n ###########################################");                
                 while(this.resultados.next()){
-                    System.out.println("CargaHorariaSemanal: " + this.resultados.getString("cargaHorariaSemanal"));
+                    System.out.println("CargaHorariaSemanal: " + this.resultados.getString("carga_horaria_semanal"));
                     System.out.println("Nome: " + this.resultados.getString("nome"));
-                    System.out.println("NumMatricula: " + this.resultados.getString("numMatricula"));
+                    System.out.println("NumMatricula: " + this.resultados.getString("num_matricula"));
                     System.out.println("Qualificacao: " + this.resultados.getString("qualificacao"));
-                    System.out.println("DescricaoFuncao: " + this.resultados.getString("descricaoFuncao"));
+                    System.out.println("DescricaoFuncao: " + this.resultados.getString("descricao_funcao"));;
                     System.out.println("###########################################");
                 }
             }

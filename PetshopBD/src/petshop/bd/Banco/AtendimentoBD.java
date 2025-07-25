@@ -14,19 +14,19 @@ public class AtendimentoBD {
     private ResultSet resultados;
 
     private void criarTabela(){
-        String sql ="CREATE TABLE IF NOT EXISTS Atendimento (" +
-                     "codigo integer PRIMARY KEY AUTOINCREMENT," +
-                     "data text NOT NULL," +
-                     "clienteCpf text NOT NULL," +
-                     "FOREIGN KEY (clienteCpf) REFERENCES Cliente (cpf)," +
-                     "animalId integer NOT NULL," +                        
-                     "FOREIGN KEY (animalId) REFERENCES Animal (id)," +
-                     "funcionarioNum integer NOT NULL," +
-                     "FOREIGN KEY (funcionarioNum) REFERENCES Funcionario (numMatricula)" +
-                     ");";
+        String sql = "CREATE TABLE IF NOT EXISTS Atendimento (" +
+                "   codigo integer PRIMARY KEY AUTOINCREMENT," +
+                "   data_atendimento text NOT NULL," +
+                "   cliente_cpf text NOT NULL," +
+                "   funcionario_num integer NOT NULL," +
+                "   animal_id integer NOT NULL," +
+                "   FOREIGN KEY (cliente_cpf) REFERENCES Cliente (cpf)," +
+                "   FOREIGN KEY (funcionario_num) REFERENCES Funcionario (num_matricula)," +
+                "   FOREIGN KEY (animal_id) REFERENCES Animal (id)" +
+                ");";
+        
         try {
             this.declaracao = this.conexao.createStatement();
-            System.out.println("SQL a ser executado: " + sql);
             this.declaracao.execute(sql);
             
         } catch (SQLException e) {
@@ -40,7 +40,7 @@ public class AtendimentoBD {
     }
     
     public boolean cadastrar(Atendimento atendimento) {                       
-        String sql = "insert into Atendimento (data, clienteCpf, animalId, funcionarioNum) values (?,?,?,?)";
+        String sql = "insert into Atendimento (data_atendimento, cliente_cpf, animal_id, funcionario_num) values (?,?,?,?)";
         
         
         try {
@@ -92,7 +92,7 @@ public class AtendimentoBD {
     }
     
     public boolean verificaFuncionario(int numMatricula){
-        String sql = "select * from Funcionario where numMatricula = ?";
+        String sql = "select * from Funcionario where num_matricula = ?";
         try {
           this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
           this.declaracao_parametrizada.setInt(1, numMatricula);
@@ -110,7 +110,7 @@ public class AtendimentoBD {
     
     public void alterar(Atendimento atendimento) {                
         String sql = "update Atendimento set"
-                + " data = ?";
+                + " data_atendimento = ?";
         
         try {
           this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
@@ -150,10 +150,10 @@ public class AtendimentoBD {
                 System.out.println("\n\n\n ###########################################");                
                 while(this.resultados.next()){
                     System.out.println("Codigo: " + this.resultados.getInt("codigo"));
-                    System.out.println("Data: " + this.resultados.getString("data"));
-                    System.out.println("Cliente: " + this.resultados.getString("clienteCpf"));
-                    System.out.println("Animal: " + this.resultados.getInt("animalId"));
-                    System.out.println("Funcionario: " + this.resultados.getInt("funcionarioNum"));
+                    System.out.println("Data: " + this.resultados.getString("data_atendimento"));
+                    System.out.println("Cliente: " + this.resultados.getString("cliente_cpf"));
+                    System.out.println("Animal: " + this.resultados.getInt("animal_id"));
+                    System.out.println("Funcionario: " + this.resultados.getInt("funcionario_num"));
 
                     System.out.println("###########################################");
                 }
@@ -174,10 +174,10 @@ public class AtendimentoBD {
                 System.out.println("\n\n\n ###########################################");                
                 while(this.resultados.next()){
                     System.out.println("Codigo: " + this.resultados.getInt("codigo"));
-                    System.out.println("Data: " + this.resultados.getString("data"));
-                    System.out.println("Cliente: " + this.resultados.getString("clienteCpf"));
-                    System.out.println("Animal: " + this.resultados.getInt("animalId"));
-                    System.out.println("Funcionario: " + this.resultados.getInt("funcionarioNum"));
+                    System.out.println("Data: " + this.resultados.getString("data_atendimento"));
+                    System.out.println("Cliente: " + this.resultados.getString("cliente_cpf"));
+                    System.out.println("Animal: " + this.resultados.getInt("animal_id"));
+                    System.out.println("Funcionario: " + this.resultados.getInt("funcionario_num"));
                 }
             }
         } catch (SQLException e) {
@@ -200,7 +200,7 @@ public class AtendimentoBD {
                     System.out.println("Especie: " + this.resultados.getString("especie"));
                     System.out.println("Peso: " + this.resultados.getString("peso"));
                     System.out.println("Altura: " + this.resultados.getString("altura"));
-                    System.out.println("DonoCPF: " + this.resultados.getString("donoCpf"));
+                    System.out.println("DonoCPF: " + this.resultados.getString("dono_cpf"));
                     System.out.println("###########################################");
                 }
             }

@@ -20,8 +20,8 @@ public class AnimalBD {
                 "	especie text NOT NULL," +
                 "	peso real NOT NULL," +
                 "	altura real NOT NULL," +
-                "       donoCpf text NOT NULL," +
-                "       FOREIGN KEY (donoCpf) " +
+                "       dono_cpf text NOT NULL," +
+                "       FOREIGN KEY (dono_cpf) " +
                 "           REFERENCES Cliente (cpf)" +
 
                                                             ");";
@@ -57,7 +57,7 @@ public class AnimalBD {
     }
     
     public boolean cadastrar(Animal animal) {                       
-        String sql = "insert into Animal (nome, especie, peso, altura, donoCpf, id) values (?,?,?,?,?,?)";
+        String sql = "insert into Animal (nome, especie, peso, altura, dono_cpf, id) values (?,?,?,?,?,?)";
         
         
         try {
@@ -125,7 +125,7 @@ public class AnimalBD {
                     System.out.println("Especie: " + this.resultados.getString("especie"));
                     System.out.println("Peso: " + this.resultados.getString("peso"));
                     System.out.println("Altura: " + this.resultados.getString("altura"));
-                    System.out.println("DonoCPF: " + this.resultados.getString("donoCpf"));
+                    System.out.println("DonoCPF: " + this.resultados.getString("dono_cpf"));
                     System.out.println("###########################################");
                 }
             }
@@ -149,7 +149,7 @@ public class AnimalBD {
                     System.out.println("Especie: " + this.resultados.getString("especie"));
                     System.out.println("Peso: " + this.resultados.getString("peso"));
                     System.out.println("Altura: " + this.resultados.getString("altura"));
-                    System.out.println("DonoCPF: " + this.resultados.getString("donoCpf"));
+                    System.out.println("DonoCPF: " + this.resultados.getString("dono_cpf"));
                     System.out.println("###########################################");
                 }
             }

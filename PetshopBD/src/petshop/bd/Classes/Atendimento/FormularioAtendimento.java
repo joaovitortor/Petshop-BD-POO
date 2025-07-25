@@ -399,18 +399,21 @@ public class FormularioAtendimento extends javax.swing.JFrame {
         
         if (!atendimentoBd.verificaCliente(cpf)) {
             JOptionPane.showMessageDialog(null, "Não existe cliente com esse CPF. Tente novamente", "Erro", JOptionPane.ERROR_MESSAGE);
+            campoCPF.requestFocus();
             return;
         }
         if (!atendimentoBd.verificaAnimal(Integer.parseInt(id))) {
             JOptionPane.showMessageDialog(null, "Não existe animal com esse ID. Tente novamente", "Erro", JOptionPane.ERROR_MESSAGE);
+            campoId.requestFocus();
             return;
         }
         if (!atendimentoBd.verificaFuncionario(Integer.parseInt(numMatricula))) {
             JOptionPane.showMessageDialog(null, "Não existe funcionário com esse número de matrícula. Tente novamente", "Erro", JOptionPane.ERROR_MESSAGE);
+            campoNum.requestFocus();
             return;
         }
         if (atendimentoBd.cadastrar(atendimento)) {
-            JOptionPane.showMessageDialog(null, "Cliente Cadastrado com Sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Atendimento Cadastrado com Sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
             campoData.setText("Digite a Data");
             campoNum.setText("Digite o RG");
             campoCPF.setText("Digite o CPF");

@@ -444,6 +444,7 @@ public class FormularioAnimal extends javax.swing.JFrame {
             }
         } else {
             JOptionPane.showMessageDialog(null, "Não existe cliente com esse CPF. Tente novamente", "Erro", JOptionPane.ERROR_MESSAGE);
+            campoCPF.requestFocus();
         }
 
     }//GEN-LAST:event_botaoCadastrarActionPerformed
