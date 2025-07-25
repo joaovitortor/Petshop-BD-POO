@@ -146,8 +146,8 @@ public class FormularioEdicaoAnimal extends javax.swing.JFrame {
             }
         });
 
-        jPanel2.setBackground(new java.awt.Color(129, 196, 196));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(45, 153, 153), 7));
+        jPanel2.setBackground(new java.awt.Color(244, 219, 177));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 180, 113), 7));
 
         campoNome.setForeground(new java.awt.Color(102, 102, 102));
         campoNome.setText("Digite o Nome do Animal");
@@ -262,12 +262,12 @@ public class FormularioEdicaoAnimal extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(102, 102, 102));
         jLabel2.setFont(new java.awt.Font("Agency FB", 1, 26)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel2.setText("Cadastro Animal");
+        jLabel2.setText("Editar Animal");
 
-        botaoCadastrar.setBackground(new java.awt.Color(0, 51, 51));
+        botaoCadastrar.setBackground(new java.awt.Color(80, 59, 22));
         botaoCadastrar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         botaoCadastrar.setForeground(new java.awt.Color(242, 242, 242));
-        botaoCadastrar.setText("Cadastrar");
+        botaoCadastrar.setText("Editar");
         botaoCadastrar.setIconTextGap(3);
         botaoCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -284,10 +284,6 @@ public class FormularioEdicaoAnimal extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(266, 266, 266)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botaoCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -321,6 +317,10 @@ public class FormularioEdicaoAnimal extends javax.swing.JFrame {
                             .addComponent(jLabel7)
                             .addComponent(campoAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(128, 128, 128))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(271, 271, 271)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

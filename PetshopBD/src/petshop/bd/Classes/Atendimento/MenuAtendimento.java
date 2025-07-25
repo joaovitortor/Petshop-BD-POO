@@ -153,6 +153,7 @@ public class MenuAtendimento extends javax.swing.JFrame {
             }
         ));
         jTable2.setGridColor(new java.awt.Color(102, 102, 102));
+        jTable2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jTable2MouseReleased(evt);
