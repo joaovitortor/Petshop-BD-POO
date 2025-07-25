@@ -115,8 +115,6 @@ public class FuncionarioBD {
     
     public ArrayList<Funcionario> consultarTodas() {
         ArrayList<Funcionario> listaFuncionarios = new ArrayList<>();
-        String nome, qualificacao, descricaoFuncao;
-        int numMatricula, cargaHorariaSemanal;
         String sql = "select * from Funcionario";        
                 
         try {                   
@@ -125,12 +123,12 @@ public class FuncionarioBD {
             
             if (this.resultados != null) {
                 while(this.resultados.next()){
-                    nome = resultados.getString("nome");
-                    qualificacao = resultados.getString("qualificacao");
-                    descricaoFuncao = resultados.getString("descricao_funcao");
-                    numMatricula = resultados.getInt("num_matricula");
-                    cargaHorariaSemanal = resultados.getInt("descricao_funcao");
-                    Funcionario funcionario = new Funcionario(nome, qualificacao, descricaoFuncao, cargaHorariaSemanal, numMatricula);
+                    Funcionario funcionario = new Funcionario();
+                    funcionario.setNome(resultados.getString("nome"));
+                    funcionario.setQualificacao(resultados.getString("qualificacao"));
+                    funcionario.setDescricaoFuncao(resultados.getString("descricao_funcao"));
+                    funcionario.setNumMatricula(resultados.getInt("num_matricula"));
+                    funcionario.setCargaHorariaSemanal(resultados.getInt("descricao_funcao"));
                     listaFuncionarios.add(funcionario);
                 }
             }
