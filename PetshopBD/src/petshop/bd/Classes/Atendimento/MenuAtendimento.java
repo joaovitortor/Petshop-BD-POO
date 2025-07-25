@@ -309,7 +309,7 @@ public class MenuAtendimento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
-        FormularioAtendimento formularioAtendimento = new FormularioAtendimento(conexao);
+        FormularioCadastroAtendimento formularioAtendimento = new FormularioCadastroAtendimento(conexao);
         formularioAtendimento.setVisible(true);
     }//GEN-LAST:event_botaoCadastrarActionPerformed
 

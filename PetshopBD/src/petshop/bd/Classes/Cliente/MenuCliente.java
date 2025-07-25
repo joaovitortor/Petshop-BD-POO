@@ -5,6 +5,7 @@
 package petshop.bd.Classes.Cliente;
 
 import java.sql.Connection;
+import java.awt.event.ActionEvent;
 
 /**
  *
@@ -154,7 +155,12 @@ public class MenuCliente extends javax.swing.JFrame {
             }
         ));
         jTable2.setGridColor(new java.awt.Color(102, 102, 102));
+        jTable2.setRowSelectionAllowed(true);
+        jTable2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jTable2MouseReleased(evt);
             }
@@ -310,7 +316,7 @@ public class MenuCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
-        FormularioCliente formularioCliente = new FormularioCliente(conexao);
+        FormularioCadastroCliente formularioCliente = new FormularioCadastroCliente(conexao);
         formularioCliente.setVisible(true);
     }//GEN-LAST:event_botaoCadastrarActionPerformed
 
@@ -327,7 +333,15 @@ public class MenuCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable2MouseReleased
 
     private void botaoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarActionPerformed
-        // TODO add your handling code here:
+        int linhaSelecionada = jTable2.getSelectedRow();
+        if (linhaSelecionada == -1){
+            
+        }
+        else{
+            FormularioEdicaoCliente formularioEdicaoCliente = new FormularioEdicaoCliente(conexao);
+            formularioEdicaoCliente.setVisible(true);
+        }
+
     }//GEN-LAST:event_botaoEditarActionPerformed
 
     private void botaoEditarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_botaoEditarPropertyChange
@@ -341,6 +355,10 @@ public class MenuCliente extends javax.swing.JFrame {
     private void botaoExcluirPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_botaoExcluirPropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoExcluirPropertyChange
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        jTable2.getSelectedRow();
+    }//GEN-LAST:event_jTable2MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAjuda;

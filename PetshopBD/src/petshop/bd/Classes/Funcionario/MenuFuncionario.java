@@ -317,7 +317,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastroActionPerformed
-        FormularioFuncionario formularioFuncionario = new FormularioFuncionario(conexao);
+        FormularioCadastroFuncionario formularioFuncionario = new FormularioCadastroFuncionario(conexao);
         formularioFuncionario.setVisible(true);
     }//GEN-LAST:event_botaoCadastroActionPerformed
 

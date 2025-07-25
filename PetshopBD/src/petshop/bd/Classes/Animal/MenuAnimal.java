@@ -153,6 +153,7 @@ public class MenuAnimal extends javax.swing.JFrame {
             }
         ));
         jTable2.setGridColor(new java.awt.Color(102, 102, 102));
+        jTable2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jTable2MouseReleased(evt);
@@ -309,7 +310,7 @@ public class MenuAnimal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCadastarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastarActionPerformed
-        FormularioAnimal formularioAnimal = new FormularioAnimal(conexao);
+        FormularioCadastroAnimal formularioAnimal = new FormularioCadastroAnimal(conexao);
         formularioAnimal.setVisible(true);
     }//GEN-LAST:event_botaoCadastarActionPerformed
 

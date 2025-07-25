@@ -4,13 +4,13 @@ import javax.swing.JOptionPane;
 import petshop.bd.Banco.ClienteBD;
 import java.sql.Connection;
 
-public class FormularioCliente extends javax.swing.JFrame {
+public class FormularioCadastroCliente extends javax.swing.JFrame {
     private final Connection conexao;
     /**
      * Creates new form MenuAnimal
      * @param conexao
      */
-    public FormularioCliente(Connection conexao) {
+    public FormularioCadastroCliente(Connection conexao) {
         this.conexao = conexao;
         initComponents();
         setLocationRelativeTo(null);
