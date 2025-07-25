@@ -157,7 +157,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Title 2", "Title 3", "Title 4", "Teste"
+                "Número de Matrícula", "Nome", "Qualificação", "Carga Horaria Semanal", "Descrição Função"
             }
         ));
         jTable2.setGridColor(new java.awt.Color(102, 102, 102));
