@@ -169,7 +169,7 @@ public class AtendimentoBD {
             this.resultados = this.declaracao.executeQuery(sql);
 
             if (this.resultados != null) {
-                while (this.resultados.next()) {
+                while(this.resultados.next()) {
                     Atendimento atendimento = new Atendimento();
                     atendimento.setCodigo(this.resultados.getInt("codigo"));
                     atendimento.setData(this.resultados.getString("data_atendimento"));

@@ -58,7 +58,7 @@ public class AnimalBD {
     }
     
     public boolean cadastrar(Animal animal) {                       
-        String sql = "insert into Animal (nome, especie, peso, altura, dono_cpf, id) values (?,?,?,?,?,?)";
+        String sql = "insert into Animal (nome, especie, peso, altura, dono_cpf) values (?,?,?,?,?)";
         
         
         try {
@@ -69,7 +69,6 @@ public class AnimalBD {
             this.declaracao_parametrizada.setFloat(3, animal.getPeso());
             this.declaracao_parametrizada.setFloat(4, animal.getAltura());
             this.declaracao_parametrizada.setString(5, animal.getCpfDono());
-            this.declaracao_parametrizada.setInt(6, animal.getId());
 
             this.declaracao_parametrizada.executeUpdate();
             return true;

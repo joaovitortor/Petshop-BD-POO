@@ -228,9 +228,9 @@
                   <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="botaoBusca1" min="-2" max="-2" attributes="0"/>
+                  <Component id="botaoAtualizar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jTextField1" min="-2" pref="195" max="-2" attributes="0"/>
+                  <Component id="campoBusca" min="-2" pref="195" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="botaoBusca" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
@@ -263,9 +263,9 @@
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                          <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="campoBusca" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="botaoBusca" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                          <Component id="botaoBusca1" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                          <Component id="botaoAtualizar" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -405,8 +405,11 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Busca"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoBuscaActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="campoBusca">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Agency FB" size="12" style="0"/>
@@ -473,7 +476,7 @@
             <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="botaoExcluirPropertyChange"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="botaoBusca1">
+        <Component class="javax.swing.JButton" name="botaoAtualizar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="93" green="93" red="27" type="rgb"/>
@@ -487,7 +490,7 @@
             <Property name="text" type="java.lang.String" value="Atualizar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoBusca1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoAtualizarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

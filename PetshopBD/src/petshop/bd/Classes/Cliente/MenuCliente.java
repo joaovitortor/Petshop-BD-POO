@@ -63,7 +63,7 @@ public class MenuCliente extends javax.swing.JFrame {
         botaoCadastrar = new javax.swing.JButton();
         botaoAjuda = new javax.swing.JButton();
         botaoBusca = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        campoBusca = new javax.swing.JTextField();
         botaoVoltar = new javax.swing.JButton();
         botaoEditar = new javax.swing.JButton();
         botaoExcluir = new javax.swing.JButton();
@@ -218,10 +218,15 @@ public class MenuCliente extends javax.swing.JFrame {
         botaoBusca.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         botaoBusca.setForeground(new java.awt.Color(255, 255, 255));
         botaoBusca.setText("Busca");
+        botaoBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoBuscaActionPerformed(evt);
+            }
+        });
 
-        jTextField1.setFont(new java.awt.Font("Agency FB", 0, 12)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField1.setText("Digite o ID");
+        campoBusca.setFont(new java.awt.Font("Agency FB", 0, 12)); // NOI18N
+        campoBusca.setForeground(new java.awt.Color(204, 204, 204));
+        campoBusca.setText("Digite o ID");
 
         botaoVoltar.setBackground(new java.awt.Color(102, 102, 102));
         botaoVoltar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
@@ -292,7 +297,7 @@ public class MenuCliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botaoBusca1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botaoBusca)
                 .addGap(52, 52, 52))
@@ -318,7 +323,7 @@ public class MenuCliente extends javax.swing.JFrame {
                         .addGap(16, 16, 16)
                         .addComponent(jLabel2))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(campoBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(botaoBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(botaoBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -399,8 +404,23 @@ public class MenuCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable2MouseClicked
 
     private void botaoBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBusca1ActionPerformed
-        // TODO add your handling code here:
+        carregarDadosNaTabela();
     }//GEN-LAST:event_botaoBusca1ActionPerformed
+
+    private void botaoBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscaActionPerformed
+        modeloTabelaCliente.setRowCount(0);
+        Cliente cliente = clienteBD.consultar(campoBusca.getText());
+        if(cliente != null){
+            Object[] novaLinha = {
+                    cliente.getCpf(),
+                    cliente.getNome(),
+                    cliente.getTelefone(),
+                    cliente.getEmail(),
+                    cliente.getRg()
+            };
+            modeloTabelaCliente.addRow(novaLinha);
+        }
+    }//GEN-LAST:event_botaoBuscaActionPerformed
     
     private void carregarDadosNaTabela(){
         modeloTabelaCliente.setRowCount(0);
@@ -431,6 +451,7 @@ public class MenuCliente extends javax.swing.JFrame {
     private javax.swing.JButton botaoExcluir;
     private javax.swing.JButton botaoVoltar;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JTextField campoBusca;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -448,6 +469,5 @@ public class MenuCliente extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

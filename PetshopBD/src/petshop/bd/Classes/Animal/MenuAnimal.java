@@ -10,16 +10,20 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import petshop.bd.Banco.AnimalBD;
 import petshop.bd.Classes.Animal.Animal;
+
 /**
  *
  * @author user
  */
 public class MenuAnimal extends javax.swing.JFrame {
+
     private final Connection conexao;
     private final AnimalBD animalBD;
     private final DefaultTableModel modeloTabelaAnimal;
+
     /**
      * Creates new form MenuAnimal
+     *
      * @param conexao
      */
     public MenuAnimal(Connection conexao) {
@@ -28,7 +32,7 @@ public class MenuAnimal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         modeloTabelaAnimal = (DefaultTableModel) jTable2.getModel();
         animalBD = new AnimalBD(this.conexao);
-        
+
         carregarDadosNaTabela();
     }
 
@@ -62,11 +66,11 @@ public class MenuAnimal extends javax.swing.JFrame {
         botaoCadastar = new javax.swing.JButton();
         botaoAjuda = new javax.swing.JButton();
         botaoBusca = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        campoBusca = new javax.swing.JTextField();
         botaoVoltar = new javax.swing.JButton();
         botaoEditar = new javax.swing.JButton();
         botaoExcluir = new javax.swing.JButton();
-        botaoBusca1 = new javax.swing.JButton();
+        botaoAtualizar = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -214,10 +218,15 @@ public class MenuAnimal extends javax.swing.JFrame {
         botaoBusca.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         botaoBusca.setForeground(new java.awt.Color(255, 255, 255));
         botaoBusca.setText("Busca");
+        botaoBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoBuscaActionPerformed(evt);
+            }
+        });
 
-        jTextField1.setFont(new java.awt.Font("Agency FB", 0, 12)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField1.setText("Digite o ID");
+        campoBusca.setFont(new java.awt.Font("Agency FB", 0, 12)); // NOI18N
+        campoBusca.setForeground(new java.awt.Color(204, 204, 204));
+        campoBusca.setText("Digite o ID");
 
         botaoVoltar.setBackground(new java.awt.Color(102, 102, 102));
         botaoVoltar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
@@ -262,13 +271,13 @@ public class MenuAnimal extends javax.swing.JFrame {
             }
         });
 
-        botaoBusca1.setBackground(new java.awt.Color(39, 147, 147));
-        botaoBusca1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        botaoBusca1.setForeground(new java.awt.Color(255, 255, 255));
-        botaoBusca1.setText("Atualizar");
-        botaoBusca1.addActionListener(new java.awt.event.ActionListener() {
+        botaoAtualizar.setBackground(new java.awt.Color(39, 147, 147));
+        botaoAtualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botaoAtualizar.setForeground(new java.awt.Color(255, 255, 255));
+        botaoAtualizar.setText("Atualizar");
+        botaoAtualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoBusca1ActionPerformed(evt);
+                botaoAtualizarActionPerformed(evt);
             }
         });
 
@@ -286,9 +295,9 @@ public class MenuAnimal extends javax.swing.JFrame {
                 .addGap(52, 52, 52)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoBusca1)
+                .addComponent(botaoAtualizar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botaoBusca)
                 .addGap(52, 52, 52))
@@ -314,9 +323,9 @@ public class MenuAnimal extends javax.swing.JFrame {
                         .addGap(16, 16, 16)
                         .addComponent(jLabel2))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(campoBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(botaoBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botaoBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(botaoAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -369,15 +378,14 @@ public class MenuAnimal extends javax.swing.JFrame {
     private void botaoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarActionPerformed
         int linhaSelecionada = jTable2.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-        
-        if (linhaSelecionada == -1){
+
+        if (linhaSelecionada == -1) {
             JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Ërro", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (model.getValueAt(linhaSelecionada, 0) == null){
+        if (model.getValueAt(linhaSelecionada, 0) == null) {
             JOptionPane.showMessageDialog(null, "Selecione uma linha válida", "Ërro", JOptionPane.ERROR_MESSAGE);
-        }
-        else{
+        } else {
             FormularioEdicaoAnimal formularioEdicaoAnimal = new FormularioEdicaoAnimal(conexao);
             formularioEdicaoAnimal.setVisible(true);
         }
@@ -395,40 +403,59 @@ public class MenuAnimal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoExcluirPropertyChange
 
-    private void botaoBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBusca1ActionPerformed
+    private void botaoAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtualizarActionPerformed
         carregarDadosNaTabela();
-    }//GEN-LAST:event_botaoBusca1ActionPerformed
+    }//GEN-LAST:event_botaoAtualizarActionPerformed
 
-    private void carregarDadosNaTabela(){
+    private void botaoBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscaActionPerformed
+        modeloTabelaAnimal.setRowCount(0);
+        // precisa colocar um try para caso o usuario nao coloque um int
+        Animal animal = animalBD.consultar(Integer.parseInt(campoBusca.getText()));
+        if (animal != null) {
+            Object[] novaLinha = {
+                animal.getId(),
+                animal.getNome(),
+                animal.getEspecie(),
+                animal.getAltura(),
+                animal.getPeso(),
+                animal.getCpfDono()
+            };
+            modeloTabelaAnimal.addRow(novaLinha);
+        }
+
+    }//GEN-LAST:event_botaoBuscaActionPerformed
+
+    private void carregarDadosNaTabela() {
         modeloTabelaAnimal.setRowCount(0);
         try {
             ArrayList<Animal> animais = animalBD.consultarTodas();
             for (Animal animal : animais) {
                 Object[] novaLinha = {
-                   animal.getId(),
-                   animal.getNome(),
-                   animal.getEspecie(),
-                   animal.getAltura(),
-                   animal.getPeso(),
-                   animal.getCpfDono()
+                    animal.getId(),
+                    animal.getNome(),
+                    animal.getEspecie(),
+                    animal.getAltura(),
+                    animal.getPeso(),
+                    animal.getCpfDono()
                 };
                 modeloTabelaAnimal.addRow(novaLinha);
             }
-        } catch (Exception  e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro ao carregar dados dos animais: " + e.getMessage(), "Erro de Banco de Dados", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace(); 
+            e.printStackTrace();
         }
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAjuda;
+    private javax.swing.JButton botaoAtualizar;
     private javax.swing.JButton botaoBusca;
-    private javax.swing.JButton botaoBusca1;
     private javax.swing.JButton botaoCadastar;
     private javax.swing.JButton botaoEditar;
     private javax.swing.JButton botaoExcluir;
     private javax.swing.JButton botaoVoltar;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JTextField campoBusca;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -446,6 +473,5 @@ public class MenuAnimal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

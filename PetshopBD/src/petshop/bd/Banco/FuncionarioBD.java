@@ -90,7 +90,7 @@ public class FuncionarioBD {
 
     public Funcionario consultar(int numMatricula) {  
         Funcionario funcionario = new Funcionario();
-        String sql = "select * from Funcionario where num_maricula = ?";
+        String sql = "select * from Funcionario where num_matricula = ?";
                 
         try {
             this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
