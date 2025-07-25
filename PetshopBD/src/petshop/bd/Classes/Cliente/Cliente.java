@@ -12,6 +12,10 @@ public class Cliente {
         this.rg = rg;
         this.cpf = cpf;
     }
+    
+    public Cliente(){
+        super();
+    }
 
     public String getNome() {
         return nome;

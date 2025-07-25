@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class AnimalBD {
     private Connection conexao;
@@ -108,75 +109,57 @@ public class AnimalBD {
         }        
     }
 
-    public void consultar(Animal animal) {      
+    public Animal consultar(int id) {   
+        Animal animal = new Animal();
         String sql = "select * from Animal where id = ?";
                 
         try {
             this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
-            this.declaracao_parametrizada.setInt(1, animal.getId());
+            this.declaracao_parametrizada.setInt(1, id);
             
             this.resultados = declaracao_parametrizada.executeQuery();
             
             if (this.resultados != null) {
-                System.out.println("\n\n\n ###########################################");                
                 while(this.resultados.next()){
-                    System.out.println("ID: " + this.resultados.getString("id"));
-                    System.out.println("Nome: " + this.resultados.getString("nome"));
-                    System.out.println("Especie: " + this.resultados.getString("especie"));
-                    System.out.println("Peso: " + this.resultados.getString("peso"));
-                    System.out.println("Altura: " + this.resultados.getString("altura"));
-                    System.out.println("DonoCPF: " + this.resultados.getString("dono_cpf"));
-                    System.out.println("###########################################");
+                    animal.setId(this.resultados.getInt("id"));
+                    animal.setEspecie(this.resultados.getString("especie"));
+                    animal.setNome(this.resultados.getString("nome"));
+                    animal.setAltura(this.resultados.getFloat("altura"));
+                    animal.setPeso(this.resultados.getFloat("peso"));
+                    animal.setCpfDono(this.resultados.getString("dono_cpf"));
                 }
+                return animal;
             }
         } catch (SQLException e) {
             System.out.println("Erro na consulta de dados. Erro: " + e.getMessage());
-        }    
+        }
+        return null;
     }
-    
-    public void consultarTodas() {
-        String sql = "select * from Animal";        
-                
-        try {                   
-            this.declaracao = this.conexao.createStatement();
-            this.resultados = this.declaracao.executeQuery(sql);
-            
-            if (this.resultados != null) {
-                System.out.println("\n\n\n ###########################################");                
-                while(this.resultados.next()){
-                    System.out.println("ID: " + this.resultados.getString("id"));
-                    System.out.println("Nome: " + this.resultados.getString("nome"));
-                    System.out.println("Especie: " + this.resultados.getString("especie"));
-                    System.out.println("Peso: " + this.resultados.getString("peso"));
-                    System.out.println("Altura: " + this.resultados.getString("altura"));
-                    System.out.println("DonoCPF: " + this.resultados.getString("dono_cpf"));
-                    System.out.println("###########################################");
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println("Erro na listagem de todos os dados. Erro: " + e.getMessage());
-        }              
-    }
-    
-    public void consultarTodasClientes() {
+             
+    public ArrayList<Animal> consultarTodas() {
+        ArrayList<Animal> animais = new ArrayList<>();
         String sql = "select * from Cliente";        
-                
+        
         try {                   
             this.declaracao = this.conexao.createStatement();
             this.resultados = this.declaracao.executeQuery(sql);
             
             if (this.resultados != null) {
-                System.out.println("\n\n\n ###########################################");                
                 while(this.resultados.next()){
-                    System.out.println("CPF: " + this.resultados.getString("cpf"));
-                    System.out.println("Nome: " + this.resultados.getString("nome"));
-                    System.out.println("RG: " + this.resultados.getString("rg"));
-                    System.out.println("###########################################");
+                    Animal animal = new Animal();
+                    animal.setId(this.resultados.getInt("id"));
+                    animal.setEspecie(this.resultados.getString("especie"));
+                    animal.setNome(this.resultados.getString("nome"));
+                    animal.setAltura(this.resultados.getFloat("altura"));
+                    animal.setPeso(this.resultados.getFloat("peso"));
+                    animal.setCpfDono(this.resultados.getString("dono_cpf"));
+                    animais.add(animal);
                 }
             }
         } catch (SQLException e) {
             System.out.println("Erro na listagem de todos os dados. Erro: " + e.getMessage());
-        }              
+        }  
+        return animais;
     }
 
 }

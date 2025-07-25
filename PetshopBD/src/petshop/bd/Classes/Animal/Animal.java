@@ -16,7 +16,11 @@ public class Animal {
         this.altura = altura;
         this.cpfDono = cpfDono;
     }
-
+    
+    public Animal(){
+        super();
+    }
+    
     public String getNome() {
         return nome;
     }

@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class ClienteBD {
     private Connection conexao;
@@ -86,30 +87,34 @@ public class ClienteBD {
         }        
     }
 
-    public void consultar(Cliente cliente) {      
+    public Cliente consultar(String cpf) {
+        Cliente cliente = new Cliente();
         String sql = "select * from Cliente where cpf = ?";
                 
         try {
             this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
-            this.declaracao_parametrizada.setString(1, cliente.getCpf());
+            this.declaracao_parametrizada.setString(1, cpf);
             
             this.resultados = declaracao_parametrizada.executeQuery();
             
             if (this.resultados != null) {
-                System.out.println("\n\n\n ###########################################");                
                 while(this.resultados.next()){
-                    System.out.println("CPF: " + this.resultados.getString("cpf"));
-                    System.out.println("Nome: " + this.resultados.getString("nome"));
-                    System.out.println("RG: " + this.resultados.getString("rg"));
-                    System.out.println("###########################################");
+                    cliente.setNome(this.resultados.getString("nome"));
+                    cliente.setCpf(this.resultados.getString("cpf"));
+                    cliente.setRg(this.resultados.getString("rg"));
+                    cliente.setEmail(this.resultados.getString("email"));
+                    cliente.setTelefone(this.resultados.getString("telefone"));
                 }
+                return cliente;
             }
         } catch (SQLException e) {
             System.out.println("Erro na consulta de dados. Erro: " + e.getMessage());
-        }    
+        }  
+        return null;
     }
     
-    public void consultarTodas() {
+    public ArrayList<Cliente> consultarTodas() {
+        ArrayList<Cliente> clientes = new ArrayList<>();
         String sql = "select * from Cliente";        
                 
         try {                   
@@ -117,17 +122,20 @@ public class ClienteBD {
             this.resultados = this.declaracao.executeQuery(sql);
             
             if (this.resultados != null) {
-                System.out.println("\n\n\n ###########################################");                
                 while(this.resultados.next()){
-                    System.out.println("CPF: " + this.resultados.getString("cpf"));
-                    System.out.println("Nome: " + this.resultados.getString("nome"));
-                    System.out.println("RG: " + this.resultados.getString("rg"));
-                    System.out.println("###########################################");
+                    Cliente cliente = new Cliente();
+                    cliente.setNome(this.resultados.getString("nome"));
+                    cliente.setCpf(this.resultados.getString("cpf"));
+                    cliente.setRg(this.resultados.getString("rg"));
+                    cliente.setEmail(this.resultados.getString("email"));
+                    cliente.setTelefone(this.resultados.getString("telefone"));
+                    clientes.add(cliente);
                 }
             }
         } catch (SQLException e) {
             System.out.println("Erro na listagem de todos os dados. Erro: " + e.getMessage());
-        }              
+        }   
+        return clientes;
     }
 
 }

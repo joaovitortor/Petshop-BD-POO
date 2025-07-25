@@ -88,33 +88,34 @@ public class FuncionarioBD {
         }        
     }
 
-    public void consultar(Funcionario funcionario) {      
+    public Funcionario consultar(int numMatricula) {  
+        Funcionario funcionario = new Funcionario();
         String sql = "select * from Funcionario where num_maricula = ?";
                 
         try {
             this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
-            this.declaracao_parametrizada.setInt(1, funcionario.getNumMatricula());
+            this.declaracao_parametrizada.setInt(1, numMatricula);
             
             this.resultados = declaracao_parametrizada.executeQuery();
             
             if (this.resultados != null) {
-                System.out.println("\n\n\n ###########################################");                
                 while(this.resultados.next()){
-                    System.out.println("CargaHorariaSemanal: " + this.resultados.getString("carga_horaria_semanal"));
-                    System.out.println("Nome: " + this.resultados.getString("nome"));
-                    System.out.println("NumMatricula: " + this.resultados.getString("num_matricula"));
-                    System.out.println("Qualificacao: " + this.resultados.getString("qualificacao"));
-                    System.out.println("DescricaoFuncao: " + this.resultados.getString("descricao_funcao"));
-                    System.out.println("###########################################");
+                    funcionario.setNome(resultados.getString("nome"));
+                    funcionario.setQualificacao(resultados.getString("qualificacao"));
+                    funcionario.setDescricaoFuncao(resultados.getString("descricao_funcao"));
+                    funcionario.setNumMatricula(resultados.getInt("num_matricula"));
+                    funcionario.setCargaHorariaSemanal(resultados.getInt("descricao_funcao"));
                 }
+                return funcionario;
             }
         } catch (SQLException e) {
             System.out.println("Erro na consulta de dados. Erro: " + e.getMessage());
-        }    
+        }  
+        return null;
     }
     
     public ArrayList<Funcionario> consultarTodas() {
-        ArrayList<Funcionario> listaFuncionarios = new ArrayList<>();
+        ArrayList<Funcionario> funcionarios = new ArrayList<>();
         String sql = "select * from Funcionario";        
                 
         try {                   
@@ -129,13 +130,13 @@ public class FuncionarioBD {
                     funcionario.setDescricaoFuncao(resultados.getString("descricao_funcao"));
                     funcionario.setNumMatricula(resultados.getInt("num_matricula"));
                     funcionario.setCargaHorariaSemanal(resultados.getInt("descricao_funcao"));
-                    listaFuncionarios.add(funcionario);
+                    funcionarios.add(funcionario);
                 }
             }
         } catch (SQLException e) {
             System.out.println("Erro na listagem de todos os dados. Erro: " + e.getMessage());
         }
-        return listaFuncionarios;
+        return funcionarios;
     }
 }
 

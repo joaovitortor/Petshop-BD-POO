@@ -13,7 +13,11 @@ public class Atendimento {
         this.idAnimal = idAnimal;
         this.numMatricula = numMatricula;
     }
-
+    
+    public Atendimento(){
+        super();
+    }
+    
     public int getCodigo() {
         return codigo;
     }
