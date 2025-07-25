@@ -5,6 +5,8 @@
 package petshop.bd.Classes.Atendimento;
 
 import java.sql.Connection;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author user
@@ -144,15 +146,30 @@ public class MenuAtendimento extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Title 2", "Title 3", "Title 4"
+                "Código", "ID do Animal", "CPF do Cliente", "Matrícula do Funcionário", "Data"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable2.setGridColor(new java.awt.Color(102, 102, 102));
         jTable2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -341,7 +358,19 @@ public class MenuAtendimento extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable2MouseReleased
 
     private void BotaoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoEditarActionPerformed
-        // TODO add your handling code here:
+        int linhaSelecionada = jTable2.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        if (linhaSelecionada == -1){
+            JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Ërro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (model.getValueAt(linhaSelecionada, 0) == null){
+            JOptionPane.showMessageDialog(null, "Selecione uma linha válida", "Ërro", JOptionPane.ERROR_MESSAGE);            
+        }
+        else{
+            FormularioEdicaoAtendimento formularioEdicaoAtendimento = new FormularioEdicaoAtendimento(conexao);
+            formularioEdicaoAtendimento.setVisible(true);
+        }
     }//GEN-LAST:event_BotaoEditarActionPerformed
 
     private void BotaoEditarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_BotaoEditarPropertyChange
