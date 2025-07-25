@@ -5,12 +5,19 @@
 package petshop.bd.Classes.Funcionario;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import petshop.bd.Banco.FuncionarioBD;
+
 /**
  *
  * @author user
  */
 public class MenuFuncionario extends javax.swing.JFrame {
     private Connection conexao;
+    private FuncionarioBD funcionarioBD;
+    private DefaultTableModel modeloTabelaFuncionarios;
     /**
      * Creates new form MenuAnimal
      * @param conexao
@@ -19,6 +26,10 @@ public class MenuFuncionario extends javax.swing.JFrame {
         this.conexao = conexao;
         initComponents();
         setLocationRelativeTo(null);
+        modeloTabelaFuncionarios = (DefaultTableModel) jTable2.getModel();
+        funcionarioBD = new FuncionarioBD(this.conexao);
+
+        carregarDadosNaTabela();
     }
 
     /**
@@ -143,13 +154,10 @@ public class MenuFuncionario extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "ID", "Title 2", "Title 3", "Title 4"
+                "ID", "Title 2", "Title 3", "Title 4", "Teste"
             }
         ));
         jTable2.setGridColor(new java.awt.Color(102, 102, 102));
@@ -321,10 +329,6 @@ public class MenuFuncionario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoCadastroPropertyChange
 
-    private void jTable2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseReleased
-
-    }//GEN-LAST:event_jTable2MouseReleased
-
     private void botaoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoEditarActionPerformed
@@ -341,7 +345,31 @@ public class MenuFuncionario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botarExcluirPropertyChange
 
+    private void jTable2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseReleased
 
+    }//GEN-LAST:event_jTable2MouseReleased
+    
+    private void carregarDadosNaTabela() {
+        modeloTabelaFuncionarios.setRowCount(0); // Define o número de linhas para 0
+
+        try {
+            ArrayList<Funcionario> listaFuncionarios = funcionarioBD.consultarTodas();
+            for (Funcionario funcionario : listaFuncionarios) {
+                Object[] novaLinha = {
+                    funcionario.getNumMatricula(),
+                    funcionario.getNome(),
+                    funcionario.getQualificacao(),
+                    funcionario.getCargaHorariaSemanal(),
+                    funcionario.getDescricaoFuncao() // Certifique-se de que o método getSalario() existe na sua classe Funcionario
+                };
+                modeloTabelaFuncionarios.addRow(novaLinha);
+            }
+        } catch (Exception  e) {
+            // Trata erros de SQL que podem ocorrer durante a busca no banco
+            JOptionPane.showMessageDialog(this, "Erro ao carregar dados dos funcionários: " + e.getMessage(), "Erro de Banco de Dados", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace(); // Imprime o stack trace para depuração
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAjuda;
     private javax.swing.JButton botaoBusca;

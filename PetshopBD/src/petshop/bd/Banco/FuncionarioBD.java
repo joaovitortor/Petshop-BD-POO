@@ -1,11 +1,13 @@
 package petshop.bd.Banco;
 
+import java.awt.List;
 import petshop.bd.Classes.Funcionario.Funcionario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class FuncionarioBD {
     private Connection conexao;
@@ -111,7 +113,10 @@ public class FuncionarioBD {
         }    
     }
     
-    public void consultarTodas() {
+    public ArrayList<Funcionario> consultarTodas() {
+        ArrayList<Funcionario> listaFuncionarios = new ArrayList<>();
+        String nome, qualificacao, descricaoFuncao;
+        int numMatricula, cargaHorariaSemanal;
         String sql = "select * from Funcionario";        
                 
         try {                   
@@ -119,20 +124,20 @@ public class FuncionarioBD {
             this.resultados = this.declaracao.executeQuery(sql);
             
             if (this.resultados != null) {
-                System.out.println("\n\n\n ###########################################");                
                 while(this.resultados.next()){
-                    System.out.println("CargaHorariaSemanal: " + this.resultados.getString("carga_horaria_semanal"));
-                    System.out.println("Nome: " + this.resultados.getString("nome"));
-                    System.out.println("NumMatricula: " + this.resultados.getString("num_matricula"));
-                    System.out.println("Qualificacao: " + this.resultados.getString("qualificacao"));
-                    System.out.println("DescricaoFuncao: " + this.resultados.getString("descricao_funcao"));;
-                    System.out.println("###########################################");
+                    nome = resultados.getString("nome");
+                    qualificacao = resultados.getString("qualificacao");
+                    descricaoFuncao = resultados.getString("descricao_funcao");
+                    numMatricula = resultados.getInt("num_matricula");
+                    cargaHorariaSemanal = resultados.getInt("descricao_funcao");
+                    Funcionario funcionario = new Funcionario(nome, qualificacao, descricaoFuncao, cargaHorariaSemanal, numMatricula);
+                    listaFuncionarios.add(funcionario);
                 }
             }
         } catch (SQLException e) {
             System.out.println("Erro na listagem de todos os dados. Erro: " + e.getMessage());
-        }              
+        }
+        return listaFuncionarios;
     }
-
 }
 
