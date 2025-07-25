@@ -366,7 +366,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable2MouseReleased
 
     private void botaoBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBusca1ActionPerformed
-        // TODO add your handling code here:
+        carregarDadosNaTabela();
     }//GEN-LAST:event_botaoBusca1ActionPerformed
     
     private void carregarDadosNaTabela() {
