@@ -418,6 +418,11 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Digite o ID"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="campoBuscaFocusGained"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="campoBuscaFocusLost"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoBuscaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="botaoVoltar">
           <Properties>
