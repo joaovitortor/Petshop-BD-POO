@@ -14,6 +14,10 @@ public class Funcionario {
         this.cargaHorariaSemanal = cargaHorariaSemanal;
         this.numMatricula = numMatricula;
     }
+    
+    public Funcionario(){
+        super();
+    }
 
     public String getNome() {
         return nome;
