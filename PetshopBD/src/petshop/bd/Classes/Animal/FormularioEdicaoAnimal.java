@@ -6,12 +6,15 @@ import java.sql.Connection;
 
 public class FormularioEdicaoAnimal extends javax.swing.JFrame {
     private final Connection conexao;
+    private Animal animal;
     /**
      * Creates new form MenuAnimal
      * @param conexao
+     * @param animal
      */
-    public FormularioEdicaoAnimal(Connection conexao) {
+    public FormularioEdicaoAnimal(Connection conexao, Animal animal) {
         this.conexao = conexao;
+        this.animal = animal;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -150,7 +153,7 @@ public class FormularioEdicaoAnimal extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 180, 113), 7));
 
         campoNome.setForeground(new java.awt.Color(102, 102, 102));
-        campoNome.setText("Digite o Nome do Animal");
+        campoNome.setText(animal.getNome());
         campoNome.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
         campoNome.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -167,7 +170,7 @@ public class FormularioEdicaoAnimal extends javax.swing.JFrame {
         });
 
         campoEspecie.setForeground(new java.awt.Color(102, 102, 102));
-        campoEspecie.setText("Digite a Espécie");
+        campoEspecie.setText(animal.getEspecie());
         campoEspecie.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
         campoEspecie.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -184,7 +187,7 @@ public class FormularioEdicaoAnimal extends javax.swing.JFrame {
         });
 
         campoPeso.setForeground(new java.awt.Color(102, 102, 102));
-        campoPeso.setText("Digite o Peso (Kg)");
+        campoPeso.setText(String.valueOf(animal.getPeso()));
         campoPeso.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
         campoPeso.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -201,7 +204,7 @@ public class FormularioEdicaoAnimal extends javax.swing.JFrame {
         });
 
         campoAltura.setForeground(new java.awt.Color(102, 102, 102));
-        campoAltura.setText("Digite a Altura (m)");
+        campoAltura.setText(String.valueOf(animal.getAltura()));
         campoAltura.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
         campoAltura.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -217,8 +220,9 @@ public class FormularioEdicaoAnimal extends javax.swing.JFrame {
             }
         });
 
+        campoCPF.setEditable(false);
         campoCPF.setForeground(new java.awt.Color(102, 102, 102));
-        campoCPF.setText("Digite o CPF");
+        campoCPF.setText(animal.getCpfDono());
         campoCPF.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
         campoCPF.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -393,59 +397,54 @@ public class FormularioEdicaoAnimal extends javax.swing.JFrame {
 
     private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
         String nome, especie, cpf, altura, peso;
-        if (campoNome.getText().equals("Digite o Nome do Animal") || campoNome.getText().isEmpty()) {
+        if (campoNome.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite o Nome do Animal", "Erro", JOptionPane.ERROR_MESSAGE);
             campoNome.requestFocus();
             return;
         } else {
             nome = campoNome.getText();
         }
-        if (campoEspecie.getText().equals("Digite a Espécie") || campoEspecie.getText().isEmpty()) {
+        if (campoEspecie.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite a Espécie", "Erro", JOptionPane.ERROR_MESSAGE);
             campoEspecie.requestFocus();
             return;
         } else {
             especie = campoEspecie.getText();
         }
-        if (campoCPF.getText().equals("Digite o CPF") || campoCPF.getText().isEmpty()) {
+        if (campoCPF.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite o CPF do Dono", "Erro", JOptionPane.ERROR_MESSAGE);
             campoCPF.requestFocus();
             return;
         } else {
             cpf = campoCPF.getText();
         }
-        if (campoAltura.getText().equals("Digite a Altura (m)") || campoAltura.getText().isEmpty()) {
+        if (campoAltura.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite a Altura do Animal", "Erro", JOptionPane.ERROR_MESSAGE);
             campoAltura.requestFocus();
             return;
         } else {
             altura = campoAltura.getText();
         }
-        if (campoPeso.getText().equals("Digite o Peso (Kg)") || campoPeso.getText().isEmpty()) {
+        if (campoPeso.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite o Peso do Animal", "Erro", JOptionPane.ERROR_MESSAGE);
             campoPeso.requestFocus();
             return;
         } else {
             peso = campoPeso.getText();
         }
-
-        Animal animal = new Animal(nome, especie, Float.parseFloat(peso), Float.parseFloat(altura), cpf);
-        AnimalBD animalBd = new AnimalBD(conexao);
-        if (animalBd.verificaDono(cpf)) {
-            if (animalBd.cadastrar(animal)) {
-                JOptionPane.showMessageDialog(null, "Animal Cadastrado com Sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
-                campoNome.setText("Digite o Nome do Animal");
-                campoEspecie.setText("Digite a Espécie");
-                campoCPF.setText("Digite o CPF");
-                campoAltura.setText("Digite a Altura (m)");
-                campoPeso.setText("Digite o Peso (Kg)");
-            } else {
-                JOptionPane.showMessageDialog(null, "Falha ao cadastrar o Animal", "Cadastro", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Não existe cliente com esse CPF. Tente novamente", "Erro", JOptionPane.ERROR_MESSAGE);
-            campoCPF.requestFocus();
+        try{
+            Animal animal1 = new Animal(nome, especie, Float.parseFloat(peso), Float.parseFloat(altura), cpf);
+            animal1.setId(animal.getId());
+            AnimalBD animalBd = new AnimalBD(conexao);
+            animalBd.alterar(animal1);
+            
+            JOptionPane.showMessageDialog(null, "Edição realizada com sucesso!", "", JOptionPane.INFORMATION_MESSAGE);
         }
+        catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Digite valores válidos", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
+
 
     }//GEN-LAST:event_botaoCadastrarActionPerformed
 
@@ -458,17 +457,11 @@ public class FormularioEdicaoAnimal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoCadastrarPropertyChange
 
     private void campoNomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNomeFocusGained
-        if (campoNome.getText().equals("Digite o Nome do Animal")) {
-            campoNome.setText("");
-            campoNome.setForeground(java.awt.Color.BLACK);
-        }
+
     }//GEN-LAST:event_campoNomeFocusGained
 
     private void campoNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNomeFocusLost
-        if (campoNome.getText().isEmpty()) {
-            campoNome.setText("Digite o Nome do Animal");
-            campoNome.setForeground(new java.awt.Color(102, 102, 102));
-        }
+
     }//GEN-LAST:event_campoNomeFocusLost
 
     private void campoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeActionPerformed
@@ -476,17 +469,11 @@ public class FormularioEdicaoAnimal extends javax.swing.JFrame {
     }//GEN-LAST:event_campoNomeActionPerformed
 
     private void campoEspecieFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoEspecieFocusGained
-        if (campoEspecie.getText().equals("Digite a Espécie")) {
-            campoEspecie.setText("");
-            campoEspecie.setForeground(java.awt.Color.BLACK);
-        }
+
     }//GEN-LAST:event_campoEspecieFocusGained
 
     private void campoEspecieFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoEspecieFocusLost
-        if (campoEspecie.getText().isEmpty()) {
-            campoEspecie.setText("Digite a Espécie");
-            campoEspecie.setForeground(new java.awt.Color(102, 102, 102));
-        }
+
     }//GEN-LAST:event_campoEspecieFocusLost
 
     private void campoEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEspecieActionPerformed
@@ -494,17 +481,11 @@ public class FormularioEdicaoAnimal extends javax.swing.JFrame {
     }//GEN-LAST:event_campoEspecieActionPerformed
 
     private void campoPesoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoPesoFocusGained
-        if (campoPeso.getText().equals("Digite o Peso (Kg)")) {
-            campoPeso.setText("");
-            campoPeso.setForeground(java.awt.Color.BLACK);
-        }
+
     }//GEN-LAST:event_campoPesoFocusGained
 
     private void campoPesoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoPesoFocusLost
-        if (campoPeso.getText().isEmpty()) {
-            campoPeso.setText("Digite o Peso (Kg)");
-            campoPeso.setForeground(new java.awt.Color(102, 102, 102));
-        }
+
     }//GEN-LAST:event_campoPesoFocusLost
 
     private void campoPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoPesoActionPerformed
@@ -512,17 +493,11 @@ public class FormularioEdicaoAnimal extends javax.swing.JFrame {
     }//GEN-LAST:event_campoPesoActionPerformed
 
     private void campoAlturaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoAlturaFocusGained
-        if (campoAltura.getText().equals("Digite a Altura (m)")) {
-            campoAltura.setText("");
-            campoAltura.setForeground(java.awt.Color.BLACK);
-        }
+
     }//GEN-LAST:event_campoAlturaFocusGained
 
     private void campoAlturaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoAlturaFocusLost
-        if (campoAltura.getText().isEmpty()) {
-            campoAltura.setText("Digite a Altura (m)");
-            campoAltura.setForeground(new java.awt.Color(102, 102, 102));
-        }
+
     }//GEN-LAST:event_campoAlturaFocusLost
 
     private void campoAlturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoAlturaActionPerformed
@@ -530,17 +505,11 @@ public class FormularioEdicaoAnimal extends javax.swing.JFrame {
     }//GEN-LAST:event_campoAlturaActionPerformed
 
     private void campoCPFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoCPFFocusGained
-        if (campoCPF.getText().equals("Digite o CPF")) {
-            campoCPF.setText("");
-            campoCPF.setForeground(java.awt.Color.BLACK);
-        }
+
     }//GEN-LAST:event_campoCPFFocusGained
 
     private void campoCPFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoCPFFocusLost
-        if (campoCPF.getText().isEmpty()) {
-            campoCPF.setText("Digite o CPF");
-            campoCPF.setForeground(new java.awt.Color(102, 102, 102));
-        }
+
     }//GEN-LAST:event_campoCPFFocusLost
 
     private void campoCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCPFActionPerformed

@@ -79,13 +79,17 @@ public class AnimalBD {
 
     public void alterar(Animal animal) {
         String sql = "update Animal set"
-                + " nome = ?";
+                + " nome = ?," + "especie = ?," + "peso = ?," + "altura = ?" + "WHERE id = ?";
 
         try {
             this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
 
             this.declaracao_parametrizada.setString(1, animal.getNome());
-
+            this.declaracao_parametrizada.setString(2, animal.getEspecie());
+            this.declaracao_parametrizada.setFloat(3, animal.getPeso());
+            this.declaracao_parametrizada.setFloat(4, animal.getAltura());
+            this.declaracao_parametrizada.setInt(5, animal.getId());
+            
             this.declaracao_parametrizada.executeUpdate();
         } catch (SQLException erro) {
             System.out.println("Erro na alteracao dos dados. Mensagem: " + erro.getMessage());

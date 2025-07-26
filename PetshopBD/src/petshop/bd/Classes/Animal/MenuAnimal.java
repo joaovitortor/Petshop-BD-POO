@@ -399,9 +399,18 @@ public class MenuAnimal extends javax.swing.JFrame {
         if (model.getValueAt(linhaSelecionada, 0) == null) {
             JOptionPane.showMessageDialog(null, "Selecione uma linha válida", "Ërro", JOptionPane.ERROR_MESSAGE);
         } else {
-            FormularioEdicaoAnimal formularioEdicaoAnimal = new FormularioEdicaoAnimal(conexao);
+            Animal animal = new Animal();
+            animal.setId(Integer.parseInt(String.valueOf(model.getValueAt(linhaSelecionada, 0))));
+            animal.setNome(String.valueOf(model.getValueAt(linhaSelecionada, 1)));
+            animal.setEspecie(String.valueOf(model.getValueAt(linhaSelecionada, 2)));
+            animal.setAltura(Float.parseFloat(String.valueOf(model.getValueAt(linhaSelecionada, 3))));
+            animal.setPeso(Float.parseFloat(String.valueOf(model.getValueAt(linhaSelecionada, 4))));
+            animal.setCpfDono(String.valueOf(model.getValueAt(linhaSelecionada, 5)));
+            
+            FormularioEdicaoAnimal formularioEdicaoAnimal = new FormularioEdicaoAnimal(conexao, animal);
             formularioEdicaoAnimal.setVisible(true);
         }
+        
     }//GEN-LAST:event_botaoEditarActionPerformed
 
     private void botaoEditarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_botaoEditarPropertyChange
