@@ -107,12 +107,14 @@ public class AtendimentoBD {
 
     public void alterar(Atendimento atendimento) {
         String sql = "update Atendimento set"
-                + " data_atendimento = ?";
+                + " data_atendimento = ?" + "WHERE codigo = ?";
 
         try {
             this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
 
             this.declaracao_parametrizada.setString(1, atendimento.getData());
+            this.declaracao_parametrizada.setInt(2, atendimento.getCodigo());
+            
 
             this.declaracao_parametrizada.executeUpdate();
         } catch (SQLException erro) {

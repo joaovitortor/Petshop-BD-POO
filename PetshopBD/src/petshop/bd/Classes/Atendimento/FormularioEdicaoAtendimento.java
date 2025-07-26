@@ -6,13 +6,15 @@ import java.sql.Connection;
 
 public class FormularioEdicaoAtendimento extends javax.swing.JFrame {
     private final Connection conexao;
+    private Atendimento atendimento;
 
     /**
      * Creates new form MenuAnimal
      * @param conexao
      */
-    public FormularioEdicaoAtendimento(Connection conexao) {
+    public FormularioEdicaoAtendimento(Connection conexao, Atendimento atendimento) {
         this.conexao = conexao;
+        this.atendimento = atendimento;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -364,28 +366,28 @@ public class FormularioEdicaoAtendimento extends javax.swing.JFrame {
 
     private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
         String data, cpf, id, numMatricula;
-        if (campoData.getText().equals("Digite a Data") || campoData.getText().isEmpty()) {
+        if (campoData.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite a Data", "Erro", JOptionPane.ERROR_MESSAGE);
             campoData.requestFocus();
             return;
         } else {
             data = campoData.getText();
         }
-        if (campoNum.getText().equals("Digite o Número de Matrícula") || campoNum.getText().isEmpty()) {
+        if (campoNum.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite o Número de Matrícula do Funcionário", "Erro", JOptionPane.ERROR_MESSAGE);
             campoNum.requestFocus();
             return;
         } else {
             numMatricula = campoNum.getText();
         }
-        if (campoCPF.getText().equals("Digite o CPF") || campoCPF.getText().isEmpty()) {
+        if (campoCPF.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite o CPF do Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
             campoCPF.requestFocus();
             return;
         } else {
             cpf = campoCPF.getText();
         }
-        if (campoId.getText().equals("Digite o ID") || campoId.getText().isEmpty()) {
+        if (campoId.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite o iD do Animal", "Erro", JOptionPane.ERROR_MESSAGE);
             campoId.requestFocus();
             return;
@@ -395,32 +397,6 @@ public class FormularioEdicaoAtendimento extends javax.swing.JFrame {
         
         Atendimento atendimento = new Atendimento(data, cpf, Integer.parseInt(id), Integer.parseInt(numMatricula));
         AtendimentoBD atendimentoBd = new AtendimentoBD(conexao);
-        //atendimentoBd.consultarTodasAnimal();
-        
-        if (!atendimentoBd.verificaCliente(cpf)) {
-            JOptionPane.showMessageDialog(null, "Não existe cliente com esse CPF. Tente novamente", "Erro", JOptionPane.ERROR_MESSAGE);
-            campoCPF.requestFocus();
-            return;
-        }
-        if (!atendimentoBd.verificaAnimal(Integer.parseInt(id))) {
-            JOptionPane.showMessageDialog(null, "Não existe animal com esse ID. Tente novamente", "Erro", JOptionPane.ERROR_MESSAGE);
-            campoId.requestFocus();
-            return;
-        }
-        if (!atendimentoBd.verificaFuncionario(Integer.parseInt(numMatricula))) {
-            JOptionPane.showMessageDialog(null, "Não existe funcionário com esse número de matrícula. Tente novamente", "Erro", JOptionPane.ERROR_MESSAGE);
-            campoNum.requestFocus();
-            return;
-        }
-        if (atendimentoBd.cadastrar(atendimento)) {
-            JOptionPane.showMessageDialog(null, "Atendimento Cadastrado com Sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
-            campoData.setText("Digite a Data");
-            campoNum.setText("Digite o RG");
-            campoCPF.setText("Digite o CPF");
-            campoId.setText("Digite o Email");
-        } else {
-            JOptionPane.showMessageDialog(null, "Falha ao cadastrar o Atendimento", "Cadastro", JOptionPane.ERROR_MESSAGE);
-        }
 
 
     }//GEN-LAST:event_botaoCadastrarActionPerformed

@@ -401,7 +401,18 @@ public class MenuAtendimento extends javax.swing.JFrame {
         if (model.getValueAt(linhaSelecionada, 0) == null) {
             JOptionPane.showMessageDialog(null, "Selecione uma linha válida", "Ërro", JOptionPane.ERROR_MESSAGE);
         } else {
-            FormularioEdicaoAtendimento formularioEdicaoAtendimento = new FormularioEdicaoAtendimento(conexao);
+            Atendimento atendimento = new Atendimento();
+            
+            atendimento.setCodigo(Integer.parseInt(String.valueOf(model.getValueAt(linhaSelecionada, 0))));
+            atendimento.setNome(String.valueOf(model.getValueAt(linhaSelecionada, 1)));
+            atendimento.setEspecie(String.valueOf(model.getValueAt(linhaSelecionada, 2)));
+            atendimento.setAltura(Float.parseFloat(String.valueOf(model.getValueAt(linhaSelecionada, 3))));
+            atendimento.setPeso(Float.parseFloat(String.valueOf(model.getValueAt(linhaSelecionada, 4))));
+            
+            
+            
+            
+            FormularioEdicaoAtendimento formularioEdicaoAtendimento = new FormularioEdicaoAtendimento(conexao, atendimento);
             formularioEdicaoAtendimento.setVisible(true);
         }
     }//GEN-LAST:event_BotaoEditarActionPerformed
