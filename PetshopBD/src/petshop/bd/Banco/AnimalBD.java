@@ -25,7 +25,7 @@ public class AnimalBD {
                 + "	altura real NOT NULL,"
                 + "       dono_cpf text NOT NULL,"
                 + "       FOREIGN KEY (dono_cpf) "
-                + "           REFERENCES Cliente (cpf)"
+                + "           REFERENCES Cliente (cpf) ON UPDATE RESTRICT ON DELETE RESTRICT"
                 + ");";
         try {
             this.declaracao = this.conexao.createStatement();
@@ -109,7 +109,6 @@ public class AnimalBD {
             
         } catch (SQLException erro) {  
             if (erro.getMessage().contains("FOREIGN KEY constraint failed")) {
-                System.err.println("");
                 JOptionPane.showMessageDialog(null, "Este animal está associado a atendimentos e não pode ser excluído diretamente.", "Erro", JOptionPane.ERROR_MESSAGE);
             }
             else{

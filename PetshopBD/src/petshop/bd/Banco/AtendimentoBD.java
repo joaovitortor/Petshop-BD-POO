@@ -22,9 +22,9 @@ public class AtendimentoBD {
                 + "   cliente_cpf text NOT NULL,"
                 + "   funcionario_num integer NOT NULL,"
                 + "   animal_id integer NOT NULL,"
-                + "   FOREIGN KEY (cliente_cpf) REFERENCES Cliente (cpf),"
-                + "   FOREIGN KEY (funcionario_num) REFERENCES Funcionario (num_matricula),"
-                + "   FOREIGN KEY (animal_id) REFERENCES Animal (id)"
+                + "   FOREIGN KEY (cliente_cpf) REFERENCES Cliente (cpf) ON UPDATE RESTRICT ON DELETE RESTRICT,"
+                + "   FOREIGN KEY (funcionario_num) REFERENCES Funcionario (num_matricula) ON UPDATE RESTRICT ON DELETE RESTRICT,"
+                + "   FOREIGN KEY (animal_id) REFERENCES Animal (id) ON UPDATE RESTRICT ON DELETE RESTRICT"
                 + ");";
 
         try {
