@@ -418,7 +418,18 @@ public class MenuAnimal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoEditarPropertyChange
 
     private void botaoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirActionPerformed
-        // TODO add your handling code here:
+        int linhaSelecionada = jTable2.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+
+        if (linhaSelecionada == -1) {
+            JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Ërro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (model.getValueAt(linhaSelecionada, 0) == null) {
+            JOptionPane.showMessageDialog(null, "Selecione uma linha válida", "Ërro", JOptionPane.ERROR_MESSAGE);
+        } else {
+            animalBD.remover(Integer.parseInt(String.valueOf(model.getValueAt(linhaSelecionada, 0))));            
+        }
     }//GEN-LAST:event_botaoExcluirActionPerformed
 
     private void botaoExcluirPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_botaoExcluirPropertyChange
@@ -434,7 +445,6 @@ public class MenuAnimal extends javax.swing.JFrame {
             Animal animal = animalBD.consultar(Integer.parseInt(campoBusca.getText()));
             modeloTabelaAnimal.setRowCount(0);
             if (animal != null) {
-                System.out.println("Entrouuuu");
                 Object[] novaLinha = {
                     animal.getId(),
                     animal.getNome(),

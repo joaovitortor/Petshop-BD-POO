@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class AnimalBD {
 
@@ -96,17 +97,24 @@ public class AnimalBD {
         }
     }
 
-    public void remover(Animal animal) {
+    public void remover(int id) {
         String sql = "delete from Animal where id = ?";
 
         try {
             this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
 
-            this.declaracao_parametrizada.setInt(1, animal.getId());
+            this.declaracao_parametrizada.setInt(1, id);
 
             this.declaracao_parametrizada.executeUpdate();
-        } catch (SQLException erro) {
-            System.out.println("Erro na exclusao dos dados. Mensagem: " + erro.getMessage());
+            
+        } catch (SQLException erro) {  
+            if (erro.getMessage().contains("FOREIGN KEY constraint failed")) {
+                System.err.println("");
+                JOptionPane.showMessageDialog(null, "Este animal está associado a atendimentos e não pode ser excluído diretamente.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+            else{
+                System.out.println("Erro na exclusao dos dados. Mensagem: " + erro.getMessage());
+            }
         }
     }
 
