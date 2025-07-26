@@ -137,21 +137,19 @@ public class AtendimentoBD {
     public Atendimento consultar(int codigo) {
         String sql = "select * from Atendimento where codigo = ?";
         Atendimento atendimento = new Atendimento();
-        
+
         try {
             this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
-            this.declaracao_parametrizada.setInt(1, atendimento.getCodigo());
+            this.declaracao_parametrizada.setInt(1, codigo);
 
             this.resultados = declaracao_parametrizada.executeQuery();
 
-            if (this.resultados != null) {
-                while (this.resultados.next()) {
-                    atendimento.setCodigo(this.resultados.getInt("codigo"));
-                    atendimento.setData(this.resultados.getString("data_atendimento"));
-                    atendimento.setCpfCliente(this.resultados.getString("cliente_cpf"));
-                    atendimento.setIdAnimal(this.resultados.getInt("animal_id"));
-                    atendimento.setNumMatricula(this.resultados.getInt("funcionario_num"));
-                }
+            if (this.resultados.next()) {
+                atendimento.setCodigo(this.resultados.getInt("codigo"));
+                atendimento.setData(this.resultados.getString("data_atendimento"));
+                atendimento.setCpfCliente(this.resultados.getString("cliente_cpf"));
+                atendimento.setIdAnimal(this.resultados.getInt("animal_id"));
+                atendimento.setNumMatricula(this.resultados.getInt("funcionario_num"));
                 return atendimento;
             }
         } catch (SQLException e) {
@@ -169,7 +167,7 @@ public class AtendimentoBD {
             this.resultados = this.declaracao.executeQuery(sql);
 
             if (this.resultados != null) {
-                while(this.resultados.next()) {
+                while (this.resultados.next()) {
                     Atendimento atendimento = new Atendimento();
                     atendimento.setCodigo(this.resultados.getInt("codigo"));
                     atendimento.setData(this.resultados.getString("data_atendimento"));

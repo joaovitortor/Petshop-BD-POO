@@ -412,6 +412,7 @@ public class MenuAnimal extends javax.swing.JFrame {
         // precisa colocar um try para caso o usuario nao coloque um int
         Animal animal = animalBD.consultar(Integer.parseInt(campoBusca.getText()));
         if (animal != null) {
+            System.out.println("Entrouuuu");
             Object[] novaLinha = {
                 animal.getId(),
                 animal.getNome(),
