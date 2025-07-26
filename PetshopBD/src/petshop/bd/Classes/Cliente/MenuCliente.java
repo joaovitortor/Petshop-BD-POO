@@ -216,6 +216,11 @@ public class MenuCliente extends javax.swing.JFrame {
         botaoAjuda.setForeground(new java.awt.Color(51, 51, 0));
         botaoAjuda.setText("?");
         botaoAjuda.setIconTextGap(3);
+        botaoAjuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAjudaActionPerformed(evt);
+            }
+        });
 
         botaoBusca.setBackground(new java.awt.Color(0, 102, 102));
         botaoBusca.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -452,6 +457,10 @@ public class MenuCliente extends javax.swing.JFrame {
             campoBusca.setForeground(new java.awt.Color(102, 102, 102));
         }
     }//GEN-LAST:event_campoBuscaFocusLost
+
+    private void botaoAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAjudaActionPerformed
+        JOptionPane.showMessageDialog(null, "Para editar um cliente, selecione a linha do cliente na tabela e clique no botão editar", "Dica", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_botaoAjudaActionPerformed
 
     private void carregarDadosNaTabela() {
         modeloTabelaCliente.setRowCount(0);
