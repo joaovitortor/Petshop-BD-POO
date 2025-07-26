@@ -224,7 +224,7 @@ public class MenuAtendimento extends javax.swing.JFrame {
 
         campoBusca.setFont(new java.awt.Font("Agency FB", 0, 12)); // NOI18N
         campoBusca.setForeground(new java.awt.Color(204, 204, 204));
-        campoBusca.setText("Digite o ID");
+        campoBusca.setText("Digite o código");
         campoBusca.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 campoBuscaFocusGained(evt);
@@ -418,18 +418,23 @@ public class MenuAtendimento extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoAtualizarActionPerformed
 
     private void botaoBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscaActionPerformed
-        modeloTabelaAtendimento.setRowCount(0);
-        Atendimento atendimento = atendimentoBD.consultar(Integer.parseInt(campoBusca.getText()));
-        if (atendimento != null) {
-            Object[] novaLinha = {
-                atendimento.getCodigo(),
-                atendimento.getIdAnimal(),
-                atendimento.getCpfCliente(),
-                atendimento.getNumMatricula(),
-                atendimento.getData()
-            };
-            modeloTabelaAtendimento.addRow(novaLinha);
+        try {
+            Atendimento atendimento = atendimentoBD.consultar(Integer.parseInt(campoBusca.getText()));
+            modeloTabelaAtendimento.setRowCount(0);
+            if (atendimento != null) {
+                Object[] novaLinha = {
+                    atendimento.getCodigo(),
+                    atendimento.getIdAnimal(),
+                    atendimento.getCpfCliente(),
+                    atendimento.getNumMatricula(),
+                    atendimento.getData()
+                };
+                modeloTabelaAtendimento.addRow(novaLinha);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Por favor, digite um código numérico válido para o atendimento.", "Erro de Entrada", JOptionPane.ERROR_MESSAGE);
         }
+
     }//GEN-LAST:event_botaoBuscaActionPerformed
 
     private void campoBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoBuscaActionPerformed
@@ -437,14 +442,17 @@ public class MenuAtendimento extends javax.swing.JFrame {
     }//GEN-LAST:event_campoBuscaActionPerformed
 
     private void campoBuscaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoBuscaFocusGained
-        if(campoBusca.getText().equals("Digite o código")) {
+        if (campoBusca.getText().equals("Digite o código")) {
             campoBusca.setText("");
             campoBusca.setForeground(java.awt.Color.BLACK);
         }
     }//GEN-LAST:event_campoBuscaFocusGained
 
     private void campoBuscaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoBuscaFocusLost
-        // TODO add your handling code here:
+        if (campoBusca.getText().equals("")) {
+            campoBusca.setText("Digite o código");
+            campoBusca.setForeground(java.awt.Color.GRAY);
+        }
     }//GEN-LAST:event_campoBuscaFocusLost
 
     private void carregarDadosNaTabela() {
