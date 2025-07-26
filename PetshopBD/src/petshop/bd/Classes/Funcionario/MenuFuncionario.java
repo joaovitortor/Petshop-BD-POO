@@ -415,19 +415,25 @@ public class MenuFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoAtualizarActionPerformed
 
     private void botaoBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscaActionPerformed
-        modeloTabelaFuncionarios.setRowCount(0);
-        Funcionario funcionario = funcionarioBD.consultar(Integer.parseInt(campoBusca.getText()));
-        if (funcionario != null) {
-            Object[] novaLinha = {
-                funcionario.getNumMatricula(),
-                funcionario.getNome(),
-                funcionario.getQualificacao(),
-                funcionario.getCargaHorariaSemanal(),
-                funcionario.getDescricaoFuncao()
-            };
-            modeloTabelaFuncionarios.addRow(novaLinha);
+        try {
+            Funcionario funcionario = funcionarioBD.consultar(Integer.parseInt(campoBusca.getText()));
+            modeloTabelaFuncionarios.setRowCount(0);
+            if (funcionario != null) {
+                Object[] novaLinha = {
+                    funcionario.getNumMatricula(),
+                    funcionario.getNome(),
+                    funcionario.getQualificacao(),
+                    funcionario.getCargaHorariaSemanal(),
+                    funcionario.getDescricaoFuncao()
+                };
+                modeloTabelaFuncionarios.addRow(novaLinha);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Por favor, digite um número de matrícula válido para o funcionário.", "Erro de Entrada", JOptionPane.ERROR_MESSAGE);
         }
-        botaoBusca.setText("Digite o Número de Matrícula");
+
+        campoBusca.setText("Digite o Número de Matrícula");
+        campoBusca.setForeground(new java.awt.Color(102, 102, 102));
     }//GEN-LAST:event_botaoBuscaActionPerformed
 
     private void campoBuscaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoBuscaFocusGained

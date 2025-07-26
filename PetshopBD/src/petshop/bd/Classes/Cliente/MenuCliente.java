@@ -16,11 +16,14 @@ import petshop.bd.Banco.ClienteBD;
  * @author user
  */
 public class MenuCliente extends javax.swing.JFrame {
+
     private final Connection conexao;
     private final ClienteBD clienteBD;
     private final DefaultTableModel modeloTabelaCliente;
+
     /**
      * Creates new form MenuAnimal
+     *
      * @param conexao
      */
     public MenuCliente(Connection conexao) {
@@ -29,7 +32,7 @@ public class MenuCliente extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         modeloTabelaCliente = (DefaultTableModel) jTable2.getModel();
         clienteBD = new ClienteBD(this.conexao);
-        
+
         carregarDadosNaTabela();
     }
 
@@ -225,8 +228,16 @@ public class MenuCliente extends javax.swing.JFrame {
         });
 
         campoBusca.setFont(new java.awt.Font("Agency FB", 0, 12)); // NOI18N
-        campoBusca.setForeground(new java.awt.Color(204, 204, 204));
-        campoBusca.setText("Digite o ID");
+        campoBusca.setForeground(new java.awt.Color(102, 102, 102));
+        campoBusca.setText("Digite o CPF");
+        campoBusca.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                campoBuscaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                campoBuscaFocusLost(evt);
+            }
+        });
 
         botaoVoltar.setBackground(new java.awt.Color(102, 102, 102));
         botaoVoltar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
@@ -377,10 +388,9 @@ public class MenuCliente extends javax.swing.JFrame {
 
     private void botaoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarActionPerformed
         int linhaSelecionada = jTable2.getSelectedRow();
-        if (linhaSelecionada == -1){
+        if (linhaSelecionada == -1) {
             JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Ërro", JOptionPane.ERROR_MESSAGE);
-        }
-        else{
+        } else {
             FormularioEdicaoCliente formularioEdicaoCliente = new FormularioEdicaoCliente(conexao);
             formularioEdicaoCliente.setVisible(true);
         }
@@ -408,38 +418,59 @@ public class MenuCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoBusca1ActionPerformed
 
     private void botaoBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscaActionPerformed
-        modeloTabelaCliente.setRowCount(0);
-        Cliente cliente = clienteBD.consultar(campoBusca.getText());
-        if(cliente != null){
-            Object[] novaLinha = {
-                    cliente.getCpf(),
-                    cliente.getNome(),
-                    cliente.getTelefone(),
-                    cliente.getEmail(),
-                    cliente.getRg()
-            };
-            modeloTabelaCliente.addRow(novaLinha);
-        }
-    }//GEN-LAST:event_botaoBuscaActionPerformed
-    
-    private void carregarDadosNaTabela(){
-        modeloTabelaCliente.setRowCount(0);
-        
-        try{
-            ArrayList<Cliente> clientes = clienteBD.consultarTodas();
-            for (Cliente cliente : clientes){
+        try {
+            Cliente cliente = clienteBD.consultar(campoBusca.getText());
+            modeloTabelaCliente.setRowCount(0);
+            if (cliente != null) {
                 Object[] novaLinha = {
                     cliente.getCpf(),
                     cliente.getNome(),
                     cliente.getTelefone(),
                     cliente.getEmail(),
                     cliente.getRg()
-            };
-            modeloTabelaCliente.addRow(novaLinha);
+                };
+                modeloTabelaCliente.addRow(novaLinha);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Por favor, digite um cpf válido para a pessoa.", "Erro de Entrada", JOptionPane.ERROR_MESSAGE);
+        }
+        campoBusca.setText("Digite o CPF");
+        campoBusca.setForeground(new java.awt.Color(102, 102, 102));
+
+    }//GEN-LAST:event_botaoBuscaActionPerformed
+
+    private void campoBuscaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoBuscaFocusGained
+        if (campoBusca.getText().equals("Digite o CPF")) {
+            campoBusca.setText("");
+            campoBusca.setForeground(java.awt.Color.BLACK);
+        }
+    }//GEN-LAST:event_campoBuscaFocusGained
+
+    private void campoBuscaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoBuscaFocusLost
+        if (campoBusca.getText().isEmpty()) {
+            campoBusca.setText("Digite o CPF");
+            campoBusca.setForeground(new java.awt.Color(102, 102, 102));
+        }
+    }//GEN-LAST:event_campoBuscaFocusLost
+
+    private void carregarDadosNaTabela() {
+        modeloTabelaCliente.setRowCount(0);
+
+        try {
+            ArrayList<Cliente> clientes = clienteBD.consultarTodas();
+            for (Cliente cliente : clientes) {
+                Object[] novaLinha = {
+                    cliente.getCpf(),
+                    cliente.getNome(),
+                    cliente.getTelefone(),
+                    cliente.getEmail(),
+                    cliente.getRg()
+                };
+                modeloTabelaCliente.addRow(novaLinha);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro ao carregar dados dos clientes: " + e.getMessage(), "Erro de Banco de Dados", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace(); 
+            e.printStackTrace();
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -225,8 +225,16 @@ public class MenuAnimal extends javax.swing.JFrame {
         });
 
         campoBusca.setFont(new java.awt.Font("Agency FB", 0, 12)); // NOI18N
-        campoBusca.setForeground(new java.awt.Color(204, 204, 204));
+        campoBusca.setForeground(new java.awt.Color(102, 102, 102));
         campoBusca.setText("Digite o ID");
+        campoBusca.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                campoBuscaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                campoBuscaFocusLost(evt);
+            }
+        });
 
         botaoVoltar.setBackground(new java.awt.Color(102, 102, 102));
         botaoVoltar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
@@ -408,23 +416,42 @@ public class MenuAnimal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoAtualizarActionPerformed
 
     private void botaoBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscaActionPerformed
-        modeloTabelaAnimal.setRowCount(0);
-        // precisa colocar um try para caso o usuario nao coloque um int
-        Animal animal = animalBD.consultar(Integer.parseInt(campoBusca.getText()));
-        if (animal != null) {
-            System.out.println("Entrouuuu");
-            Object[] novaLinha = {
-                animal.getId(),
-                animal.getNome(),
-                animal.getEspecie(),
-                animal.getAltura(),
-                animal.getPeso(),
-                animal.getCpfDono()
-            };
-            modeloTabelaAnimal.addRow(novaLinha);
+        try {
+            Animal animal = animalBD.consultar(Integer.parseInt(campoBusca.getText()));
+            modeloTabelaAnimal.setRowCount(0);
+            if (animal != null) {
+                System.out.println("Entrouuuu");
+                Object[] novaLinha = {
+                    animal.getId(),
+                    animal.getNome(),
+                    animal.getEspecie(),
+                    animal.getAltura(),
+                    animal.getPeso(),
+                    animal.getCpfDono()
+                };
+                modeloTabelaAnimal.addRow(novaLinha);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Por favor, digite um id de animal válido para o animal.", "Erro de Entrada", JOptionPane.ERROR_MESSAGE);
         }
+        campoBusca.setText("Digite o ID");
+        campoBusca.setForeground(new java.awt.Color(102, 102, 102));
 
     }//GEN-LAST:event_botaoBuscaActionPerformed
+
+    private void campoBuscaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoBuscaFocusGained
+        if (campoBusca.getText().equals("Digite o ID")) {
+            campoBusca.setText("");
+            campoBusca.setForeground(java.awt.Color.BLACK);
+        }
+    }//GEN-LAST:event_campoBuscaFocusGained
+
+    private void campoBuscaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoBuscaFocusLost
+        if (campoBusca.getText().isEmpty()) {
+            campoBusca.setText("Digite o ID");
+            campoBusca.setForeground(new java.awt.Color(102, 102, 102));
+        }
+    }//GEN-LAST:event_campoBuscaFocusLost
 
     private void carregarDadosNaTabela() {
         modeloTabelaAnimal.setRowCount(0);

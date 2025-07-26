@@ -102,7 +102,7 @@ public class FuncionarioBD {
                 funcionario.setQualificacao(resultados.getString("qualificacao"));
                 funcionario.setDescricaoFuncao(resultados.getString("descricao_funcao"));
                 funcionario.setNumMatricula(resultados.getInt("num_matricula"));
-                funcionario.setCargaHorariaSemanal(resultados.getInt("descricao_funcao"));
+                funcionario.setCargaHorariaSemanal(resultados.getInt("carga_horaria_semanal"));
                 return funcionario;
             }
         } catch (SQLException e) {
@@ -126,7 +126,7 @@ public class FuncionarioBD {
                     funcionario.setQualificacao(resultados.getString("qualificacao"));
                     funcionario.setDescricaoFuncao(resultados.getString("descricao_funcao"));
                     funcionario.setNumMatricula(resultados.getInt("num_matricula"));
-                    funcionario.setCargaHorariaSemanal(resultados.getInt("descricao_funcao"));
+                    funcionario.setCargaHorariaSemanal(resultados.getInt("carga_horaria_semanal"));
                     funcionarios.add(funcionario);
                 }
             }

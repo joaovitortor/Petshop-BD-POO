@@ -223,7 +223,7 @@ public class MenuAtendimento extends javax.swing.JFrame {
         });
 
         campoBusca.setFont(new java.awt.Font("Agency FB", 0, 12)); // NOI18N
-        campoBusca.setForeground(new java.awt.Color(204, 204, 204));
+        campoBusca.setForeground(new java.awt.Color(102, 102, 102));
         campoBusca.setText("Digite o código");
         campoBusca.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -434,6 +434,8 @@ public class MenuAtendimento extends javax.swing.JFrame {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Por favor, digite um código numérico válido para o atendimento.", "Erro de Entrada", JOptionPane.ERROR_MESSAGE);
         }
+        campoBusca.setText("Digite o Código");
+        campoBusca.setForeground(java.awt.Color.GRAY);
 
     }//GEN-LAST:event_botaoBuscaActionPerformed
 
@@ -442,7 +444,7 @@ public class MenuAtendimento extends javax.swing.JFrame {
     }//GEN-LAST:event_campoBuscaActionPerformed
 
     private void campoBuscaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoBuscaFocusGained
-        if (campoBusca.getText().equals("Digite o código")) {
+        if (campoBusca.getText().equals("Digite o Código")) {
             campoBusca.setText("");
             campoBusca.setForeground(java.awt.Color.BLACK);
         }
@@ -450,7 +452,7 @@ public class MenuAtendimento extends javax.swing.JFrame {
 
     private void campoBuscaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoBuscaFocusLost
         if (campoBusca.getText().equals("")) {
-            campoBusca.setText("Digite o código");
+            campoBusca.setText("Digite o Código");
             campoBusca.setForeground(java.awt.Color.GRAY);
         }
     }//GEN-LAST:event_campoBuscaFocusLost
