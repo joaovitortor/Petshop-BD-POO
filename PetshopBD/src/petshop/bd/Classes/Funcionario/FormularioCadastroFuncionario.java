@@ -438,13 +438,13 @@ public class FormularioCadastroFuncionario extends javax.swing.JFrame {
             qualificacao = campoQualificacao.getText();
         }
         try {
-            Funcionario funcionario = new Funcionario(nome, qualificacao, descricao, Integer.parseInt(cargaHoraria), Integer.parseInt(numMatricula));
             FuncionarioBD funcionarioBd = new FuncionarioBD(conexao);
             if (!funcionarioBd.verificaNumMatricula(Integer.parseInt(numMatricula))) {
                 JOptionPane.showMessageDialog(null, "Falha ao cadastrar o funcionario. Já possui um cliente cadastrado com esse numero de matricula", "Cadastro", JOptionPane.ERROR_MESSAGE);
                 campoNum.requestFocus();
                 return;
             }
+            Funcionario funcionario = new Funcionario(nome, qualificacao, descricao, Integer.parseInt(cargaHoraria), Integer.parseInt(numMatricula));
             if (funcionarioBd.cadastrar(funcionario)) {
                 JOptionPane.showMessageDialog(null, "Funcionário Cadastrado com Sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
                 campoNome.setText("Digite o Nome do Funcionário");
