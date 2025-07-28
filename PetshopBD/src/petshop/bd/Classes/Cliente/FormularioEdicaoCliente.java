@@ -6,12 +6,14 @@ import java.sql.Connection;
 
 public class FormularioEdicaoCliente extends javax.swing.JFrame {
     private final Connection conexao;
+    private Cliente cliente;
     /**
      * Creates new form MenuAnimal
      * @param conexao
      */
-    public FormularioEdicaoCliente(Connection conexao) {
+    public FormularioEdicaoCliente(Connection conexao, Cliente cliente) {
         this.conexao = conexao;
+        this.cliente = cliente;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -150,7 +152,7 @@ public class FormularioEdicaoCliente extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 180, 113), 7));
 
         campoNome.setForeground(new java.awt.Color(102, 102, 102));
-        campoNome.setText("Digite o Nome");
+        campoNome.setText(cliente.getNome());
         campoNome.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
         campoNome.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -167,7 +169,7 @@ public class FormularioEdicaoCliente extends javax.swing.JFrame {
         });
 
         campoEmail.setForeground(new java.awt.Color(102, 102, 102));
-        campoEmail.setText("Digite o Email");
+        campoEmail.setText(cliente.getEmail());
         campoEmail.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
         campoEmail.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -184,7 +186,7 @@ public class FormularioEdicaoCliente extends javax.swing.JFrame {
         });
 
         campoTelefone.setForeground(new java.awt.Color(102, 102, 102));
-        campoTelefone.setText("Digite o Telefone");
+        campoTelefone.setText(cliente.getTelefone());
         campoTelefone.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
         campoTelefone.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -201,7 +203,7 @@ public class FormularioEdicaoCliente extends javax.swing.JFrame {
         });
 
         campoRG.setForeground(new java.awt.Color(102, 102, 102));
-        campoRG.setText("Digite o RG");
+        campoRG.setText(cliente.getRg());
         campoRG.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
         campoRG.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -217,8 +219,9 @@ public class FormularioEdicaoCliente extends javax.swing.JFrame {
             }
         });
 
+        campoCPF.setEditable(false);
         campoCPF.setForeground(new java.awt.Color(102, 102, 102));
-        campoCPF.setText("Digite o CPF");
+        campoCPF.setText(cliente.getCpf());
         campoCPF.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
         campoCPF.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -422,9 +425,12 @@ public class FormularioEdicaoCliente extends javax.swing.JFrame {
         } else {
             telefone = campoTelefone.getText();
         }
-        Cliente cliente = new Cliente(nome, telefone, email, rg, cpf);
+        
+        Cliente cliente1 = new Cliente(nome, telefone, email, rg, cpf);
         ClienteBD clienteBd = new ClienteBD(conexao);
-        clienteBd.alterar(cliente);
+        clienteBd.alterar(cliente1);
+        
+        JOptionPane.showMessageDialog(null, "Edição realizada com sucesso!", "", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_botaoEditarActionPerformed
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed

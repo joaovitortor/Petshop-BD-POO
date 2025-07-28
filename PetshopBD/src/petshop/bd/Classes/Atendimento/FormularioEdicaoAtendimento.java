@@ -254,7 +254,7 @@ public class FormularioEdicaoAtendimento extends javax.swing.JFrame {
         botaoCadastrar.setBackground(new java.awt.Color(80, 59, 22));
         botaoCadastrar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         botaoCadastrar.setForeground(new java.awt.Color(242, 242, 242));
-        botaoCadastrar.setText("Cadastrar");
+        botaoCadastrar.setText("Editar");
         botaoCadastrar.setIconTextGap(3);
         botaoCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -399,8 +399,11 @@ public class FormularioEdicaoAtendimento extends javax.swing.JFrame {
         }
         
         Atendimento atendimento1 = new Atendimento(data, cpf, Integer.parseInt(id), Integer.parseInt(numMatricula));
+        atendimento1.setCodigo(atendimento.getCodigo());
         AtendimentoBD atendimentoBd = new AtendimentoBD(conexao);
         atendimentoBd.alterar(atendimento1);
+        
+        JOptionPane.showMessageDialog(null, "Edição realizada com sucesso!", "", JOptionPane.INFORMATION_MESSAGE);
 
 
     }//GEN-LAST:event_botaoCadastrarActionPerformed
