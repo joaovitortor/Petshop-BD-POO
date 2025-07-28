@@ -393,10 +393,19 @@ public class MenuCliente extends javax.swing.JFrame {
 
     private void botaoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarActionPerformed
         int linhaSelecionada = jTable2.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        
         if (linhaSelecionada == -1) {
             JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Ërro", JOptionPane.ERROR_MESSAGE);
         } else {
-            FormularioEdicaoCliente formularioEdicaoCliente = new FormularioEdicaoCliente(conexao);
+            Cliente cliente = new Cliente();
+            cliente.setCpf(String.valueOf(model.getValueAt(linhaSelecionada, 0)));
+            cliente.setNome(String.valueOf(model.getValueAt(linhaSelecionada, 1)));
+            cliente.setTelefone(String.valueOf(model.getValueAt(linhaSelecionada, 2)));
+            cliente.setEmail(String.valueOf(model.getValueAt(linhaSelecionada, 3)));
+            cliente.setRg(String.valueOf(model.getValueAt(linhaSelecionada, 4)));
+
+            FormularioEdicaoCliente formularioEdicaoCliente = new FormularioEdicaoCliente(conexao, cliente);
             formularioEdicaoCliente.setVisible(true);
         }
 
