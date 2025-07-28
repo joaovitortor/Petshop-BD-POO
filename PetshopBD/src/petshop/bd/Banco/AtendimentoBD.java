@@ -122,13 +122,13 @@ public class AtendimentoBD {
         }
     }
 
-    public void remover(Atendimento atendimento) {
+    public void remover(int codigo) {
         String sql = "delete from Atendimento where codigo = ?";
 
         try {
             this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
 
-            this.declaracao_parametrizada.setInt(1, atendimento.getCodigo());
+            this.declaracao_parametrizada.setInt(1, codigo);
 
             this.declaracao_parametrizada.executeUpdate();
         } catch (SQLException erro) {

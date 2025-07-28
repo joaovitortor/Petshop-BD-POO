@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class FuncionarioBD {
 
@@ -78,17 +79,23 @@ public class FuncionarioBD {
         }
     }
 
-    public void remover(Funcionario funcionario) {
+    public void remover(int numMatricula) {
         String sql = "delete from Funcionario where num_matricula = ?";
 
         try {
             this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
 
-            this.declaracao_parametrizada.setInt(1, funcionario.getNumMatricula());
+            this.declaracao_parametrizada.setInt(1, numMatricula);
 
             this.declaracao_parametrizada.executeUpdate();
-        } catch (SQLException erro) {
-            System.out.println("Erro na exclusao dos dados. Mensagem: " + erro.getMessage());
+            
+        } catch (SQLException erro) {  
+            if (erro.getMessage().contains("FOREIGN KEY constraint failed")) {
+                JOptionPane.showMessageDialog(null, "Este funcionario está associado a atendimentos e não pode ser excluído diretamente.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+            else{
+                System.out.println("Erro na exclusao dos dados. Mensagem: " + erro.getMessage());
+            }
         }
     }
 
