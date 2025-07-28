@@ -60,7 +60,7 @@ public class FuncionarioBD {
 
     public void alterar(Funcionario funcionario) {
         String sql = "update Funcionario set"
-                + " nome = ?" + "qualificacao = ?," + "descricao_funcao = ?," + "carga_horaria_semanal= ? where num_matricula = ?";
+                + " nome = ?," + "qualificacao = ?," + "descricao_funcao = ?," + "carga_horaria_semanal= ? where num_matricula = ?";
 
         try {
             this.declaracao_parametrizada = this.conexao.prepareStatement(sql);

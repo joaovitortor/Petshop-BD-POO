@@ -437,6 +437,7 @@ public class FormularioEdicaoFuncionario extends javax.swing.JFrame {
             Funcionario funcionario1 = new Funcionario(nome, qualificacao, descricao, Integer.parseInt(cargaHoraria), Integer.parseInt(numMatricula));
             FuncionarioBD funcionarioBd = new FuncionarioBD(conexao);
             funcionarioBd.alterar(funcionario1);
+            JOptionPane.showMessageDialog(null, "Edição realizada com sucesso!", "", JOptionPane.INFORMATION_MESSAGE);
         } catch (NumberFormatException e){
             JOptionPane.showMessageDialog(this, "Digite valores válidos", "Erro", JOptionPane.ERROR_MESSAGE);
         }
