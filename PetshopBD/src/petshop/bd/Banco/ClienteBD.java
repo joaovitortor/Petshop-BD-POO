@@ -59,12 +59,16 @@ public class ClienteBD {
 
     public void alterar(Cliente cliente) {
         String sql = "update Cliente set"
-                + " nome = ?";
+                + " nome = ?, rg = ?, telefone = ?, email = ? where cpf = ?";
 
         try {
             this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
 
             this.declaracao_parametrizada.setString(1, cliente.getNome());
+            this.declaracao_parametrizada.setString(2, cliente.getRg());
+            this.declaracao_parametrizada.setString(3, cliente.getTelefone());
+            this.declaracao_parametrizada.setString(4, cliente.getEmail());
+            this.declaracao_parametrizada.setString(5, cliente.getCpf());
 
             this.declaracao_parametrizada.executeUpdate();
         } catch (SQLException erro) {
