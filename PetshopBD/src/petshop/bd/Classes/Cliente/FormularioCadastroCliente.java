@@ -428,12 +428,12 @@ public class FormularioCadastroCliente extends javax.swing.JFrame {
 
         Cliente cliente = new Cliente(nome, telefone, email, rg, cpf);
         ClienteBD clienteBd = new ClienteBD(conexao);
-        if (!clienteBd.verificaChave(cpf)){
+        if (clienteBd.verificaChave(cpf)){
             JOptionPane.showMessageDialog(null, "Falha ao cadastrar o Cliente. Já possui um cliente cadastrado com esse CPF", "Cadastro", JOptionPane.ERROR_MESSAGE);
             campoCPF.requestFocus();
             return;
         }
-        if(!clienteBd.verificaRG(rg)){
+        if(clienteBd.verificaRG(rg)){
             JOptionPane.showMessageDialog(null, "Falha ao cadastrar o Cliente. Já possui um cliente cadastrado com esse RG", "Cadastro", JOptionPane.ERROR_MESSAGE);
             campoCPF.requestFocus();
             return;
