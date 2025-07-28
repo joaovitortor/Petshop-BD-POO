@@ -6,12 +6,14 @@ import java.sql.Connection;
 
 public class FormularioEdicaoFuncionario extends javax.swing.JFrame {
     private final Connection conexao;
+    private Funcionario funcionario;
     /**
      * Creates new form MenuAnimal
      * @param conexao
      */
-    public FormularioEdicaoFuncionario(Connection conexao) {
+    public FormularioEdicaoFuncionario(Connection conexao, Funcionario funcionario) {
         this.conexao = conexao;
+        this.funcionario = funcionario;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -150,7 +152,7 @@ public class FormularioEdicaoFuncionario extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 180, 113), 7));
 
         campoNome.setForeground(new java.awt.Color(102, 102, 102));
-        campoNome.setText("Digite o Nome do Funcionário");
+        campoNome.setText(funcionario.getNome());
         campoNome.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
         campoNome.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -167,7 +169,7 @@ public class FormularioEdicaoFuncionario extends javax.swing.JFrame {
         });
 
         campoDescricao.setForeground(new java.awt.Color(102, 102, 102));
-        campoDescricao.setText("Digite a Descrição da Função");
+        campoDescricao.setText(funcionario.getDescricaoFuncao());
         campoDescricao.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
         campoDescricao.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -184,7 +186,7 @@ public class FormularioEdicaoFuncionario extends javax.swing.JFrame {
         });
 
         campoQualificacao.setForeground(new java.awt.Color(102, 102, 102));
-        campoQualificacao.setText("Digite a Qualificação");
+        campoQualificacao.setText(funcionario.getQualificacao());
         campoQualificacao.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
         campoQualificacao.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -201,7 +203,7 @@ public class FormularioEdicaoFuncionario extends javax.swing.JFrame {
         });
 
         campoCarga.setForeground(new java.awt.Color(102, 102, 102));
-        campoCarga.setText("Digite a Carga Horária");
+        campoCarga.setText(String.valueOf(funcionario.getCargaHorariaSemanal()));
         campoCarga.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
         campoCarga.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -217,8 +219,9 @@ public class FormularioEdicaoFuncionario extends javax.swing.JFrame {
             }
         });
 
+        campoNum.setEditable(false);
         campoNum.setForeground(new java.awt.Color(102, 102, 102));
-        campoNum.setText("Digite o Número de Matrícula");
+        campoNum.setText(String.valueOf(funcionario.getNumMatricula()));
         campoNum.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
         campoNum.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -431,9 +434,9 @@ public class FormularioEdicaoFuncionario extends javax.swing.JFrame {
             qualificacao = campoQualificacao.getText();
         }
         try{
-            Funcionario funcionario = new Funcionario(nome, qualificacao, descricao, Integer.parseInt(cargaHoraria), Integer.parseInt(numMatricula));
+            Funcionario funcionario1 = new Funcionario(nome, qualificacao, descricao, Integer.parseInt(cargaHoraria), Integer.parseInt(numMatricula));
             FuncionarioBD funcionarioBd = new FuncionarioBD(conexao);
-            funcionarioBd.alterar(funcionario);
+            funcionarioBd.alterar(funcionario1);
         } catch (NumberFormatException e){
             JOptionPane.showMessageDialog(this, "Digite valores válidos", "Erro", JOptionPane.ERROR_MESSAGE);
         }
@@ -448,17 +451,11 @@ public class FormularioEdicaoFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoEditarPropertyChange
 
     private void campoNomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNomeFocusGained
-        if (campoNome.getText().equals("Digite o Nome do Funcionário")) {
-            campoNome.setText("");
-            campoNome.setForeground(java.awt.Color.BLACK);
-        }
+
     }//GEN-LAST:event_campoNomeFocusGained
 
     private void campoNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNomeFocusLost
-        if (campoNome.getText().isEmpty()) {
-            campoNome.setText("Digite o Nome do Funcionário");
-            campoNome.setForeground(new java.awt.Color(102, 102, 102));
-        }
+
     }//GEN-LAST:event_campoNomeFocusLost
 
     private void campoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeActionPerformed
@@ -466,17 +463,11 @@ public class FormularioEdicaoFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_campoNomeActionPerformed
 
     private void campoDescricaoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoDescricaoFocusGained
-        if (campoDescricao.getText().equals("Digite a Descrição da Função")) {
-            campoDescricao.setText("");
-            campoDescricao.setForeground(java.awt.Color.BLACK);
-        }
+
     }//GEN-LAST:event_campoDescricaoFocusGained
 
     private void campoDescricaoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoDescricaoFocusLost
-        if (campoDescricao.getText().isEmpty()) {
-            campoDescricao.setText("Digite a Descrição da Função");
-            campoDescricao.setForeground(new java.awt.Color(102, 102, 102));
-        }
+
     }//GEN-LAST:event_campoDescricaoFocusLost
 
     private void campoDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDescricaoActionPerformed
@@ -484,17 +475,11 @@ public class FormularioEdicaoFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_campoDescricaoActionPerformed
 
     private void campoQualificacaoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoQualificacaoFocusGained
-        if (campoQualificacao.getText().equals("Digite a Qualificação")) {
-            campoQualificacao.setText("");
-            campoQualificacao.setForeground(java.awt.Color.BLACK);
-        }
+
     }//GEN-LAST:event_campoQualificacaoFocusGained
 
     private void campoQualificacaoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoQualificacaoFocusLost
-        if (campoQualificacao.getText().isEmpty()) {
-            campoQualificacao.setText("Digite a Qualificação");
-            campoQualificacao.setForeground(new java.awt.Color(102, 102, 102));
-        }
+
     }//GEN-LAST:event_campoQualificacaoFocusLost
 
     private void campoQualificacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoQualificacaoActionPerformed
@@ -502,17 +487,11 @@ public class FormularioEdicaoFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_campoQualificacaoActionPerformed
 
     private void campoCargaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoCargaFocusGained
-        if (campoCarga.getText().equals("Digite a Carga Horária")) {
-            campoCarga.setText("");
-            campoCarga.setForeground(java.awt.Color.BLACK);
-        }
+
     }//GEN-LAST:event_campoCargaFocusGained
 
     private void campoCargaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoCargaFocusLost
-        if (campoCarga.getText().isEmpty()) {
-            campoCarga.setText("Digite a Carga Horária");
-            campoCarga.setForeground(new java.awt.Color(102, 102, 102));
-        }
+
     }//GEN-LAST:event_campoCargaFocusLost
 
     private void campoCargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCargaActionPerformed
@@ -520,17 +499,11 @@ public class FormularioEdicaoFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_campoCargaActionPerformed
 
     private void campoNumFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNumFocusGained
-        if (campoNum.getText().equals("Digite o Número de Matrícula")) {
-            campoNum.setText("");
-            campoNum.setForeground(java.awt.Color.BLACK);
-        }
+
     }//GEN-LAST:event_campoNumFocusGained
 
     private void campoNumFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNumFocusLost
-        if (campoNum.getText().isEmpty()) {
-            campoNum.setText("Digite o Número de Matrícula");
-            campoNum.setForeground(new java.awt.Color(102, 102, 102));
-        }
+
     }//GEN-LAST:event_campoNumFocusLost
 
     private void campoNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNumActionPerformed

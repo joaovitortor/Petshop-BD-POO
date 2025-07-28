@@ -394,7 +394,15 @@ public class MenuFuncionario extends javax.swing.JFrame {
         if (model.getValueAt(linhaSelecionada, 0) == null) {
             JOptionPane.showMessageDialog(null, "Selecione uma linha válida", "Ërro", JOptionPane.ERROR_MESSAGE);
         } else {
-            FormularioEdicaoFuncionario formularioEdicaoFuncionario = new FormularioEdicaoFuncionario(conexao);
+            Funcionario funcionario = new Funcionario();
+            funcionario.setNumMatricula(Integer.parseInt(String.valueOf(model.getValueAt(linhaSelecionada, 0))));
+            funcionario.setNome(String.valueOf(model.getValueAt(linhaSelecionada, 1)));
+            funcionario.setQualificacao(String.valueOf(model.getValueAt(linhaSelecionada, 2)));
+            funcionario.setCargaHorariaSemanal(Integer.parseInt(String.valueOf(model.getValueAt(linhaSelecionada, 3))));
+            funcionario.setDescricaoFuncao(String.valueOf(model.getValueAt(linhaSelecionada, 4)));                    
+            
+            
+            FormularioEdicaoFuncionario formularioEdicaoFuncionario = new FormularioEdicaoFuncionario(conexao, funcionario);
             formularioEdicaoFuncionario.setVisible(true);
         }
     }//GEN-LAST:event_botaoEditarActionPerformed
