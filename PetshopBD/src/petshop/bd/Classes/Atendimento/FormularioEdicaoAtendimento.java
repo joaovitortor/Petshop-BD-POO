@@ -152,7 +152,7 @@ public class FormularioEdicaoAtendimento extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 180, 113), 7));
 
         campoData.setForeground(new java.awt.Color(102, 102, 102));
-        campoData.setText("Digite a Data");
+        campoData.setText(atendimento.getData());
         campoData.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
         campoData.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -168,8 +168,9 @@ public class FormularioEdicaoAtendimento extends javax.swing.JFrame {
             }
         });
 
+        campoNum.setEditable(false);
         campoNum.setForeground(new java.awt.Color(102, 102, 102));
-        campoNum.setText("Digite o Número de Matrícula");
+        campoNum.setText(String.valueOf(atendimento.getNumMatricula()));
         campoNum.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
         campoNum.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -185,8 +186,9 @@ public class FormularioEdicaoAtendimento extends javax.swing.JFrame {
             }
         });
 
+        campoId.setEditable(false);
         campoId.setForeground(new java.awt.Color(102, 102, 102));
-        campoId.setText("Digite o ID");
+        campoId.setText(String.valueOf(atendimento.getIdAnimal()));
         campoId.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
         campoId.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -202,8 +204,9 @@ public class FormularioEdicaoAtendimento extends javax.swing.JFrame {
             }
         });
 
+        campoCPF.setEditable(false);
         campoCPF.setForeground(new java.awt.Color(102, 102, 102));
-        campoCPF.setText("Digite o CPF");
+        campoCPF.setText(atendimento.getCpfCliente());
         campoCPF.setFont(new java.awt.Font("Agency FB", 0, 16)); // NOI18N
         campoCPF.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -395,8 +398,9 @@ public class FormularioEdicaoAtendimento extends javax.swing.JFrame {
             id = campoId.getText();
         }
         
-        Atendimento atendimento = new Atendimento(data, cpf, Integer.parseInt(id), Integer.parseInt(numMatricula));
+        Atendimento atendimento1 = new Atendimento(data, cpf, Integer.parseInt(id), Integer.parseInt(numMatricula));
         AtendimentoBD atendimentoBd = new AtendimentoBD(conexao);
+        atendimentoBd.alterar(atendimento1);
 
 
     }//GEN-LAST:event_botaoCadastrarActionPerformed
