@@ -60,12 +60,17 @@ public class FuncionarioBD {
 
     public void alterar(Funcionario funcionario) {
         String sql = "update Funcionario set"
-                + " nome = ?" + "= ?," + "= ?," + "= ?,";
+                + " nome = ?" + "qualificacao = ?," + "descricao_funcao = ?," + "carga_horaria_semanal= ? where num_matricula = ?";
 
         try {
             this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
 
             this.declaracao_parametrizada.setString(1, funcionario.getNome());
+            this.declaracao_parametrizada.setString(2, funcionario.getQualificacao());
+            this.declaracao_parametrizada.setString(3, funcionario.getDescricaoFuncao());
+            this.declaracao_parametrizada.setInt(4, funcionario.getCargaHorariaSemanal());
+            this.declaracao_parametrizada.setInt(5, funcionario.getNumMatricula());
+            
 
             this.declaracao_parametrizada.executeUpdate();
         } catch (SQLException erro) {

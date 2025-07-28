@@ -53,7 +53,7 @@ public class FormularioEdicaoFuncionario extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        botaoCadastrar = new javax.swing.JButton();
+        botaoEditar = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -264,19 +264,19 @@ public class FormularioEdicaoFuncionario extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Editar Funcionário");
 
-        botaoCadastrar.setBackground(new java.awt.Color(80, 59, 22));
-        botaoCadastrar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        botaoCadastrar.setForeground(new java.awt.Color(242, 242, 242));
-        botaoCadastrar.setText("Cadastrar");
-        botaoCadastrar.setIconTextGap(3);
-        botaoCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        botaoEditar.setBackground(new java.awt.Color(80, 59, 22));
+        botaoEditar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        botaoEditar.setForeground(new java.awt.Color(242, 242, 242));
+        botaoEditar.setText("Editar");
+        botaoEditar.setIconTextGap(3);
+        botaoEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoCadastrarActionPerformed(evt);
+                botaoEditarActionPerformed(evt);
             }
         });
-        botaoCadastrar.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+        botaoEditar.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                botaoCadastrarPropertyChange(evt);
+                botaoEditarPropertyChange(evt);
             }
         });
 
@@ -285,19 +285,16 @@ public class FormularioEdicaoFuncionario extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(46, 46, 46)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
+                    .addComponent(campoDescricao, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoDescricao)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(campoQualificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(jLabel8)
+                            .addComponent(campoQualificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -317,7 +314,7 @@ public class FormularioEdicaoFuncionario extends javax.swing.JFrame {
                 .addGap(128, 128, 128))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(botaoCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(137, 137, 137))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(254, 254, 254)
@@ -350,7 +347,7 @@ public class FormularioEdicaoFuncionario extends javax.swing.JFrame {
                     .addComponent(campoCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoNum, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(botaoCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
         );
 
@@ -395,68 +392,60 @@ public class FormularioEdicaoFuncionario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
+    private void botaoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarActionPerformed
         String nome, descricao, qualificacao, numMatricula, cargaHoraria;
 
-        if (campoNome.getText().equals("Digite o Nome do Funcionário") || campoNome.getText().isEmpty()) {
+        if (campoNome.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite o nome do Funcionário", "Erro", JOptionPane.ERROR_MESSAGE);
             campoNome.requestFocus();
             return;
         } else {
             nome = campoNome.getText();
         }
-        if (campoDescricao.getText().equals("Digite a Descrição da Função") || campoDescricao.getText().isEmpty()) {
+        if (campoDescricao.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite a Descrição do Funcionário", "Erro", JOptionPane.ERROR_MESSAGE);
             campoDescricao.requestFocus();
             return;
         } else {
             descricao = campoDescricao.getText();
         }
-        if (campoNum.getText().equals("Digite o Número de Matrícula") || campoNum.getText().isEmpty()) {
+        if (campoNum.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite o Número de Matrícula do Funcionário", "Erro", JOptionPane.ERROR_MESSAGE);
             campoNum.requestFocus();
             return;
         } else {
             numMatricula = campoNum.getText();
         }
-        if (campoCarga.getText().equals("Digite a Carga Horária") || campoCarga.getText().isEmpty()) {
+        if (campoCarga.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite a Carga Horária Semanal", "Erro", JOptionPane.ERROR_MESSAGE);
             campoCarga.requestFocus();
             return;
         } else {
             cargaHoraria = campoCarga.getText();
         }
-        if (campoQualificacao.getText().equals("Digite a Qualificação") || campoQualificacao.getText().isEmpty()) {
+        if (campoQualificacao.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite o nome do Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
             campoQualificacao.requestFocus();
             return;
         } else {
             qualificacao = campoQualificacao.getText();
         }
-
-        Funcionario funcionario = new Funcionario(nome, qualificacao, descricao, Integer.parseInt(cargaHoraria), Integer.parseInt(numMatricula));
-        FuncionarioBD funcionarioBd = new FuncionarioBD(conexao);
-        if (funcionarioBd.cadastrar(funcionario)) {
-            JOptionPane.showMessageDialog(null, "Funcionário Cadastrado com Sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
-            campoNome.setText("Digite o Nome do Funcionário");
-            campoDescricao.setText("Digite a Descrição da Função");
-            campoNum.setText("Digite o Número de Matrícula");
-            campoCarga.setText("Digite a Carga Horária");
-            campoQualificacao.setText("Digite a Qualificação");
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Falha ao cadastrar o Funcionário", "Cadastro", JOptionPane.ERROR_MESSAGE);
-
+        try{
+            Funcionario funcionario = new Funcionario(nome, qualificacao, descricao, Integer.parseInt(cargaHoraria), Integer.parseInt(numMatricula));
+            FuncionarioBD funcionarioBd = new FuncionarioBD(conexao);
+            funcionarioBd.alterar(funcionario);
+        } catch (NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Digite valores válidos", "Erro", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_botaoCadastrarActionPerformed
+    }//GEN-LAST:event_botaoEditarActionPerformed
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
         this.dispose();
     }//GEN-LAST:event_botaoVoltarActionPerformed
 
-    private void botaoCadastrarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_botaoCadastrarPropertyChange
+    private void botaoEditarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_botaoEditarPropertyChange
         // TODO add your handling code here:
-    }//GEN-LAST:event_botaoCadastrarPropertyChange
+    }//GEN-LAST:event_botaoEditarPropertyChange
 
     private void campoNomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNomeFocusGained
         if (campoNome.getText().equals("Digite o Nome do Funcionário")) {
@@ -551,7 +540,7 @@ public class FormularioEdicaoFuncionario extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botaoCadastrar;
+    private javax.swing.JButton botaoEditar;
     private javax.swing.JButton botaoVoltar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JFormattedTextField campoCarga;

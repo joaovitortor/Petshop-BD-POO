@@ -53,7 +53,7 @@ public class FormularioEdicaoCliente extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        botaoCadastrar = new javax.swing.JButton();
+        botaoEditar = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -264,19 +264,19 @@ public class FormularioEdicaoCliente extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Editar Cliente");
 
-        botaoCadastrar.setBackground(new java.awt.Color(80, 59, 22));
-        botaoCadastrar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        botaoCadastrar.setForeground(new java.awt.Color(242, 242, 242));
-        botaoCadastrar.setText("Cadastrar");
-        botaoCadastrar.setIconTextGap(3);
-        botaoCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        botaoEditar.setBackground(new java.awt.Color(80, 59, 22));
+        botaoEditar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        botaoEditar.setForeground(new java.awt.Color(242, 242, 242));
+        botaoEditar.setText("Editar");
+        botaoEditar.setIconTextGap(3);
+        botaoEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoCadastrarActionPerformed(evt);
+                botaoEditarActionPerformed(evt);
             }
         });
-        botaoCadastrar.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+        botaoEditar.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                botaoCadastrarPropertyChange(evt);
+                botaoEditarPropertyChange(evt);
             }
         });
 
@@ -307,7 +307,7 @@ public class FormularioEdicaoCliente extends javax.swing.JFrame {
                 .addGap(124, 124, 124))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(115, 115, 115))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(275, 275, 275)
@@ -340,7 +340,7 @@ public class FormularioEdicaoCliente extends javax.swing.JFrame {
                     .addComponent(campoRG, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(botaoCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -385,67 +385,55 @@ public class FormularioEdicaoCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
+    private void botaoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarActionPerformed
         String nome, email, cpf, rg, telefone;
-        if (campoNome.getText().equals("Digite o Nome") || campoNome.getText().isEmpty()) {
+        if (campoNome.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite o nome do Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
             campoNome.requestFocus();
             return;
         } else {
             nome = campoNome.getText();
         }
-        if (campoEmail.getText().equals("Digite o Email") || campoEmail.getText().isEmpty()) {
+        if (campoEmail.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite o email do Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
             campoEmail.requestFocus();
             return;
         } else {
             email = campoEmail.getText();
         }
-        if (campoCPF.getText().equals("Digite o CPF") || campoCPF.getText().isEmpty()) {
+        if (campoCPF.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite o CPF do Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
             campoCPF.requestFocus();
             return;
         } else {
             cpf = campoCPF.getText();
         }
-        if (campoRG.getText().equals("Digite o RG") || campoRG.getText().isEmpty()) {
+        if (campoRG.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite o RG do Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
             campoRG.requestFocus();
             return;
         } else {
             rg = campoRG.getText();
         }
-        if (campoTelefone.getText().equals("Digite o Telefone") || campoTelefone.getText().isEmpty()) {
+        if (campoTelefone.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite o nome do Cliente", "Erro", JOptionPane.ERROR_MESSAGE);
             campoTelefone.requestFocus();
             return;
         } else {
             telefone = campoTelefone.getText();
         }
-
         Cliente cliente = new Cliente(nome, telefone, email, rg, cpf);
         ClienteBD clienteBd = new ClienteBD(conexao);
-        if (clienteBd.cadastrar(cliente)) {
-            JOptionPane.showMessageDialog(null, "Cliente Cadastrado com Sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
-            campoTelefone.setText("Digite o Telefone");
-            campoRG.setText("Digite o RG");
-            campoCPF.setText("Digite o CPF");
-            campoEmail.setText("Digite o Email");
-            campoNome.setText("Digite o Nome");
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Falha ao cadastrar o Cliente", "Cadastro", JOptionPane.ERROR_MESSAGE);
-
-        }
-    }//GEN-LAST:event_botaoCadastrarActionPerformed
+        clienteBd.alterar(cliente);
+    }//GEN-LAST:event_botaoEditarActionPerformed
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
         this.dispose();
     }//GEN-LAST:event_botaoVoltarActionPerformed
 
-    private void botaoCadastrarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_botaoCadastrarPropertyChange
+    private void botaoEditarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_botaoEditarPropertyChange
         // TODO add your handling code here:
-    }//GEN-LAST:event_botaoCadastrarPropertyChange
+    }//GEN-LAST:event_botaoEditarPropertyChange
 
     private void campoNomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNomeFocusGained
         if (campoNome.getText().equals("Digite o Nome")) {
@@ -539,7 +527,7 @@ public class FormularioEdicaoCliente extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botaoCadastrar;
+    private javax.swing.JButton botaoEditar;
     private javax.swing.JButton botaoVoltar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JFormattedTextField campoCPF;
