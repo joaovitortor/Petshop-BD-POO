@@ -408,6 +408,10 @@ public class MenuFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoEditarActionPerformed
 
     private void botaoEditarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_botaoEditarPropertyChange
+        
+    }//GEN-LAST:event_botaoEditarPropertyChange
+
+    private void botarExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botarExcluirActionPerformed
         int linhaSelecionada = jTable2.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
 
@@ -418,12 +422,8 @@ public class MenuFuncionario extends javax.swing.JFrame {
         if (model.getValueAt(linhaSelecionada, 0) == null) {
             JOptionPane.showMessageDialog(null, "Selecione uma linha válida", "Ërro", JOptionPane.ERROR_MESSAGE);
         } else {
-            funcionarioBD.remover(Integer.parseInt(String.valueOf(model.getValueAt(linhaSelecionada, 0))));            
+            funcionarioBD.remover(Integer.parseInt(String.valueOf(model.getValueAt(linhaSelecionada, 0))));  
         }
-    }//GEN-LAST:event_botaoEditarPropertyChange
-
-    private void botarExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botarExcluirActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_botarExcluirActionPerformed
 
     private void botarExcluirPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_botarExcluirPropertyChange

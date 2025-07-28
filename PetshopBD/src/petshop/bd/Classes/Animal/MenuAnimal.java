@@ -428,8 +428,8 @@ public class MenuAnimal extends javax.swing.JFrame {
         if (model.getValueAt(linhaSelecionada, 0) == null) {
             JOptionPane.showMessageDialog(null, "Selecione uma linha válida", "Ërro", JOptionPane.ERROR_MESSAGE);
         } else {
-            animalBD.remover(Integer.parseInt(String.valueOf(model.getValueAt(linhaSelecionada, 0))));            
-        }
+            animalBD.remover(Integer.parseInt(String.valueOf(model.getValueAt(linhaSelecionada, 0))));
+            }            
     }//GEN-LAST:event_botaoExcluirActionPerformed
 
     private void botaoExcluirPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_botaoExcluirPropertyChange

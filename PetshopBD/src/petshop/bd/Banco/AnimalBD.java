@@ -106,7 +106,7 @@ public class AnimalBD {
             this.declaracao_parametrizada.setInt(1, id);
 
             this.declaracao_parametrizada.executeUpdate();
-            
+            JOptionPane.showMessageDialog(null, "Animal excluido com Sucesso!", "Exclusão", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException erro) {  
             if (erro.getMessage().contains("FOREIGN KEY constraint failed")) {
                 JOptionPane.showMessageDialog(null, "Este animal está associado a atendimentos e não pode ser excluído diretamente.", "Erro", JOptionPane.ERROR_MESSAGE);

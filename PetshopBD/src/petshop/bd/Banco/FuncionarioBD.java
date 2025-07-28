@@ -88,6 +88,7 @@ public class FuncionarioBD {
             this.declaracao_parametrizada.setInt(1, numMatricula);
 
             this.declaracao_parametrizada.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Funcionario excluido com Sucesso!", "Exclusão", JOptionPane.INFORMATION_MESSAGE);
             
         } catch (SQLException erro) {  
             if (erro.getMessage().contains("FOREIGN KEY constraint failed")) {

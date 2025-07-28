@@ -426,7 +426,7 @@ public class MenuCliente extends javax.swing.JFrame {
         if (model.getValueAt(linhaSelecionada, 0) == null) {
             JOptionPane.showMessageDialog(null, "Selecione uma linha válida", "Ërro", JOptionPane.ERROR_MESSAGE);
         } else {
-            clienteBD.remover(String.valueOf(model.getValueAt(linhaSelecionada, 0)));            
+            clienteBD.remover(String.valueOf(model.getValueAt(linhaSelecionada, 0)));       
         }
     }//GEN-LAST:event_botaoExcluirActionPerformed
 

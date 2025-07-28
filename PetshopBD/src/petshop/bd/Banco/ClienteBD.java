@@ -86,11 +86,12 @@ public class ClienteBD {
             this.declaracao_parametrizada.setString(1, cpf);
 
             this.declaracao_parametrizada.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Animal Cadastrado com Sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException erro) {
             if (erro.getMessage().contains("FOREIGN KEY constraint failed")) {
                 JOptionPane.showMessageDialog(null, "Este Cliente está associado a atendimentos ou animal e não pode ser excluído diretamente.", "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-            else{
+            } else {
                 System.out.println("Erro na exclusao dos dados. Mensagem: " + erro.getMessage());
             }
         }
@@ -119,8 +120,8 @@ public class ClienteBD {
         }
         return null;
     }
-    
-    public boolean verificaRG(String rg){
+
+    public boolean verificaRG(String rg) {
         String sql = "select * from Cliente where rg = ?";
         try {
             this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
@@ -134,6 +135,7 @@ public class ClienteBD {
             return false;
         }
     }
+
     public boolean verificaChave(String cpf) {
         String sql = "select * from Cliente where cpf = ?";
         try {

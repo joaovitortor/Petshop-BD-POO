@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class AtendimentoBD {
 
@@ -131,6 +132,7 @@ public class AtendimentoBD {
             this.declaracao_parametrizada.setInt(1, codigo);
 
             this.declaracao_parametrizada.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Atendimento excluído com Sucesso!", "Exclusao", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException erro) {
             System.out.println("Erro na exclusao dos dados. Mensagem: " + erro.getMessage());
         }
