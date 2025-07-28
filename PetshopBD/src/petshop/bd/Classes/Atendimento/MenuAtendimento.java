@@ -229,7 +229,7 @@ public class MenuAtendimento extends javax.swing.JFrame {
 
         campoBusca.setFont(new java.awt.Font("Agency FB", 0, 12)); // NOI18N
         campoBusca.setForeground(new java.awt.Color(102, 102, 102));
-        campoBusca.setText("Digite o código");
+        campoBusca.setText("Digite o Código");
         campoBusca.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 campoBuscaFocusGained(evt);
