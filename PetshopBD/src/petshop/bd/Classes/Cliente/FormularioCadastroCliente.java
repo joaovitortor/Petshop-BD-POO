@@ -5,9 +5,12 @@ import petshop.bd.Banco.ClienteBD;
 import java.sql.Connection;
 
 public class FormularioCadastroCliente extends javax.swing.JFrame {
+
     private final Connection conexao;
+
     /**
      * Creates new form MenuAnimal
+     *
      * @param conexao
      */
     public FormularioCadastroCliente(Connection conexao) {
@@ -425,6 +428,16 @@ public class FormularioCadastroCliente extends javax.swing.JFrame {
 
         Cliente cliente = new Cliente(nome, telefone, email, rg, cpf);
         ClienteBD clienteBd = new ClienteBD(conexao);
+        if (!clienteBd.verificaChave(cpf)){
+            JOptionPane.showMessageDialog(null, "Falha ao cadastrar o Cliente. Já possui um cliente cadastrado com esse CPF", "Cadastro", JOptionPane.ERROR_MESSAGE);
+            campoCPF.requestFocus();
+            return;
+        }
+        if(!clienteBd.verificaRG(rg)){
+            JOptionPane.showMessageDialog(null, "Falha ao cadastrar o Cliente. Já possui um cliente cadastrado com esse RG", "Cadastro", JOptionPane.ERROR_MESSAGE);
+            campoCPF.requestFocus();
+            return;
+        }
         if (clienteBd.cadastrar(cliente)) {
             JOptionPane.showMessageDialog(null, "Cliente Cadastrado com Sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
             campoTelefone.setText("Digite o Telefone");

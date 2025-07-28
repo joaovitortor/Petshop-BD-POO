@@ -113,6 +113,35 @@ public class ClienteBD {
         }
         return null;
     }
+    
+    public boolean verificaRG(String rg){
+        String sql = "select * from Cliente where rg = ?";
+        try {
+            this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
+            this.declaracao_parametrizada.setString(1, rg);
+
+            this.resultados = declaracao_parametrizada.executeQuery();
+
+            return this.resultados.next();
+        } catch (SQLException erro) {
+            System.out.println("Erro na busca dos dados. Mensagem: " + erro.getMessage());
+            return false;
+        }
+    }
+    public boolean verificaChave(String cpf) {
+        String sql = "select * from Cliente where cpf = ?";
+        try {
+            this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
+            this.declaracao_parametrizada.setString(1, cpf);
+
+            this.resultados = declaracao_parametrizada.executeQuery();
+
+            return this.resultados.next();
+        } catch (SQLException erro) {
+            System.out.println("Erro na busca dos dados. Mensagem: " + erro.getMessage());
+            return false;
+        }
+    }
 
     public ArrayList<Cliente> consultarTodas() {
         ArrayList<Cliente> clientes = new ArrayList<>();

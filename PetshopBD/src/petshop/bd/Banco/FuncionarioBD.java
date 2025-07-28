@@ -116,6 +116,20 @@ public class FuncionarioBD {
         return null;
     }
 
+    public boolean verificaNumMatricula(int numMatricula){
+        String sql = "select * from Funcionario where num_matricula = ?";
+        try {
+            this.declaracao_parametrizada = this.conexao.prepareStatement(sql);
+            this.declaracao_parametrizada.setInt(1, numMatricula);
+
+            this.resultados = declaracao_parametrizada.executeQuery();
+
+            return this.resultados.next();
+        } catch (SQLException erro) {
+            System.out.println("Erro na busca dos dados. Mensagem: " + erro.getMessage());
+            return false;
+        }
+    }
     public ArrayList<Funcionario> consultarTodas() {
         ArrayList<Funcionario> funcionarios = new ArrayList<>();
         String sql = "select * from Funcionario";

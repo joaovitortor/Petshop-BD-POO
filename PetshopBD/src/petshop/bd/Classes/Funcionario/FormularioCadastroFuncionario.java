@@ -5,9 +5,12 @@ import petshop.bd.Banco.FuncionarioBD;
 import java.sql.Connection;
 
 public class FormularioCadastroFuncionario extends javax.swing.JFrame {
+
     private final Connection conexao;
+
     /**
      * Creates new form MenuAnimal
+     *
      * @param conexao
      */
     public FormularioCadastroFuncionario(Connection conexao) {
@@ -434,21 +437,31 @@ public class FormularioCadastroFuncionario extends javax.swing.JFrame {
         } else {
             qualificacao = campoQualificacao.getText();
         }
+        try {
+            Funcionario funcionario = new Funcionario(nome, qualificacao, descricao, Integer.parseInt(cargaHoraria), Integer.parseInt(numMatricula));
+            FuncionarioBD funcionarioBd = new FuncionarioBD(conexao);
+            if (!funcionarioBd.verificaNumMatricula(Integer.parseInt(numMatricula))) {
+                JOptionPane.showMessageDialog(null, "Falha ao cadastrar o funcionario. Já possui um cliente cadastrado com esse numero de matricula", "Cadastro", JOptionPane.ERROR_MESSAGE);
+                campoNum.requestFocus();
+                return;
+            }
+            if (funcionarioBd.cadastrar(funcionario)) {
+                JOptionPane.showMessageDialog(null, "Funcionário Cadastrado com Sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
+                campoNome.setText("Digite o Nome do Funcionário");
+                campoDescricao.setText("Digite a Descrição da Função");
+                campoNum.setText("Digite o Número de Matrícula");
+                campoCarga.setText("Digite a Carga Horária");
+                campoQualificacao.setText("Digite a Qualificação");
 
-        Funcionario funcionario = new Funcionario(nome, qualificacao, descricao, Integer.parseInt(cargaHoraria), Integer.parseInt(numMatricula));
-        FuncionarioBD funcionarioBd = new FuncionarioBD(conexao);
-        if (funcionarioBd.cadastrar(funcionario)) {
-            JOptionPane.showMessageDialog(null, "Funcionário Cadastrado com Sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
-            campoNome.setText("Digite o Nome do Funcionário");
-            campoDescricao.setText("Digite a Descrição da Função");
-            campoNum.setText("Digite o Número de Matrícula");
-            campoCarga.setText("Digite a Carga Horária");
-            campoQualificacao.setText("Digite a Qualificação");
+            } else {
+                JOptionPane.showMessageDialog(null, "Falha ao cadastrar o Funcionário", "Cadastro", JOptionPane.ERROR_MESSAGE);
 
-        } else {
-            JOptionPane.showMessageDialog(null, "Falha ao cadastrar o Funcionário", "Cadastro", JOptionPane.ERROR_MESSAGE);
+            }
 
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Digite valores válidos", "Erro", JOptionPane.ERROR_MESSAGE);
         }
+
     }//GEN-LAST:event_botaoCadastrarActionPerformed
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
@@ -548,7 +561,6 @@ public class FormularioCadastroFuncionario extends javax.swing.JFrame {
     private void campoNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNumActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoNumActionPerformed
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
