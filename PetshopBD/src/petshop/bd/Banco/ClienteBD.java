@@ -87,7 +87,7 @@ public class ClienteBD {
 
             this.declaracao_parametrizada.executeUpdate();
 
-            JOptionPane.showMessageDialog(null, "Cleinte excluido com Sucesso!", "Exclusao", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Cliente excluido com Sucesso!", "Exclusão", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException erro) {
             if (erro.getMessage().contains("FOREIGN KEY constraint failed")) {
                 JOptionPane.showMessageDialog(null, "Este Cliente está associado a atendimentos ou animal e não pode ser excluído diretamente.", "Erro", JOptionPane.ERROR_MESSAGE);
